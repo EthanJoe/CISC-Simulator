@@ -1,4 +1,4 @@
-import GUI.SimulatorPanel;
+import GUI.GUIPanel;
 
 import java.awt.*;
 
@@ -8,8 +8,8 @@ import java.awt.*;
 public class Main {
     public static void main(String[] args) {
         EventQueue.invokeLater(() -> {
-            SimulatorPanel simulatorPanel = new SimulatorPanel();
-            simulatorPanel.setVisible(true);
+            GUIPanel panel = new GUIPanel();
+            panel.setVisible(true);
         });
     }
 }

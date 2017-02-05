@@ -6,17 +6,18 @@ import java.awt.*;
 /**
  * Created by yichenzhou on 2/4/17.
  */
-public class Register extends JComponent {
+public class GUIRegister extends JComponent {
     private JLabel titleLabel;
     public JLabel[] registers;
 
-    public Register(String name, int count, int x, int y) {
-        // Register Title Initializer
+    public GUIRegister(String name, int count, int x, int y) {
+        // GUIRegister Title Initializer
         this.titleLabel = new JLabel(name);
         this.titleLabel.setBounds(x - 60, y, 45, 35);
         this.titleLabel.setFont(new Font("Avenir", 0, 20));
         this.titleLabel.setHorizontalAlignment(SwingConstants.RIGHT);
         this.titleLabel.setVerticalAlignment(SwingConstants.CENTER);
+
         // Registers Initializer
         this.registers = new JLabel[count];
         for (int i = 0; i < registers.length; i++) {
@@ -38,6 +39,9 @@ public class Register extends JComponent {
         }
     }
 
+    /***
+     * @param view The superview which to be added the target component
+     */
     public void addToView(JPanel view) {
         view.add(titleLabel);
         for (int i = 0; i < registers.length; i++) {
