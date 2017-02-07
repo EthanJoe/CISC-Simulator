@@ -1,3 +1,5 @@
+package Logic;
+
 public class Instruction {
 	
 	/*
@@ -110,7 +112,7 @@ public class Instruction {
 	
 	@Override
 	public String toString() {
-		return "Instruction [opCode=" + opCode + ", ix=" + ix + ", r=" + r + ", i=" + i + ", address=" + address
+		return "Logic.Instruction [opCode=" + opCode + ", ix=" + ix + ", r=" + r + ", i=" + i + ", address=" + address
 				+ ", base=" + base + "]";
 	} 
 	
