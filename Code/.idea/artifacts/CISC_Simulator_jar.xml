@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="CISC Simulator:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/CISC_Simulator_jar</output-path>
+    <root id="archive" name="CISC Simulator.jar">
+      <element id="module-output" name="CISC Simulator" />
+    </root>
+  </artifact>
+</component>

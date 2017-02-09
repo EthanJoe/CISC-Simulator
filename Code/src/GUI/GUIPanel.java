@@ -230,16 +230,7 @@ public class GUIPanel extends JFrame {
     private void loadButtonAction(JButton button) {
         JPopupMenu loadMenu = new JPopupMenu();
 
-        JMenuItem inputItem = new JMenuItem("Input");
         JMenuItem fileItem = new JMenuItem("File");
-
-        inputItem.addActionListener((ActionEvent e) -> {
-            cpu.resetMemory();
-            resetValue();
-            setMessage("Memory reset.");
-            String msg = "Added " + JOptionPane.showInputDialog(panelView, "Input your data", null);
-            setMessage(msg);
-        });
 
         fileItem.addActionListener((ActionEvent e) -> {
             JFileChooser fileChooser = new JFileChooser();
@@ -256,7 +247,6 @@ public class GUIPanel extends JFrame {
             }
         });
 
-        loadMenu.add(inputItem);
         loadMenu.add(fileItem);
         loadMenu.show(button, 100, 0);
     }
