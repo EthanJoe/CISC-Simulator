@@ -1,4 +1,5 @@
 import GUI.GUIPanel;
+import Logic.Instruction;
 
 import java.awt.*;
 

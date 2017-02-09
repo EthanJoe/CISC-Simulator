@@ -2,8 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f26b3c32-d158-49f6-82be-5da3ccbce9bc" name="Default" comment="">
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/Instruction.java" afterPath="$PROJECT_DIR$/src/Logic/Instruction.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Logic/CPU.java" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/CISC Simulator/File/file1.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/File/file1.txt" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/CISC Simulator/GUI/GUIPanel$1.class" afterPath="$PROJECT_DIR$/out/production/CISC Simulator/GUI/GUIPanel$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/CISC Simulator/GUI/GUIPanel$2.class" afterPath="$PROJECT_DIR$/out/production/CISC Simulator/GUI/GUIPanel$2.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/CISC Simulator/GUI/GUIPanel$3.class" afterPath="$PROJECT_DIR$/out/production/CISC Simulator/GUI/GUIPanel$3.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/CISC Simulator/GUI/GUIPanel.class" afterPath="$PROJECT_DIR$/out/production/CISC Simulator/GUI/GUIPanel.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/CISC Simulator/GUI/GUIRegister.class" afterPath="$PROJECT_DIR$/out/production/CISC Simulator/GUI/GUIRegister.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/CISC Simulator/Main.class" afterPath="$PROJECT_DIR$/out/production/CISC Simulator/Main.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/GUI/GUIPanel.java" afterPath="$PROJECT_DIR$/src/GUI/GUIPanel.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/GUI/GUIRegister.java" afterPath="$PROJECT_DIR$/src/GUI/GUIRegister.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Logic/Instruction.java" afterPath="$PROJECT_DIR$/src/Logic/Instruction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Main.java" afterPath="$PROJECT_DIR$/src/Main.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -13,18 +25,45 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="CoverageDataManager">
+    <SUITE FILE_PATH="coverage/CISC Simulator$Main.coverage" NAME="Main Coverage Results" MODIFIED="1486670427372" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+  </component>
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+            <state relative-caret-position="195">
+              <caret line="16" column="0" lean-forward="true" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GUIRegister.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/GUI/GUIRegister.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="345">
+              <caret line="23" column="34" lean-forward="false" selection-start-line="23" selection-start-column="34" selection-end-line="23" selection-end-column="34" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CPU.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/Logic/CPU.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1350">
+              <caret line="100" column="4" lean-forward="false" selection-start-line="100" selection-start-column="4" selection-end-line="100" selection-end-column="4" />
+              <folding>
+                <element signature="method#toBitsBinary#0;class#CPU#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -53,12 +92,15 @@
         <option value="$PROJECT_DIR$/src/GUI/Color.java" />
         <option value="$PROJECT_DIR$/src/GUI/Register.java" />
         <option value="$PROJECT_DIR$/src/GUI/SimulatorPanel.java" />
-        <option value="$PROJECT_DIR$/src/Main.java" />
-        <option value="$PROJECT_DIR$/src/GUI/GUIRegister.java" />
         <option value="$PROJECT_DIR$/src/GUI/FileSystem.java" />
         <option value="$PROJECT_DIR$/src/GUI/ListScroll.java" />
-        <option value="$PROJECT_DIR$/src/GUI/GUIPanel.java" />
+        <option value="$PROJECT_DIR$/src/Main.java" />
         <option value="$PROJECT_DIR$/src/Logic/Instruction.java" />
+        <option value="$PROJECT_DIR$/src/Logic/Simulator.java" />
+        <option value="$PROJECT_DIR$/src/GUI/GUIRegister.java" />
+        <option value="$PROJECT_DIR$/src/File/instruction.txt" />
+        <option value="$PROJECT_DIR$/src/GUI/GUIPanel.java" />
+        <option value="$PROJECT_DIR$/src/Logic/CPU.java" />
       </list>
     </option>
   </component>
@@ -69,7 +111,7 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="88" />
+    <option name="x" value="89" />
     <option name="y" value="22" />
     <option name="width" value="1524" />
     <option name="height" value="967" />
@@ -93,8 +135,6 @@
     </navigator>
     <panes>
       <pane id="Scope" />
-      <pane id="PackagesPane" />
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -159,6 +199,8 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scratches" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -166,6 +208,7 @@
     <property name="aspect.path.notification.shown" value="true" />
     <property name="js.eslint.eslintPackage" value="" />
     <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Java" />
+    <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file:///Users/yichenzhou/Developer/CISC-Simulator/Code/src/Logic/CPU.java" />
   </component>
   <component name="RunManager" selected="Application.Main">
     <configuration default="false" name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
@@ -638,11 +681,15 @@
       <workItem from="1486397109691" duration="997000" />
       <workItem from="1486404036662" duration="173000" />
       <workItem from="1486495517912" duration="112000" />
+      <workItem from="1486597834403" duration="32000" />
+      <workItem from="1486610016434" duration="3321000" />
+      <workItem from="1486651950248" duration="10503000" />
+      <workItem from="1486669914947" duration="1788000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="25194000" />
+    <option name="totallyTimeSpent" value="40838000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -654,38 +701,38 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="88" y="22" width="1524" height="967" extended-state="0" />
+    <frame x="89" y="22" width="1524" height="967" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32914287" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32914287" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23657143" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32914287" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25142857" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18218623" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1902834" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32914287" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32914287" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32914287" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -705,18 +752,116 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="16" column="0" lean-forward="true" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GUI/GUIRegister.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="23" column="34" lean-forward="false" selection-start-line="23" selection-start-column="34" selection-end-line="23" selection-end-column="34" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Logic/CPU.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="795">
+          <caret line="53" column="35" lean-forward="false" selection-start-line="53" selection-start-column="35" selection-end-line="53" selection-end-column="35" />
+          <folding>
+            <element signature="method#toBitsBinary#0;class#CPU#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/GUI/GUIPanel.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="method#GUIPanel#0;class#GUIPanel#0" expanded="false" />
             <element signature="method#InitSeparator#0;class#GUIPanel#0" expanded="false" />
             <element signature="method#InitRegister#0;class#GUIPanel#0" expanded="false" />
             <element signature="method#InitConsole#0;class#GUIPanel#0" expanded="false" />
-            <element signature="method#InitButton#0;class#GUIPanel#0" expanded="false" />
-            <element signature="method#loadButtonAction#0;class#GUIPanel#0" expanded="false" />
+            <element signature="method#InitCPU#0;class#GUIPanel#0" expanded="false" />
             <element signature="method#readFile#0;class#GUIPanel#0" expanded="false" />
+            <element signature="method#numOfLine#0;class#GUIPanel#0" expanded="false" />
+            <element signature="method#setMessage#0;class#GUIPanel#0" expanded="false" />
+            <element signature="method#setValue#0;class#GUIPanel#0" expanded="false" />
+            <element signature="method#resetValue#0;class#GUIPanel#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="7" column="19" lean-forward="false" selection-start-line="7" selection-start-column="19" selection-end-line="7" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GUI/GUIRegister.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="660">
+          <caret line="45" column="29" lean-forward="true" selection-start-line="45" selection-start-column="29" selection-end-line="45" selection-end-column="29" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Logic/CPU.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="method#toBitsBinary#0;class#CPU#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Logic/Instruction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="525">
+          <caret line="35" column="28" lean-forward="false" selection-start-line="35" selection-start-column="28" selection-end-line="35" selection-end-column="28" />
+          <folding>
+            <element signature="e#1840#1841#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GUI/GUIPanel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#GUIPanel#0;class#GUIPanel#0" expanded="false" />
+            <element signature="method#InitSeparator#0;class#GUIPanel#0" expanded="false" />
+            <element signature="method#InitRegister#0;class#GUIPanel#0" expanded="false" />
+            <element signature="method#InitConsole#0;class#GUIPanel#0" expanded="false" />
+            <element signature="method#InitCPU#0;class#GUIPanel#0" expanded="false" />
+            <element signature="method#readFile#0;class#GUIPanel#0" expanded="false" />
+            <element signature="method#numOfLine#0;class#GUIPanel#0" expanded="false" />
+            <element signature="method#setMessage#0;class#GUIPanel#0" expanded="false" />
+            <element signature="method#setValue#0;class#GUIPanel#0" expanded="false" />
+            <element signature="method#resetValue#0;class#GUIPanel#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -727,8 +872,6 @@
           <caret line="12" column="61" lean-forward="false" selection-start-line="12" selection-start-column="61" selection-end-line="12" selection-end-column="61" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#GUIRegister#0;class#GUIRegister#0" expanded="false" />
-            <element signature="method#addToView#0;class#GUIRegister#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -747,12 +890,16 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="method#GUIPanel#0;class#GUIPanel#0" expanded="false" />
             <element signature="method#InitSeparator#0;class#GUIPanel#0" expanded="false" />
             <element signature="method#InitRegister#0;class#GUIPanel#0" expanded="false" />
             <element signature="method#InitConsole#0;class#GUIPanel#0" expanded="false" />
-            <element signature="method#InitButton#0;class#GUIPanel#0" expanded="false" />
-            <element signature="method#loadButtonAction#0;class#GUIPanel#0" expanded="false" />
+            <element signature="method#InitCPU#0;class#GUIPanel#0" expanded="false" />
             <element signature="method#readFile#0;class#GUIPanel#0" expanded="false" />
+            <element signature="method#numOfLine#0;class#GUIPanel#0" expanded="false" />
+            <element signature="method#setMessage#0;class#GUIPanel#0" expanded="false" />
+            <element signature="method#setValue#0;class#GUIPanel#0" expanded="false" />
+            <element signature="method#resetValue#0;class#GUIPanel#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -771,12 +918,16 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="method#GUIPanel#0;class#GUIPanel#0" expanded="false" />
             <element signature="method#InitSeparator#0;class#GUIPanel#0" expanded="false" />
             <element signature="method#InitRegister#0;class#GUIPanel#0" expanded="false" />
             <element signature="method#InitConsole#0;class#GUIPanel#0" expanded="false" />
-            <element signature="method#InitButton#0;class#GUIPanel#0" expanded="false" />
-            <element signature="method#loadButtonAction#0;class#GUIPanel#0" expanded="false" />
+            <element signature="method#InitCPU#0;class#GUIPanel#0" expanded="false" />
             <element signature="method#readFile#0;class#GUIPanel#0" expanded="false" />
+            <element signature="method#numOfLine#0;class#GUIPanel#0" expanded="false" />
+            <element signature="method#setMessage#0;class#GUIPanel#0" expanded="false" />
+            <element signature="method#setValue#0;class#GUIPanel#0" expanded="false" />
+            <element signature="method#resetValue#0;class#GUIPanel#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -796,12 +947,16 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="method#GUIPanel#0;class#GUIPanel#0" expanded="false" />
             <element signature="method#InitSeparator#0;class#GUIPanel#0" expanded="false" />
             <element signature="method#InitRegister#0;class#GUIPanel#0" expanded="false" />
             <element signature="method#InitConsole#0;class#GUIPanel#0" expanded="false" />
-            <element signature="method#InitButton#0;class#GUIPanel#0" expanded="false" />
-            <element signature="method#loadButtonAction#0;class#GUIPanel#0" expanded="false" />
+            <element signature="method#InitCPU#0;class#GUIPanel#0" expanded="false" />
             <element signature="method#readFile#0;class#GUIPanel#0" expanded="false" />
+            <element signature="method#numOfLine#0;class#GUIPanel#0" expanded="false" />
+            <element signature="method#setMessage#0;class#GUIPanel#0" expanded="false" />
+            <element signature="method#setValue#0;class#GUIPanel#0" expanded="false" />
+            <element signature="method#resetValue#0;class#GUIPanel#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -820,12 +975,16 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="method#GUIPanel#0;class#GUIPanel#0" expanded="false" />
             <element signature="method#InitSeparator#0;class#GUIPanel#0" expanded="false" />
             <element signature="method#InitRegister#0;class#GUIPanel#0" expanded="false" />
             <element signature="method#InitConsole#0;class#GUIPanel#0" expanded="false" />
-            <element signature="method#InitButton#0;class#GUIPanel#0" expanded="false" />
-            <element signature="method#loadButtonAction#0;class#GUIPanel#0" expanded="false" />
+            <element signature="method#InitCPU#0;class#GUIPanel#0" expanded="false" />
             <element signature="method#readFile#0;class#GUIPanel#0" expanded="false" />
+            <element signature="method#numOfLine#0;class#GUIPanel#0" expanded="false" />
+            <element signature="method#setMessage#0;class#GUIPanel#0" expanded="false" />
+            <element signature="method#setValue#0;class#GUIPanel#0" expanded="false" />
+            <element signature="method#resetValue#0;class#GUIPanel#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -836,8 +995,6 @@
           <caret line="28" column="41" lean-forward="true" selection-start-line="28" selection-start-column="41" selection-end-line="28" selection-end-column="41" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#GUIRegister#0;class#GUIRegister#0" expanded="false" />
-            <element signature="method#addToView#0;class#GUIRegister#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -877,10 +1034,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="284">
           <caret line="321" column="11" lean-forward="false" selection-start-line="321" selection-start-column="11" selection-end-line="321" selection-end-column="11" />
-          <folding>
-            <element signature="e#10946#10947#0" expanded="false" />
-            <element signature="e#11034#11035#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -888,18 +1041,11 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="254">
           <caret line="418" column="0" lean-forward="false" selection-start-line="418" selection-start-column="0" selection-end-line="418" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/GUI/ListScroll.java" />
-    <entry file="file://$PROJECT_DIR$/src/File/file1.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/File/file1.txt" />
     <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_121.jdk/Contents/Home/src.zip!/javax/swing/filechooser/FileNameExtensionFilter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="209">
@@ -911,10 +1057,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="209">
           <caret line="479" column="16" lean-forward="false" selection-start-line="479" selection-start-column="16" selection-end-line="479" selection-end-column="16" />
-          <folding>
-            <element signature="e#15769#15770#0" expanded="true" />
-            <element signature="e#15804#15805#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -922,51 +1064,86 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="224">
           <caret line="490" column="7" lean-forward="true" selection-start-line="490" selection-start-column="7" selection-end-line="490" selection-end-column="7" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Logic/Instruction.java">
+    <entry file="file://$PROJECT_DIR$/src/Logic/Simulator.java" />
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_121.jdk/Contents/Home/jre/lib/rt.jar!/com/apple/laf/AquaMenuItemUI.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="21" column="24" lean-forward="false" selection-start-line="21" selection-start-column="24" selection-end-line="21" selection-end-column="24" />
-          <folding />
+        <state relative-caret-position="213">
+          <caret line="147" column="0" lean-forward="false" selection-start-line="147" selection-start-column="0" selection-end-line="147" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/File/assembly.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1145">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/File/instruction.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2450">
+          <caret line="8" column="16" lean-forward="true" selection-start-line="8" selection-start-column="16" selection-end-line="8" selection-end-column="16" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/GUI/GUIRegister.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="0" lean-forward="false" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="61" />
+        <state relative-caret-position="345">
+          <caret line="23" column="34" lean-forward="false" selection-start-line="23" selection-start-column="34" selection-end-line="23" selection-end-column="34" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#GUIRegister#0;class#GUIRegister#0" expanded="false" />
-            <element signature="method#addToView#0;class#GUIRegister#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/GUI/GUIPanel.java">
+    <entry file="file://$PROJECT_DIR$/src/Logic/Instruction.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="20" column="27" lean-forward="false" selection-start-line="20" selection-start-column="27" selection-end-line="20" selection-end-column="27" />
+        <state relative-caret-position="900">
+          <caret line="72" column="40" lean-forward="false" selection-start-line="72" selection-start-column="40" selection-end-line="72" selection-end-column="40" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#InitSeparator#0;class#GUIPanel#0" expanded="false" />
-            <element signature="method#InitRegister#0;class#GUIPanel#0" expanded="false" />
-            <element signature="method#InitConsole#0;class#GUIPanel#0" expanded="false" />
-            <element signature="method#InitButton#0;class#GUIPanel#0" expanded="false" />
-            <element signature="method#loadButtonAction#0;class#GUIPanel#0" expanded="false" />
-            <element signature="method#readFile#0;class#GUIPanel#0" expanded="false" />
+            <element signature="e#1840#1841#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+        <state relative-caret-position="195">
+          <caret line="16" column="0" lean-forward="true" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GUI/GUIPanel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="379">
+          <caret line="193" column="13" lean-forward="true" selection-start-line="193" selection-start-column="13" selection-end-line="193" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#GUIPanel#0;class#GUIPanel#0" expanded="false" />
+            <element signature="method#InitSeparator#0;class#GUIPanel#0" expanded="false" />
+            <element signature="method#InitRegister#0;class#GUIPanel#0" expanded="false" />
+            <element signature="method#InitConsole#0;class#GUIPanel#0" expanded="false" />
+            <element signature="method#InitCPU#0;class#GUIPanel#0" expanded="false" />
+            <element signature="method#readFile#0;class#GUIPanel#0" expanded="false" />
+            <element signature="method#numOfLine#0;class#GUIPanel#0" expanded="false" />
+            <element signature="method#setMessage#0;class#GUIPanel#0" expanded="false" />
+            <element signature="method#setValue#0;class#GUIPanel#0" expanded="false" />
+            <element signature="method#resetValue#0;class#GUIPanel#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Logic/CPU.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1350">
+          <caret line="100" column="4" lean-forward="false" selection-start-line="100" selection-start-column="4" selection-end-line="100" selection-end-column="4" />
+          <folding>
+            <element signature="method#toBitsBinary#0;class#CPU#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>

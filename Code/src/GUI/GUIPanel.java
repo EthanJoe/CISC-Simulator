@@ -1,40 +1,42 @@
 package GUI;
 
+import Logic.CPU;
+import Logic.Instruction;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 
 /**
  * Created by yichenzhou on 2/4/17.
  */
 public class GUIPanel extends JFrame {
-    public JPanel panelView;
+    private JPanel panelView;
 
-    public GUIRegister PC;
-    public GUIRegister IR;
-    public GUIRegister MAR;
-    public GUIRegister MBR;
-    public GUIRegister IAR;
-    public GUIRegister R0;
-    public GUIRegister R1;
-    public GUIRegister R2;
-    public GUIRegister R3;
-    public GUIRegister X0;
-    public GUIRegister X1;
-    public GUIRegister X2;
+    private GUIRegister PC;
+    private GUIRegister IR;
+    private GUIRegister MAR;
+    private GUIRegister MBR;
+    private GUIRegister IAR;
+    private GUIRegister R0;
+    private GUIRegister R1;
+    private GUIRegister R2;
+    private GUIRegister R3;
+    private GUIRegister X0;
+    private GUIRegister X1;
+    private GUIRegister X2;
 
-    public JList console;
-    public DefaultListModel consoleMode;
+    private JList console;
+    private DefaultListModel consoleMode;
 
-    public JButton loadButton;
-    public JButton singleButton;
-    public JButton runButton;
+    private JButton loadButton;
+    private JButton singleButton;
+    private JButton runButton;
+
+    private CPU cpu;
 
 
     public GUIPanel() {
@@ -65,6 +67,8 @@ public class GUIPanel extends JFrame {
         InitConsole();
         // Buttons Initializer
         InitButton();
+        // CPU Initializer
+        InitCPU();
     }
 
     /***
@@ -168,9 +172,6 @@ public class GUIPanel extends JFrame {
         loadButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String msg = "CPU Simulator Console: Load Button Pressed";
-                consoleMode.addElement(msg);
-                console.ensureIndexIsVisible(console.getModel().getSize() - 1);
                 loadButtonAction(loadButton);
             }
         });
@@ -183,9 +184,13 @@ public class GUIPanel extends JFrame {
         singleButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String msg = "CPU Simulator Console: Single Step Button Pressed";
-                consoleMode.addElement(msg);
-                console.ensureIndexIsVisible(console.getModel().getSize() - 1);
+                if (cpu.getNumberOfIn() > 0) {
+                    cpu.fetchInstruction();
+                    setValue();
+                    setMessage(cpu.getStatus());
+                } else {
+                    setMessage("No instruction in the memory.");
+                }
             }
         });
         panelView.add(singleButton);
@@ -197,16 +202,30 @@ public class GUIPanel extends JFrame {
         runButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String msg = "CPU Simulator Console: Run Button Pressed";
-                consoleMode.addElement(msg);
-                console.ensureIndexIsVisible(console.getModel().getSize() - 1);
+                if (cpu.getNumberOfIn() > 0) {
+                    for (int i = 0; i < cpu.getNumberOfIn(); i++) {
+                        cpu.fetchInstruction();
+                        setValue();
+                        setMessage(cpu.getStatus());
+                    }
+                } else {
+                    setMessage("No instruction in the memory.");
+                }
             }
         });
         panelView.add(runButton);
     }
 
     /***
-     * @param button Pop up menu for input menu item
+     *  Initialize CPU of GUI Panel
+     */
+    private void InitCPU() {
+        cpu = new CPU();
+        setMessage("CPU Initialized.");
+    }
+
+    /***
+     *  Pop up menu for input menu item
      */
     private void loadButtonAction(JButton button) {
         JPopupMenu loadMenu = new JPopupMenu();
@@ -215,30 +234,24 @@ public class GUIPanel extends JFrame {
         JMenuItem fileItem = new JMenuItem("File");
 
         inputItem.addActionListener((ActionEvent e) -> {
-            String msg = "CPU Simulator Console: Input Button Pressed";
-            consoleMode.addElement(msg);
-            console.ensureIndexIsVisible(console.getModel().getSize() - 1);
-            String data = JOptionPane.showInputDialog(panelView, "Input your data", null);
-            consoleMode.addElement(data);
-            console.ensureIndexIsVisible(console.getModel().getSize() - 1);
+            cpu.resetMemory();
+            resetValue();
+            setMessage("Memory reset.");
+            String msg = "Added " + JOptionPane.showInputDialog(panelView, "Input your data", null);
+            setMessage(msg);
         });
 
         fileItem.addActionListener((ActionEvent e) -> {
-            String msg = "CPU Simulator Console: File Button Pressed";
-            consoleMode.addElement(msg);
-            console.ensureIndexIsVisible(console.getModel().getSize() - 1);
-
             JFileChooser fileChooser = new JFileChooser();
-            //FileNameExtensionFilter filter = new FileNameExtensionFilter("txt");
-            //fileChooser.setFileFilter(filter);
-
             File srcDir = new File(System.getProperty("user.dir"));
             fileChooser.setCurrentDirectory(srcDir);
             int value = fileChooser.showOpenDialog(null);
             if (value == JFileChooser.APPROVE_OPTION) {
-                String msg1 = "You choose to open the file in " + fileChooser.getSelectedFile().getAbsolutePath();
-                consoleMode.addElement(msg1);
-                console.ensureIndexIsVisible(console.getModel().getSize() - 1);
+                String msg1 = "Chosen file in " + fileChooser.getSelectedFile().getAbsolutePath();
+                setMessage(msg1);
+                cpu.resetMemory();
+                resetValue();
+                setMessage("Memory reset.");
                 readFile(fileChooser.getSelectedFile());
             }
         });
@@ -249,22 +262,88 @@ public class GUIPanel extends JFrame {
     }
 
     /***
-     * @param file Read the file in the location selected by user
+     *  Read the file in the location selected by user
      */
-    private void readFile(File file) {
+    private Instruction[] readFile(File file) {
+        Instruction[] inArr = new Instruction[0];
+
         try {
             FileReader reader = new FileReader(file);
+            FileReader counter = new FileReader(file);
             BufferedReader in = new BufferedReader(reader);
+            int numOfLine = numOfLine(counter);
+            inArr = new Instruction[numOfLine];
 
+            String line;
+            int index = 0;
+
+            while ((line = in.readLine()) != null) {
+                String msg = "Loading Instruction <" + line + "> in the memory " + (index + 6);
+                setMessage(msg);
+                inArr[index] = new Instruction(line);
+                index++;
+            }
+
+            cpu.loadMemory(inArr);
+            String msg = "Loaded " + inArr.length + " instructions in the memory.\n";
+            setMessage(msg);
+        } catch (IOException ex) {
+            String msg = ex.getMessage();
+            setMessage(msg);
+        }
+        return inArr;
+    }
+
+    /***
+     *  Return the number of line of file
+     */
+    private int numOfLine(FileReader reader) {
+        BufferedReader in = new BufferedReader(reader);
+        int numOfLine = 0;
+        try {
             while (in.readLine() != null) {
-                String fileMsg = in.readLine();
-                consoleMode.addElement(fileMsg);
-                console.ensureIndexIsVisible(console.getModel().getSize() - 1);
+                numOfLine++;
             }
         } catch (IOException ex) {
-            String exMsg = ex.getMessage();
-            consoleMode.addElement(exMsg);
-            console.ensureIndexIsVisible(console.getModel().getSize() - 1);
+            System.out.println(ex.getMessage());
         }
+        return  numOfLine;
+    }
+
+    /**
+     *  Set message in the console
+     */
+    private void setMessage(String msg) {
+        msg = "CSCI SimulatorX Console: " + msg;
+        consoleMode.addElement(msg);
+        console.ensureIndexIsVisible(console.getModel().getSize() - 1);
+    }
+
+    /***
+     *  Set new value for GUIRegister
+     */
+    private void setValue() {
+        PC.setValue(cpu.getPC());
+        IR.setValue(cpu.getIR());
+        MAR.setValue(cpu.getMAR());
+        MBR.setValue(cpu.getMBR());
+    }
+
+    /***
+     *  Reset value of GUIRegister as 0
+     */
+    private void resetValue() {
+        PC.resetValue();
+        IR.resetValue();
+        MAR.resetValue();
+        MBR.resetValue();
+        IAR.resetValue();
+        R0.resetValue();
+        R1.resetValue();
+        R2.resetValue();
+        R3.resetValue();
+        X0.resetValue();
+        X1.resetValue();
+        X2.resetValue();
     }
 }

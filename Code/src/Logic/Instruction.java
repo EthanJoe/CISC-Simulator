@@ -112,8 +112,7 @@ public class Instruction {
 	
 	@Override
 	public String toString() {
-		return "Logic.Instruction [opCode=" + opCode + ", ix=" + ix + ", r=" + r + ", i=" + i + ", address=" + address
-				+ ", base=" + base + "]";
+		return opCode + r + ix + i + address;
 	} 
 	
 	public String getBinaryInstruction(){
@@ -127,15 +126,5 @@ public class Instruction {
 	public void setCCNumber(Integer ccNumber, int j) {
 		this.ccNumber = ccNumber;
 	}
-	
-	/* public InstructionEnum getIntructionCode(){
-		String part1 = opCode.substring(0, 3);
-		String part2 = opCode.substring(3);
-		int decimalValue = Integer.parseInt(part1, 2);
-		int decimalValue2 = Integer.parseInt(part2, 2);
-		return InstructionEnum.findInstruction(decimalValue + "" + decimalValue2);
-	} */
-	
-	
 
 }

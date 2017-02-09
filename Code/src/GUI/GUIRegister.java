@@ -39,6 +39,20 @@ public class GUIRegister extends JComponent {
         }
     }
 
+    public void setValue(String in) {
+        assert in.length() == registers.length;
+
+        for (int i = 0; i < in.length(); i++) {
+            registers[i].setText(String.valueOf(in.charAt(i)));
+        }
+    }
+
+    public void resetValue() {
+        for (int i = 0; i < registers.length; i++) {
+            registers[i].setText("0");
+        }
+    }
+
     /***
      * @param view The superview which to be added the target component
      */
