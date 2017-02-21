@@ -109,7 +109,7 @@ public class CPU {
      * @param bits: The bits of binary to translate
      * @return Binary number of 'num' based on bits
      */
-    private static String toBitsBinary(int num, int bits) {
+    public static String toBitsBinary(int num, int bits) {
         String strOfBin = Integer.toBinaryString(num);
         if (strOfBin.length() < bits) {
             String extraZero = "";
