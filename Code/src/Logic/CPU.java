@@ -47,8 +47,8 @@ public class CPU {
         this.numberOfIn = 0;
     }
 
-    /***
-     *  Load instances of Instruction in the inArr to Memory
+    /*
+     * Load instances of Instruction in the inArr to Memory
      */
     public void loadMemory(String[] inArr) {
         assert inArr.length != 0;
@@ -59,8 +59,8 @@ public class CPU {
         numberOfIn = inArr.length;
     }
 
-    /***
-     *  Reset each unit in the memory to 0 as 16 bit
+    /*
+     * Reset each unit in the memory to 0 as 16 bit
      */
     public void resetMemory() {
         for (int i = 0; i < 2048; i++) {
@@ -69,8 +69,8 @@ public class CPU {
         numberOfIn = 0;
     }
 
-    /***
-     *  Fetch instruction from memory
+    /*
+     * Fetch instruction from memory
      */
     public void fetchInstruction() {
         MAR = toBitsBinary(Integer.parseInt(PC, 2), 16);
@@ -80,77 +80,142 @@ public class CPU {
         numberOfIn--;
     }
 
-    /***
-     *
-     * @param ins, Instance of Instruction
-     * @return The Effective Address based on instruction
+    /*
+     * Get Effective Address Value in Binary
      */
     public String getEA(Instruction ins) {
-        int i = Integer.parseInt(ins.getI(), 2);
-        int ix = ins.getIndexNumber();
-        int addressDec = Integer.parseInt(ins.getAddress(), 2);
+        int i = toDecimalNumber(ins.getI());
+        int ix = toDecimalNumber(ins.getIx());
+        int addressDec = toDecimalNumber(ins.getAddress());
         if (i == 0) {
             if (ix == 0) {
                 return ins.getAddress();
             } else {
-                return toBitsBinary(addressDec + Integer.parseInt(IX[ix]), 7);
+                return toBitsBinary(addressDec + toDecimalNumber(IX[ix]), 7);
             }
         } else {
             if (ix == 0) {
                 return Memory[addressDec];
             } else {
-                return Memory[(addressDec + Integer.parseInt(IX[ix], 2))];
+                return Memory[(addressDec + toDecimalNumber(IX[ix]))];
             }
         }
     }
 
+    /***
+     *  Get Effective Address Value in Decimal
+     */
+    public int getEAValue(Instruction ins) {
+        return toDecimalNumber(this.getEA(ins));
+    }
+
+    /*
+     * Getter/Setter for PC
+     */
     public String getPC() {
         return PC;
     }
 
+    public int getPCValue() { return toDecimalNumber(PC);}
+
     public void setPC(String pc) {
-        this.PC = pc;
+        PC = pc;
     }
 
+    /*
+     * Getter/Setter for IR
+     */
     public String getIR() {
         return IR;
     }
 
+    public int getIRValue() { return toDecimalNumber(IR);}
+
     public void SetIR(String ir) {
-        this.IR = ir;
+        IR = ir;
     }
 
+    /*
+     * Getter/Setter for IX
+     */
     public String getIX(int index) {
-        return this.IX[index];
+        return IX[index];
     }
+
+    public int getIXValue(int index) {return toDecimalNumber(IX[index]);}
 
     public void setIX(String value, int index) {
-        this.IX[index] = value;
+        IX[index] = value;
     }
 
+
+    /*
+     * Getter/Setter for MAR
+     */
     public String getMAR() {
         return MAR;
     }
 
+    public int getMARValue() { return toDecimalNumber(MAR); }
+
     public void setMAR(String mar) {
-        this.MAR = mar;
+        MAR = mar;
     }
 
-    public Boolean getCC(int index) {
-        return this.CC[index];
-    }
 
-    public void setCC(Boolean value, int index) {
-        this.CC[index] = value;
-    }
-
+    /*
+     * Getter/Setter for MBR
+     */
     public String getMBR() {
         return MBR;
     }
 
+    public int getMBRValue() { return toDecimalNumber(MBR); }
+
     public void setMBR(String mbr) {
-        this.MBR = mbr;
+        MBR = mbr;
     }
+
+
+    /*
+     * Getter/Setter for CC
+     */
+    public Boolean getCC(int index) {
+        return CC[index];
+    }
+
+    public void setCC(Boolean value, int index) {
+        CC[index] = value;
+    }
+
+
+    /*
+     * Getter/Setter for Memory
+     */
+    public String getMemory(int index) {
+        return Memory[index];
+    }
+
+    public int getMemoryValue(int index) { return toDecimalNumber(Memory[index]); }
+
+    public void setMemory(String value, int index) {
+        Memory[index] = value;
+    }
+
+
+    /*
+     * Getter/Setter for for GPR
+     */
+    public String getGPR(int index) {
+        return GPR[index];
+    }
+
+    public int getGPRValue(int index) { return toDecimalNumber(GPR[index]); }
+
+    public void setGPR(String value, int index) {
+        GPR[index] = value;
+    }
+
 
     public int getNumberOfIn() {
         return numberOfIn;
@@ -161,10 +226,10 @@ public class CPU {
         return msg;
     }
 
-    /***
-     * @param num: Decimal number
-     * @param bits: The bits of binary to translate
-     * @return Binary number of 'num' based on bits
+    /*
+     *  num: Decimal number
+     *  bits: The bits of binary to translate
+     *  return Binary number of 'num' based on bits
      */
     public static String toBitsBinary(int num, int bits) {
         String strOfBin = Integer.toBinaryString(num);
@@ -176,6 +241,14 @@ public class CPU {
             strOfBin = extraZero + strOfBin;
         }
         return strOfBin;
+    }
+
+    /*
+     * value: Binary value in string
+     * return Decimal value in int
+     */
+    public static int toDecimalNumber(String value) {
+        return Integer.parseInt(value, 2);
     }
 
 }

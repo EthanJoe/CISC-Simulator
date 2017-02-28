@@ -3,6 +3,7 @@ package Logic;
 /**
  * Created by yichenzhou on 2/20/17.
  */
+
 public enum OPCode {
     HLT(0, "Halt Machine"),
     LDR(1, "Load Register From Memory"),
@@ -67,7 +68,9 @@ public enum OPCode {
         switch (id) {
             case 1:
                 String EA = cpu.getEA(ins);
-
+                cpu.setMAR(EA);
+                cpu.setMBR(cpu.getMemory(Integer.parseInt(EA, 2)));
+                cpu.setGPR(cpu.getMBR(), Integer.parseInt(ins.getR(), 2));
             default:
                 System.out.println("Instruction " + id.toString() + " Executed.");
         }
