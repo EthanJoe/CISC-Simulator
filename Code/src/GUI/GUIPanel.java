@@ -254,15 +254,15 @@ public class GUIPanel extends JFrame {
     /***
      *  Read the file in the location selected by user
      */
-    private Instruction[] readFile(File file) {
-        Instruction[] inArr = new Instruction[0];
+    private String[] readFile(File file) {
+        String[] inArr = new String[0];
 
         try {
             FileReader reader = new FileReader(file);
             FileReader counter = new FileReader(file);
             BufferedReader in = new BufferedReader(reader);
             int numOfLine = numOfLine(counter);
-            inArr = new Instruction[numOfLine];
+            inArr = new String[numOfLine];
 
             String line;
             int index = 0;
@@ -270,7 +270,7 @@ public class GUIPanel extends JFrame {
             while ((line = in.readLine()) != null) {
                 String msg = "Loading Instruction <" + line + "> in the memory " + (index + 6);
                 setMessage(msg);
-                inArr[index] = new Instruction(line);
+                inArr[index] = line;
                 index++;
             }
 

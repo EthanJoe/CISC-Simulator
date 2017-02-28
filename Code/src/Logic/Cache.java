@@ -20,7 +20,7 @@ public class Cache {
     }
 
     public void insert(CacheLine cacheLine) {
-        if (queue.size() == capacity) {
+        if (queue.size() >= capacity) {
             queue.dequeue();
         }
 

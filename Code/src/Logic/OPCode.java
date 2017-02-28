@@ -63,16 +63,14 @@ public enum OPCode {
         return content;
     }
 
-    public void execute() {
+    public void execute(CPU cpu, Instruction ins) {
         switch (id) {
+            case 1:
+                String EA = cpu.getEA(ins);
+
             default:
-                System.out.println("OPCode - " + this.id);
+                System.out.println("Instruction " + id.toString() + " Executed.");
         }
-    }
 
-    public static void main(String[] args) {
-        OPCode code = OPCode.AND;
-        code.execute();
     }
-
 }
