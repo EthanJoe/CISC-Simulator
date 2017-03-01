@@ -74,6 +74,7 @@ public enum OPCode {
         final int lr = CPU.toDecimalNumber(ins.toString().substring(9, 10));
         final int al = CPU.toDecimalNumber(ins.toString().substring(8, 9));
         final int rx = cpu.getGPRValue(ri);
+        final int i = CPU.toDecimalNumber(ins.toString().substring(10, 11));
         int value;
         switch (id) {
             case 1:
