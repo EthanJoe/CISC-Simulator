@@ -11,7 +11,6 @@ public class Main {
         EventQueue.invokeLater(() -> {
             GUIPanel panel = new GUIPanel();
             panel.setVisible(true);
-
         });
     }
 

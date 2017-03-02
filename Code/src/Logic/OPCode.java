@@ -1,5 +1,7 @@
 package Logic;
 
+import java.util.ArrayList;
+
 /**
  * Created by yichenzhou on 2/20/17.
  */
@@ -65,6 +67,10 @@ public enum OPCode {
     }
 
     public void execute(CPU cpu, Instruction ins) {
+        if (ins == null) {
+            ins = new Instruction("0000000000000000");
+        }
+
         final String EA = cpu.getEA(ins);
         final int EAValue = cpu.getEAValue(ins);
         final int Rx = CPU.toDecimalNumber(ins.getIx());
@@ -321,6 +327,32 @@ public enum OPCode {
                     cpu.setGPR(CPU.toBitsBinary(value, 16), ri);
                 }
                 break;
+            /*
+             * OPCode 61 IN
+             */
+            case 61:
+                if (cpu.getInput() != null) {
+                    CacheLine cacheLine;
+                    for (int k = 0; k < cpu.getInput().length; k++) {
+                        String address = CPU.toBitsBinary(k, 16);
+                        String data = cpu.getInput()[k];
+                        cacheLine = new CacheLine(address, data);
+                        cpu.getCache().insert(cacheLine);
+                    }
+                }
+                break;
+             /*
+              * OPCode 62 OUT
+              */
+            case 62:
+                if (cpu.getCache().size() > 0) {
+                    ArrayList<String> dataStr = new ArrayList<>();
+                    for (CacheLine cacheLine: cpu.getCache().getQueue()) {
+                        dataStr.add(cacheLine.getData());
+                    }
+                    cpu.setInput(dataStr.toArray(new String[dataStr.size()]));
+                    cpu.resetCache();
+                }
             default:
                 throw new NullPointerException("Instruction " + id.toString() + " Does Not Exist.");
         }

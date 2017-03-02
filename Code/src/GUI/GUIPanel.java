@@ -1,14 +1,16 @@
 package GUI;
 
-import Logic.CPU;
-import Logic.Instruction;
+import Logic.*;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.io.*;
+import java.util.ArrayList;
 
 /**
  * Created by yichenzhou on 2/4/17.
@@ -31,6 +33,8 @@ public class GUIPanel extends JFrame {
 
     private JList console;
     private DefaultListModel consoleMode;
+
+    private JTextField inputConsole;
 
     private JButton loadButton;
     private JButton singleButton;
@@ -65,13 +69,15 @@ public class GUIPanel extends JFrame {
         InitRegister();
         // Console Initializer
         InitConsole();
+        // Input Console Initializer
+        InitInputConsole("Input Console: Can not be used right now.", false);
         // Buttons Initializer
         InitButton();
         // CPU Initializer
         InitCPU();
     }
 
-    /***
+    /*
      * Initialize all separators on the panel view
      */
     private void InitSeparator() {
@@ -88,7 +94,7 @@ public class GUIPanel extends JFrame {
         panelView.add(separator2);
     }
 
-    /***
+    /*
      * Initialize all registers on the panel view
      */
     private void InitRegister() {
@@ -141,7 +147,7 @@ public class GUIPanel extends JFrame {
         this.X2.addToView(panelView);
     }
 
-    /***
+    /*
      * Initialize console on the panel view
      */
     private void InitConsole() {
@@ -151,17 +157,91 @@ public class GUIPanel extends JFrame {
         console.setForeground(Color.white);
         console.setBackground(Color.darkGray);
         console.setOpaque(true);
-        console.setBounds(150, 520, 1110, 210);
+        console.setBounds(150, 520, 1110, 160);
         console.setLayoutOrientation(0);
 
         JScrollPane test = new JScrollPane(console);
-        test.setBounds(150, 520, 1110, 210);
+        test.setBounds(150, 520, 1110, 160);
         test.getVerticalScrollBar().addAdjustmentListener(
                 e -> e.getAdjustable().setValue(e.getAdjustable().getValue()));
         panelView.add(test);
     }
 
-    /***
+    /*
+     * Initialize input console on panel view
+     */
+    private void InitInputConsole(String hint, boolean editable) {
+        if (inputConsole != null) {
+            panelView.remove(inputConsole);
+        }
+        inputConsole = new JTextField(hint);
+        inputConsole.setEditable(editable);
+        inputConsole.setFont(new Font("Menlo", 0, 12));
+        inputConsole.setCaretColor(Color.white);
+        inputConsole.setForeground(Color.white);
+        inputConsole.setBackground(Color.darkGray);
+        inputConsole.setOpaque(true);
+        inputConsole.setBounds(150, 685, 1110, 40);
+
+        /*
+         * MouseListener to clear the hint
+         */
+        inputConsole.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                if (inputConsole.isEditable()) {
+                    inputConsole.setText("");
+                }
+            }
+        });
+        /*
+         * ActionListener for data input
+         */
+        inputConsole.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (cpu.getInput() == null) {
+                    String checkedData = "";
+                    cpu.setInput(dataSeparator(inputConsole.getText()));
+                    OPCode.IN.execute(cpu, null);
+                    for (String str: dataSeparator(inputConsole.getText())) {
+                        String numInBin = (CPU.toBitsBinary(Integer.parseInt(str), 16));
+                        R0.setValue(numInBin);
+                        str += " ";
+                        checkedData += str ;
+                    }
+                    setMessage("Input Number -> " + checkedData);
+                    inputConsole.setText("");
+                    setMessage("Please type the number to search or 'exit' to cancel.");
+                } else {
+                    String searchUnit = inputConsole.getText();
+                    if (!isNumeric(searchUnit) && !searchUnit.equals("exit")) {
+                        setMessage(searchUnit + " is not numeric to search");
+                        inputConsole.setText("");
+                    } else if (isNumeric(searchUnit)) {
+                        setMessage("Searching for the closest number to " + searchUnit);
+                        searchClosestOne(searchUnit);
+                        cpu.setInput(null);
+                        cpu.resetCache();
+                        InitInputConsole("Input Console: Can not be used right now.", false);
+                        R0.resetValue();
+                    } else {
+                        cpu.setInput(null);
+                        cpu.resetCache();
+                        setMessage("Program 1 done and Input data cleared.");
+                        InitInputConsole("Input Console: Can not be used right now.", false);
+                        R0.resetValue();
+
+                    }
+                }
+
+            }
+        });
+        panelView.add(inputConsole);
+    }
+
+    /*
      * Initialize all buttons on the panel view
      */
     private void InitButton() {
@@ -216,21 +296,22 @@ public class GUIPanel extends JFrame {
         panelView.add(runButton);
     }
 
-    /***
-     *  Initialize CPU of GUI Panel
+    /*
+     * Initialize CPU of GUI Panel
      */
     private void InitCPU() {
         cpu = new CPU();
         setMessage("CPU Initialized.");
     }
 
-    /***
-     *  Pop up menu for input menu item
+    /*
+     * Pop up menu for input menu item
      */
     private void loadButtonAction(JButton button) {
         JPopupMenu loadMenu = new JPopupMenu();
 
         JMenuItem fileItem = new JMenuItem("File");
+        JMenuItem program1Item = new JMenuItem("Program 1");
 
         fileItem.addActionListener((ActionEvent e) -> {
             JFileChooser fileChooser = new JFileChooser();
@@ -247,12 +328,18 @@ public class GUIPanel extends JFrame {
             }
         });
 
+        program1Item.addActionListener((ActionEvent e) -> {
+            setMessage("Please input 20 numbers in Input Console which are separated by space.");
+            InitInputConsole("Input numbers here.", true);
+        });
+
         loadMenu.add(fileItem);
+        loadMenu.add(program1Item);
         loadMenu.show(button, 100, 0);
     }
 
-    /***
-     *  Read the file in the location selected by user
+    /*
+     * Read the file in the location selected by user
      */
     private String[] readFile(File file) {
         String[] inArr = new String[0];
@@ -284,8 +371,8 @@ public class GUIPanel extends JFrame {
         return inArr;
     }
 
-    /***
-     *  Return the number of line of file
+    /*
+     * Return the number of line of file
      */
     private int numOfLine(FileReader reader) {
         BufferedReader in = new BufferedReader(reader);
@@ -300,8 +387,8 @@ public class GUIPanel extends JFrame {
         return  numOfLine;
     }
 
-    /**
-     *  Set message in the console
+    /*
+     * Set message in the console
      */
     private void setMessage(String msg) {
         msg = "CSCI SimulatorX Console: " + msg;
@@ -309,8 +396,8 @@ public class GUIPanel extends JFrame {
         console.ensureIndexIsVisible(console.getModel().getSize() - 1);
     }
 
-    /***
-     *  Set new value for GUIRegister
+    /*
+     * Set new value for GUIRegister
      */
     private void setValue() {
         PC.setValue(cpu.getPC());
@@ -319,8 +406,8 @@ public class GUIPanel extends JFrame {
         MBR.setValue(cpu.getMBR());
     }
 
-    /***
-     *  Reset value of GUIRegister as 0
+    /*
+     * Reset value of GUIRegister as 0
      */
     private void resetValue() {
         PC.resetValue();
@@ -335,5 +422,61 @@ public class GUIPanel extends JFrame {
         X0.resetValue();
         X1.resetValue();
         X2.resetValue();
+    }
+
+    /*
+     * Input data separator
+     */
+    private String[] dataSeparator(String data) {
+        String[] dataArr = data.split(" ");
+        ArrayList<String> checkedList = new ArrayList<>();
+        for (String s: dataArr) {
+            if (isNumeric(s)) {
+                checkedList.add(s);
+            } else {
+                setMessage("Non-Numeric input "  + s +" have been removed.");
+            }
+        }
+
+        return checkedList.toArray(new String[checkedList.size()]);
+    }
+
+    /*
+     *  Numeric check
+     */
+    private boolean isNumeric(String unit) {
+        try {
+            Integer.parseInt(unit);
+        }
+        catch (NumberFormatException e) {
+            return false;
+        }
+        return  true;
+    }
+
+    /*
+     * Search the nearest number for Program 1
+     */
+    private void searchClosestOne(String searchUnit) {
+        ArrayList<Integer> searchList = new ArrayList<>();
+        for (CacheLine cacheLine: cpu.getCache().getQueue()) {
+            searchList.add(Integer.parseInt(cacheLine.getData()));
+        }
+
+        int searchNumber = Integer.parseInt(searchUnit);
+        Integer[] searchArr = searchList.toArray(new Integer[searchList.size()]);
+        int shortestPath = Math.abs(searchNumber - searchArr[0]);
+        int index = 0;
+
+
+        for (int i = 1; i < searchArr.length; i++) {
+            int result = Math.abs(searchNumber - searchArr[i]);
+            if (result < shortestPath) {
+                shortestPath = result;
+                index = i;
+            }
+        }
+
+        setMessage("The closest number to " + searchUnit + " is " + searchArr[index].toString());
     }
 }
