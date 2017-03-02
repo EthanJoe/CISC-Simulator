@@ -185,7 +185,77 @@ public enum OPCode {
                     throw new NullPointerException("SIR: Underflow");
                 } else {
                     cpu.setGPR(CPU.toBitsBinary(value, 16), CPU.toDecimalNumber(ins.getR()));
+                } break;
+                /*
+                 * OPCode 10 JZ
+                 */
+            case 10 :
+               if (cpu.getGPRValue(CPU.toDecimalNumber(ins.getR())) == 0 )
+                   cpu.setPC(EA);
+               else cpu.setPC(cpu.getPC() + 1);
+               break;
+                /*
+                 * OPCode 11 JNE
+                 */
+            case 11 :
+                if (cpu.getGPRValue(CPU.toDecimalNumber(ins.getR())) != 0 )
+                    cpu.setPC(EA);
+                else cpu.setPC(cpu.getPC() + 1);
+                break;
+
+                /*
+                 * OPCode 12 JCC
+                 */
+            case 12 :
+                break;
+                /*
+                 * OPCode 13 JMA
+                 */
+            case 13 :
+                cpu.setPC(EA);
+                break;
+                /*
+                 * OPCode 14 JSR
+                 */
+            case 14 :
+               cpu.setGPR(((cpu.getPC())+1),2);
+               cpu.setPC(EA);
+                break;
+                 /*
+                 * OPCode 15 JSR
+                 */
+            case 15 :
+                cpu.setGPR(((cpu.getPC())+1),2);
+                cpu.setPC(EA);
+                break;
+                 /*
+                 * OPCode 16 SOB
+                 */
+            case 16 :
+                value = cpu.getGPRValue(CPU.toDecimalNumber(ins.getR())) - 1 ;
+                if (value > Math.pow(2, 16) - 1) {
+                    cpu.setCC(true, 0);
+                    throw new NullPointerException("SIR: Overflow");
+                } else if (value < - Math.pow(2, 16)) {
+                    cpu.setCC(true, 1);
+                    throw new NullPointerException("SIR: Underflow");
+                } else {
+                    cpu.setGPR(CPU.toBitsBinary(value, 16), CPU.toDecimalNumber(ins.getR()));
                 }
+                if (cpu.getGPRValue(CPU.toDecimalNumber(ins.getR())) > 0)
+                cpu.setPC(EA);
+                else
+                cpu.setPC(cpu.getPC() + 1);
+                break;
+
+                 /*
+                 * OPCode 17 JGE
+                 */
+            case 17 :
+                if (cpu.getGPRValue(CPU.toDecimalNumber(ins.getR())) >= 0 )
+                    cpu.setPC(EA);
+                else cpu.setPC(cpu.getPC());
+                break;
              /*
               * OPCode 20 MLT
               */
@@ -326,3 +396,4 @@ public enum OPCode {
         }
     }
 }
+
