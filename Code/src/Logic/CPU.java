@@ -19,6 +19,9 @@ public class CPU {
     private String[] Memory;
     private int numberOfIn;          // The dynamic number of the rest instructions in memory
 
+    private Cache cache;
+    private String[] inputCache;
+
     public CPU() {
         this.PC = toBitsBinary(6, 12);
         this.IR = toBitsBinary(0, 16);
@@ -43,6 +46,8 @@ public class CPU {
         for (int i = 0; i < 2048; i++) {
             this.Memory[i] = "0000000000000000";
         }
+
+        this.cache = new Cache(32);
 
         this.numberOfIn = 0;
     }
@@ -204,7 +209,7 @@ public class CPU {
 
 
     /*
-     * Getter/Setter for for GPR
+     * Getter/Setter for GPR
      */
     public String getGPR(int index) {
         return GPR[index];
@@ -216,7 +221,6 @@ public class CPU {
         GPR[index] = value;
     }
 
-
     public int getNumberOfIn() {
         return numberOfIn;
     }
@@ -224,6 +228,28 @@ public class CPU {
     public String getStatus() {
         String msg = "PC <" + PC + ">, IR <" + IR + ">, MAR: <" + MAR + ">, MBR: <" + MBR + ">";
         return msg;
+    }
+
+    /*
+     * Getter/Reset for Cache
+     */
+    public Cache getCache() {
+        return cache;
+    }
+
+    public void resetCache() {
+        cache = new Cache(32);
+    }
+
+    /*
+     * Getter/Setter for InputCache, which is not Cache Object
+     */
+    public String[] getInput() {
+        return inputCache;
+    }
+
+    public void setInput(String[] inputArr) {
+        inputCache = inputArr;
     }
 
     /*

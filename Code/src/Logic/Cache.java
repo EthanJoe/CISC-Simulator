@@ -53,4 +53,7 @@ public class Cache {
         }
     }
 
+    public Queue<CacheLine> getQueue() {
+        return queue;
+    }
 }
