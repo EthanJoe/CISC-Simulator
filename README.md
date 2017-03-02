@@ -3,8 +3,7 @@
 ### Project Description
 CISC (Complicated Instruction Set Computer) Simulator is the project written in Java.
 ### Project Stage
-- Phase 1 Completed
-- Phase 2 Almost Finished
+- Working on Graphic & Logic Design
 
 ### Graphic Design
 
@@ -16,7 +15,7 @@ CISC (Complicated Instruction Set Computer) Simulator is the project written in 
 
 - `CPU Register Section`
 - `Simulator Operation Section:` Click "Load" button to type instruction or load instructions file.
-- `Simulator Console Section` and `Input Console Section`
+- `Simulator Console Section`
 
 
 
