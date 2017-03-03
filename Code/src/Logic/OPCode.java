@@ -108,9 +108,9 @@ public enum OPCode {
                 cpu.setMBR(cpu.getGPR(CPU.toDecimalNumber(ins.getR())));
                 cpu.setMemory(cpu.getMBR(), EAValue);
                 break;
-             /*
-              * OPCode 03 LDA
-              */
+            /*
+             * OPCode 03 LDA
+             */
             case 3:
                 cpu.setMAR(EA);
                 cpu.setMBR(cpu.getGPR(CPU.toDecimalNumber(ins.getR())));
@@ -254,9 +254,9 @@ public enum OPCode {
                     cpu.setPC(CPU.toBitsBinary(cpu.getPCValue() + 1, 16));
                 }
                 break;
-                 /*
-                 * OPCode 17 JGE
-                 */
+            /*
+             * OPCode 17 JGE
+             */
             case 17 :
                 if (cpu.getGPRValue(ins.getRegisterNumber()) > 0) {
                     cpu.setPC(EA);
