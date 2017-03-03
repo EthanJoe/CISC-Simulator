@@ -192,75 +192,77 @@ public enum OPCode {
                 } else {
                     cpu.setGPR(CPU.toBitsBinary(value, 16), CPU.toDecimalNumber(ins.getR()));
                 } break;
-                /*
-                 * OPCode 10 JZ
-                 */
+            /*
+             * OPCode 10 JZ
+             */
             case 10 :
-               if (cpu.getGPRValue(CPU.toDecimalNumber(ins.getR())) == 0 )
+               if(cpu.getGPRValue(ins.getRegisterNumber()) == 0) {
                    cpu.setPC(EA);
-               else cpu.setPC(cpu.getPC() + 1);
+               } else {
+                   cpu.setPC(CPU.toBitsBinary(cpu.getPCValue() + 1, 16));
+               }
                break;
-                /*
-                 * OPCode 11 JNE
-                 */
+            /*
+             * OPCode 11 JNE
+             */
             case 11 :
-                if (cpu.getGPRValue(CPU.toDecimalNumber(ins.getR())) != 0 )
+                if (cpu.getGPRValue(ins.getRegisterNumber()) != 0) {
                     cpu.setPC(EA);
-                else cpu.setPC(cpu.getPC() + 1);
+                } else {
+                    cpu.setPC(CPU.toBitsBinary(cpu.getPCValue() + 1, 16));
+                }
                 break;
-
-                /*
-                 * OPCode 12 JCC
-                 */
+            /*
+             * OPCode 12 JCC
+             */
             case 12 :
+                if (cpu.getCC(ins.getRegisterNumber())) {
+                    cpu.setPC(EA);
+                } else {
+                    cpu.setPC(CPU.toBitsBinary(cpu.getPCValue() + 1, 16));
+                }
                 break;
-                /*
-                 * OPCode 13 JMA
-                 */
+            /*
+             * OPCode 13 JMA
+             */
             case 13 :
                 cpu.setPC(EA);
                 break;
-                /*
-                 * OPCode 14 JSR
-                 */
+            /*
+             * OPCode 14 JSR
+             */
             case 14 :
-               cpu.setGPR(((cpu.getPC())+1),2);
-               cpu.setPC(EA);
+                cpu.setGPR(CPU.toBitsBinary(cpu.getPCValue() + 1, 16), 3);
+                cpu.setPC(EA);
                 break;
-                 /*
-                 * OPCode 15 JSR
-                 */
+            /*
+             * OPCode 15 RFS
+             */
             case 15 :
-                cpu.setGPR(((cpu.getPC())+1),2);
-                cpu.setPC(EA);
+                cpu.setGPR(ins.getAddress(), 0);
+                cpu.setPC(cpu.getGPR(3));
                 break;
-                 /*
-                 * OPCode 16 SOB
-                 */
+            /*
+             * OPCode 16 SOB
+             */
             case 16 :
-                value = cpu.getGPRValue(CPU.toDecimalNumber(ins.getR())) - 1 ;
-                if (value > Math.pow(2, 16) - 1) {
-                    cpu.setCC(true, 0);
-                    throw new NullPointerException("SIR: Overflow");
-                } else if (value < - Math.pow(2, 16)) {
-                    cpu.setCC(true, 1);
-                    throw new NullPointerException("SIR: Underflow");
+                int num = ins.getRegisterNumber();
+                cpu.setGPR(CPU.toBitsBinary(num - 1, 16), num);
+                if (cpu.getGPRValue(num) > 0) {
+                    cpu.setPC(EA);
                 } else {
-                    cpu.setGPR(CPU.toBitsBinary(value, 16), CPU.toDecimalNumber(ins.getR()));
+                    cpu.setPC(CPU.toBitsBinary(cpu.getPCValue() + 1, 16));
                 }
-                if (cpu.getGPRValue(CPU.toDecimalNumber(ins.getR())) > 0)
-                cpu.setPC(EA);
-                else
-                cpu.setPC(cpu.getPC() + 1);
                 break;
-
                  /*
                  * OPCode 17 JGE
                  */
             case 17 :
-                if (cpu.getGPRValue(CPU.toDecimalNumber(ins.getR())) >= 0 )
+                if (cpu.getGPRValue(ins.getRegisterNumber()) > 0) {
                     cpu.setPC(EA);
-                else cpu.setPC(cpu.getPC());
+                } else {
+                    cpu.setPC(CPU.toBitsBinary(cpu.getPCValue() + 1, 16));
+                }
                 break;
              /*
               * OPCode 20 MLT
