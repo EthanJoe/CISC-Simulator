@@ -18,7 +18,7 @@ public enum OPCode {
     JZ(10, "Jump If Zero"),
     JNE(11, "Jump If Not Equal"),
     JCC(12, "Jump If Condition Code Specified"),
-    JMP(12, "Unconditional Jump"),
+    JMP(13, "Unconditional Jump"),
     JSR(14, "Jump Subroutine"),
     RFS(15, "Return From Subroutine"),
     SOB(16, "Subtract One And Branch"),
@@ -223,7 +223,7 @@ public enum OPCode {
                 }
                 break;
             /*
-             * OPCode 13 JMA
+             * OPCode 13 JMP
              */
             case 13 :
                 cpu.setPC(EA);
