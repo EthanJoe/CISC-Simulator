@@ -42,7 +42,87 @@ public class Instruction {
 	}
 
 	public String getOpCode() {
+		switch (CPU.toDecimalNumber(opCode)) {
+			case 0:
+				return "HLT";
+			case 1:
+				return "LDR";
+			case 2:
+				return "STR";
+			case 3:
+				return "LDA";
+			case 4:
+				return "AMR";
+			case 5:
+				return "SMR";
+			case 6:
+				return "AIR";
+			case 7:
+				return "SIR";
+			case 10:
+				return "JZ";
+			case 11:
+				return "JNE";
+			case 12:
+				return "JCC";
+			case 13:
+				return "JMP";
+			case 14:
+				return "JSR";
+			case 15:
+				return "RFS";
+			case 16:
+				return "SOB";
+			case 17:
+				return "JGE";
+			case 20:
+				return "MLT";
+			case 21:
+				return "DVD";
+			case 22:
+				return "TRR";
+			case 23:
+				return "AND";
+			case 24:
+				return "ORR";
+			case 25:
+				return "NOT";
+			case 30:
+				return "TRAP";
+			case 31:
+				return "SRC";
+			case 32:
+				return "RRC";
+			case 33:
+				return "FADD";
+			case 34:
+				return "FSUB";
+			case 35:
+				return "VADD";
+			case 36:
+				return "VSUB";
+			case 37:
+				return "CNVRT";
+			case 41:
+				return "LDX";
+			case 42:
+				return "STX";
+			case 50:
+				return "LDFR";
+			case 51:
+				return "STFR";
+			case 61:
+				return "IN";
+			case 62:
+				return "OUT";
+			case 63:
+				return "CHK";
+		}
 		return opCode;
+	}
+
+	public int getOPCodeValue() {
+		return CPU.toDecimalNumber(opCode);
 	}
 
 	public void setOpCode(String opCode) {

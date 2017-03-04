@@ -42,6 +42,8 @@ public class GUIPanel extends JFrame {
 
     private CPU cpu;
 
+    private boolean OPCodeTag;
+
 
     public GUIPanel() {
         // Container Initializer
@@ -75,6 +77,9 @@ public class GUIPanel extends JFrame {
         InitButton();
         // CPU Initializer
         InitCPU();
+
+        // TEMP Tag which will be removed in Phase 3
+        this.OPCodeTag = false;
     }
 
     /*
@@ -201,11 +206,35 @@ public class GUIPanel extends JFrame {
         inputConsole.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (cpu.getInput() == null) {
+                if (OPCodeTag) {
+                    if (inputConsole.getText().length() != 16) {
+                        setMessage("Invalid Instruction.");
+                    } else {
+                        Instruction ins = new Instruction(inputConsole.getText());
+                        String op = ins.getOpCode();
+                        for (OPCode code: OPCode.values()) {
+                            if (op.equals(code.toString())) {
+                                setMessage("OPCode " + ins.getOPCodeValue() + " " + op + "-> " + code.getContent());
+                                try {
+                                    code.execute(cpu, ins);
+                                }
+                                catch (NullPointerException ex) {
+                                    setMessage(ex.getMessage());
+                                }
+                                setValue();
+                            }
+                        }
+                    }
+                    inputConsole.setText("");
+                    OPCodeTag = false;
+                    InitInputConsole("Input Console can not be used right now.", false);
+                }
+                else if (cpu.getInput() == null) {
                     String checkedData = "";
-                    cpu.setInput(dataSeparator(inputConsole.getText()));
+                    String[] checkedArr = dataSeparator(inputConsole.getText());
+                    cpu.setInput(checkedArr);
                     OPCode.IN.execute(cpu, null);
-                    for (String str: dataSeparator(inputConsole.getText())) {
+                    for (String str: checkedArr) {
                         String numInBin = (CPU.toBitsBinary(Integer.parseInt(str), 16));
                         R0.setValue(numInBin);
                         str += " ";
@@ -232,10 +261,8 @@ public class GUIPanel extends JFrame {
                         setMessage("Program 1 done and Input data cleared.");
                         InitInputConsole("Input Console: Can not be used right now.", false);
                         R0.resetValue();
-
                     }
                 }
-
             }
         });
         panelView.add(inputConsole);
@@ -312,6 +339,7 @@ public class GUIPanel extends JFrame {
 
         JMenuItem fileItem = new JMenuItem("File");
         JMenuItem program1Item = new JMenuItem("Program 1");
+        JMenuItem opcodeItem = new JMenuItem("Individual OPCode");
 
         fileItem.addActionListener((ActionEvent e) -> {
             JFileChooser fileChooser = new JFileChooser();
@@ -329,12 +357,22 @@ public class GUIPanel extends JFrame {
         });
 
         program1Item.addActionListener((ActionEvent e) -> {
+            cpu.setInput(null);
             setMessage("Please input 20 numbers in Input Console which are separated by space.");
+            resetValue();
             InitInputConsole("Input numbers here.", true);
+        });
+
+        opcodeItem.addActionListener((ActionEvent e) -> {
+            setMessage("Please input 16 bits instruction in Input Console.");
+            OPCodeTag = true;
+            resetValue();
+            InitInputConsole("Input instruction here.", true);
         });
 
         loadMenu.add(fileItem);
         loadMenu.add(program1Item);
+        loadMenu.add(opcodeItem);
         loadMenu.show(button, 100, 0);
     }
 
@@ -437,7 +475,6 @@ public class GUIPanel extends JFrame {
                 setMessage("Non-Numeric input "  + s +" have been removed.");
             }
         }
-
         return checkedList.toArray(new String[checkedList.size()]);
     }
 

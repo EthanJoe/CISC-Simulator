@@ -1,5 +1,6 @@
 import GUI.GUIPanel;
 import Logic.Instruction;
+import Logic.OPCode;
 
 import java.awt.*;
 
@@ -13,5 +14,4 @@ public class Main {
             panel.setVisible(true);
         });
     }
-
 }

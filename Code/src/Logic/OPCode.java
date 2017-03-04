@@ -191,7 +191,8 @@ public enum OPCode {
                     throw new NullPointerException("SIR: Underflow");
                 } else {
                     cpu.setGPR(CPU.toBitsBinary(value, 16), CPU.toDecimalNumber(ins.getR()));
-                } break;
+                }
+                break;
             /*
              * OPCode 10 JZ
              */
@@ -333,6 +334,7 @@ public enum OPCode {
                 } else {
                     cpu.setCC(false, 3);
                 }
+                break;
             /*
              * OPCode 23 AND
              */
@@ -425,9 +427,11 @@ public enum OPCode {
                     cpu.setInput(dataStr.toArray(new String[dataStr.size()]));
                     cpu.resetCache();
                 }
+                break;
             default:
                 throw new NullPointerException("Instruction " + id.toString() + " Does Not Exist.");
         }
     }
+
 }
 
