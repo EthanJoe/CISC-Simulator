@@ -12,7 +12,7 @@ CISC (Complicated Instruction Set Computer) Simulator is the project written in 
 
 ### Design Note
 
-![Instruction Note] (https://github.com/EthanJoe/CISC-Simulator/blob/master/Design%20Material/<Design>Instruction%20Phase%202.png)
+![Instruction Note](https://github.com/EthanJoe/CISC-Simulator/blob/master/Design%20Material/<Design>Instruction%20Phase%202.png)
 
 - `CPU Register Section`
 - `Simulator Operation Section:` Click "Load" button to type instruction or load instructions file.
