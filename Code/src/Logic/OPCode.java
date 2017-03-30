@@ -359,6 +359,22 @@ public enum OPCode {
                 cpu.setGPR(CPU.toBitsBinary(value, 16), Rx);
                 break;
             /*
+             * OPCode 30 TRAP
+             */
+            case 30:
+                //Traps to memory address 0
+                cpu.setMemory(String.valueOf(10000), 0);
+
+                //Stores the PC+1 in memory address 2
+                int pcVal = cpu.getPCValue();
+                cpu.setMemory(String.valueOf(pcVal + 1),2);
+
+                int memVal = cpu.getMemoryValue(0);
+                int insVal = cpu.getEAValue(ins);
+                cpu.setPC(String.valueOf(memVal + insVal));
+
+                break;
+            /*
              * OPCode 31 SRC
              */
             case 31:
