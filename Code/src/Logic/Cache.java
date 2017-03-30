@@ -27,9 +27,9 @@ public class Cache {
         queue.enqueue(cacheLine);
     }
 
-    public CacheLine search(CacheLine cacheLine) {
+    public CacheLine search(String address) {
         for (CacheLine c : queue) {
-            if (c.getAddress() == cacheLine.getAddress()) {
+            if (c.getAddress().equals(address)) {
                 return c;
             } else {
                 return null;

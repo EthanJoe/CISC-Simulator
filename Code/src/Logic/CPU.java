@@ -47,7 +47,7 @@ public class CPU {
             this.Memory[i] = "0000000000000000";
         }
 
-        this.cache = new Cache(32);
+        this.cache = new Cache(1024);
 
         this.numberOfIn = 0;
     }
@@ -91,7 +91,8 @@ public class CPU {
     public String getEA(Instruction ins) {
         int i = toDecimalNumber(ins.getI());
         int ix = toDecimalNumber(ins.getIx());
-        int addressDec = toDecimalNumber(ins.getAddress());
+        int addressDec = ins.getAddressValue();
+        if (ix == 3) return null;
         if (i == 0) {
             if (ix == 0) {
                 return ins.getAddress();
@@ -111,11 +112,14 @@ public class CPU {
      *  Get Effective Address Value in Decimal
      */
     public int getEAValue(Instruction ins) {
+        if (ins.getIxValue() == 3) {
+            return -1;
+        }
         return toDecimalNumber(this.getEA(ins));
     }
 
     /*
-     * Getter/Setter for PC
+     * Getter/Setter for PC 101001001000001101
      */
     public String getPC() {
         return PC;
@@ -136,7 +140,7 @@ public class CPU {
 
     public int getIRValue() { return toDecimalNumber(IR);}
 
-    public void SetIR(String ir) {
+    public void setIR(String ir) {
         IR = ir;
     }
 
@@ -153,7 +157,6 @@ public class CPU {
         IX[index] = value;
     }
 
-
     /*
      * Getter/Setter for MAR
      */
@@ -166,7 +169,6 @@ public class CPU {
     public void setMAR(String mar) {
         MAR = mar;
     }
-
 
     /*
      * Getter/Setter for MBR
@@ -181,7 +183,6 @@ public class CPU {
         MBR = mbr;
     }
 
-
     /*
      * Getter/Setter for CC
      */
@@ -192,7 +193,6 @@ public class CPU {
     public void setCC(Boolean value, int index) {
         CC[index] = value;
     }
-
 
     /*
      * Getter/Setter for Memory
@@ -207,6 +207,14 @@ public class CPU {
         Memory[index] = value;
     }
 
+    public void setMemory(int value, int index) {
+        String str = toBitsBinary(value, 16);
+        Memory[index] = str;
+    }
+
+    public void setMemory(Instruction instruction, int index) {
+        Memory[index] = instruction.toString();
+    }
 
     /*
      * Getter/Setter for GPR
@@ -238,7 +246,7 @@ public class CPU {
     }
 
     public void resetCache() {
-        cache = new Cache(32);
+        cache = new Cache(1024);
     }
 
     /*

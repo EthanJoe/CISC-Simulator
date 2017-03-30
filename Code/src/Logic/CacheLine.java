@@ -20,4 +20,8 @@ public class CacheLine {
         return data;
     }
 
+    public String toString() {
+        return data;
+    }
+
 }

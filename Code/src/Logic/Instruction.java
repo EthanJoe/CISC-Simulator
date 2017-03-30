@@ -16,11 +16,7 @@ public class Instruction {
 	private String r;
 	private String i;
 	private String address;
-	private String cc;
-	
-	private Integer base;
-	private Integer ccNumber;
-	
+
 /** Constructor assigning instruction parts */
 	public Instruction(String opCode, String r, String ix, String i, String address){
 		this.opCode = opCode;
@@ -28,7 +24,6 @@ public class Instruction {
 		this.ix = ix;
 		this.i = i;
 		this.address = address;
-		base = 2;
 	}
 	
 /** Breaking an instruction into substrings according to ISA */
@@ -38,7 +33,14 @@ public class Instruction {
 		this.ix = instruction.substring(8, 10);
 		this.i = instruction.substring(10, 11);
 		this.address = instruction.substring(11);
-		base = 2;
+	}
+
+	public Instruction(OPCode opcode, int r, int ix, int i,int address) {
+		this.opCode = CPU.toBitsBinary(opcode.getID(), 6);
+		this.r = CPU.toBitsBinary(r, 2);
+		this.ix = CPU.toBitsBinary(ix, 2);
+		this.i = Integer.toString(i);
+		this.address = CPU.toBitsBinary(address, 7);
 	}
 
 	public String getOpCode() {
@@ -66,7 +68,7 @@ public class Instruction {
 			case 12:
 				return "JCC";
 			case 13:
-				return "JMP";
+				return "JMA";
 			case 14:
 				return "JSR";
 			case 15:
@@ -121,90 +123,55 @@ public class Instruction {
 		return opCode;
 	}
 
+	public OPCode getOPCode() {
+		for (OPCode opcode: OPCode.values()) {
+			if (getOpCode().equals(opcode.toString())) {
+				return opcode;
+			}
+		}
+		return null;
+	}
+
 	public int getOPCodeValue() {
 		return CPU.toDecimalNumber(opCode);
 	}
 
-	public void setOpCode(String opCode) {
-		this.opCode = opCode;
-	}
 
 	public String getIx() {
 		return ix;
 	}
-
-	public void setIx(String ix) {
-		this.ix = ix;
-	}
 	
-	public Integer getIndexNumber() {
+	public Integer getIxValue() {
 		return Integer.parseInt(ix, 2);
 	}
-	
-	public boolean hasIndex(){
-		int index = Integer.parseInt(ix, 2);
-		return index == 0 ? false : true;
-	}
+
 
 	public String getR() {
 		return r;
 	}
 	
-	public Integer getRegisterNumber() {
+	public Integer getRValue() {
 		return Integer.parseInt(r, 2);
 	}
 
-	public void setR(String r) {
-		this.r = r;
-	}
 
 	public String getI() {
 		return i;
 	}
-	
-	public Boolean isIndirect(){
-		return (getI().equals("1") ? true : false);
-	}
 
-	public void setI(String i) {
-		this.i = i;
-	}
 
 	public String getAddress() {
 		return address;
 	}
 	
-	public Integer getIntegerAddress() {
+	public Integer getAddressValue() {
 		return Integer.parseInt(address, 2);
 	}
 
-	public void setAddress(String address) {
-		this.address = address;
-	}
-
-	public Integer getBase() {
-		return base;
-	}
-
-	public void setBase(Integer base) {
-		this.base = base;
-	}
 	
 	@Override
 	public String toString() {
 		return opCode + r + ix + i + address;
-	} 
-	
-	public String getBinaryInstruction(){
-		return opCode + r + ix + i + address;
-	}
-	
-	public Integer getCCNumber(int j) {
-		return Integer.parseInt(cc, 2);
-	}
-	
-	public void setCCNumber(Integer ccNumber, int j) {
-		this.ccNumber = ccNumber;
 	}
 
 }

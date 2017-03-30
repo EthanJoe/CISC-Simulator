@@ -18,7 +18,7 @@ public enum OPCode {
     JZ(10, "Jump If Zero"),
     JNE(11, "Jump If Not Equal"),
     JCC(12, "Jump If Condition Code Specified"),
-    JMP(13, "Unconditional Jump"),
+    JMA(13, "Unconditional Jump"),
     JSR(14, "Jump Subroutine"),
     RFS(15, "Return From Subroutine"),
     SOB(16, "Subtract One And Branch"),
@@ -71,8 +71,10 @@ public enum OPCode {
             ins = new Instruction("0000000000000000");
         }
 
-        final String EA = cpu.getEA(ins);
         final int EAValue = cpu.getEAValue(ins);
+        final String EA = CPU.toBitsBinary(EAValue, 16);
+
+        final int pcValue = cpu.getPCValue();
         final int Rx = CPU.toDecimalNumber(ins.getIx());
         final int Ry = CPU.toDecimalNumber(ins.getR());
         final int r1 = cpu.getGPRValue(Rx);
@@ -84,97 +86,88 @@ public enum OPCode {
         final int rx = cpu.getGPRValue(ri);
         final int i = CPU.toDecimalNumber(ins.toString().substring(10, 11));
         final int devid = CPU.toDecimalNumber(ins.toString().substring(11, 16));
-        int value;
 
+        int value;
         switch (id) {
             /*
-             * OPCode 00 HLT
+             * OPCode 00 HALT
              */
             case 0:
                 throw new NullPointerException("HLT Stop Machine");
             /*
              * OPCode 01 LDR
+             * r <- c(EA)
+             * r <- c(c(EA)), if I bit set
              */
             case 1:
                 cpu.setMAR(EA);
-                cpu.setMBR(cpu.getMemory(Integer.parseInt(EA, 2)));
-                cpu.setGPR(cpu.getMBR(), Integer.parseInt(ins.getR(), 2));
+                cpu.setMBR(cpu.getMemory(EAValue));
+
+                cpu.setGPR(cpu.getMemory(EAValue), ins.getRValue());
                 break;
             /*
              * OPCode 02 STR
+             * c(EA) <- c(r)
              */
             case 2:
                 cpu.setMAR(EA);
-                cpu.setMBR(cpu.getGPR(CPU.toDecimalNumber(ins.getR())));
-                cpu.setMemory(cpu.getMBR(), EAValue);
+                cpu.setMBR(cpu.getGPR(ins.getRValue()));
+
+                cpu.setMemory(cpu.getGPR(ins.getRValue()), EAValue);
                 break;
             /*
              * OPCode 03 LDA
+             * r <- EA
              */
             case 3:
                 cpu.setMAR(EA);
-                cpu.setMBR(cpu.getGPR(CPU.toDecimalNumber(ins.getR())));
-                cpu.setMemory(cpu.getMBR(), EAValue);
+                cpu.setMBR(cpu.getGPR(ins.getRValue()));
+                cpu.setGPR(cpu.getMemory(EAValue), ins.getRValue());
                 break;
             /*
              * OPCode 04 AMR
+             * r <- c(r) + c(EA)
              */
             case 4:
                 cpu.setMAR(EA);
                 cpu.setMBR(cpu.getMAR());
-                int GPR = cpu.getGPRValue(CPU.toDecimalNumber(ins.getR()));
-                int MBR = cpu.getMBRValue();
-                value = MBR + GPR;
-                /*
-                 * Check if overflow or underflow
-                 */
-                if ((value > Math.pow(2, 16) - 1)) {
+                value = cpu.getMemoryValue(EAValue) + cpu.getGPRValue(ins.getRValue());
+                if (Integer.toBinaryString(value).length() > 16) {
                     cpu.setCC(true, 0);
-                    throw new NullPointerException("AMR: Overflow");
-                } else if (value < - Math.pow(2, 16)) {
-                    cpu.setCC(true, 1);
-                    throw new NullPointerException("AMR Underflow");
-                } else {
-                    cpu.setGPR(CPU.toBitsBinary(value, 16), CPU.toDecimalNumber(ins.getR()));
+                    System.out.println("Overflow");
+                    break;
                 }
+                cpu.setGPR(CPU.toBitsBinary(value, 16), ins.getRValue());
                 break;
             /*
              * OPCode 05 SMR
+             * r <- c(r) - c(EA)
              */
             case 5:
                 cpu.setMAR(EA);
                 cpu.setMBR(cpu.getMemory(EAValue));
-                value = cpu.getGPRValue(CPU.toDecimalNumber(ins.getR())) - cpu.getMBRValue();
-                /*
-                 * Check if overflow or underflow
-                 */
-                if (value > Math.pow(2, 16) - 1) {
-                    cpu.setCC(true, 0);
-                    throw new NullPointerException("SMR: Overflow");
-                } else if (value < - Math.pow(2, 16)) {
+                value = cpu.getGPRValue(ins.getRValue()) - cpu.getMemoryValue(EAValue);
+                if (value < 0) {
                     cpu.setCC(true, 1);
-                    throw new NullPointerException("SMR: Underflow");
-                } else {
-                    cpu.setGPR(CPU.toBitsBinary(value, 16), CPU.toDecimalNumber(ins.getR()));
+                    System.out.println("Underflow");
+                    break;
                 }
+                cpu.setGPR(CPU.toBitsBinary(value, 16), ins.getRValue());
                 break;
             /*
              * OPCode 06 AIR
              */
             case 6:
                 cpu.setMBR(ins.getAddress());
-                value = cpu.getGPRValue(CPU.toDecimalNumber(ins.getR())) + cpu.getMBRValue();
-                /*
-                 *
-                 */
-                if (value > Math.pow(2, 16) - 1) {
-                    cpu.setCC(true, 0);
-                    throw new NullPointerException("AIR: Overflow");
-                } else if (value < - Math.pow(2, 16)) {
-                    cpu.setCC(true, 1);
-                    throw new NullPointerException("AIR: Underflow");
-                } else {
-                    cpu.setGPR(CPU.toBitsBinary(value, 16), CPU.toDecimalNumber(ins.getR()));
+
+                value = ins.getAddressValue();
+                if (value != 0) {
+                    if (cpu.getGPRValue(ins.getRValue()) == 0) {
+                        cpu.setGPR(CPU.toBitsBinary(value, 16), ins.getRValue());
+                    } else {
+                        value += cpu.getGPRValue(ins.getRValue());
+                        cpu.setGPR(CPU.toBitsBinary(value, 16), ins.getRValue());
+                    }
                 }
                 break;
             /*
@@ -182,59 +175,66 @@ public enum OPCode {
              */
             case 7:
                 cpu.setMBR(ins.getAddress());
-                value = cpu.getGPRValue(CPU.toDecimalNumber(ins.getR())) - cpu.getMBRValue();
-                if (value > Math.pow(2, 16) - 1) {
-                    cpu.setCC(true, 0);
-                    throw new NullPointerException("SIR: Overflow");
-                } else if (value < - Math.pow(2, 16)) {
-                    cpu.setCC(true, 1);
-                    throw new NullPointerException("SIR: Underflow");
-                } else {
-                    cpu.setGPR(CPU.toBitsBinary(value, 16), CPU.toDecimalNumber(ins.getR()));
+                value = ins.getAddressValue();
+                if (value != 0) {
+                    if (cpu.getGPRValue(ins.getRValue()) == 0) {
+                        cpu.setGPR(CPU.toBitsBinary(value, 16), ins.getRValue());
+                    } else {
+                        value = cpu.getGPRValue(ins.getRValue()) - value;
+                        if (value < 0) {
+                            cpu.setCC(true, 1);
+                            System.out.println("Underflow");
+                            break;
+                        }
+                        cpu.setGPR(CPU.toBitsBinary(value, 16), ins.getRValue());
+                    }
                 }
                 break;
             /*
              * OPCode 10 JZ
              */
             case 10 :
-               if(cpu.getGPRValue(ins.getRegisterNumber()) == 0) {
-                   cpu.setPC(EA);
+               if(cpu.getGPRValue(ins.getRValue()) == 0) {
+                   cpu.setPC(CPU.toBitsBinary(EAValue, 12));
                } else {
-                   cpu.setPC(CPU.toBitsBinary(cpu.getPCValue() + 1, 16));
+                   cpu.setPC(CPU.toBitsBinary(cpu.getPCValue() + 1, 12));
                }
                break;
             /*
              * OPCode 11 JNE
              */
             case 11 :
-                if (cpu.getGPRValue(ins.getRegisterNumber()) != 0) {
-                    cpu.setPC(EA);
+                if (cpu.getGPRValue(ins.getRValue()) != 0) {
+                    cpu.setPC(CPU.toBitsBinary(EAValue, 12));
                 } else {
-                    cpu.setPC(CPU.toBitsBinary(cpu.getPCValue() + 1, 16));
+                    cpu.setPC(CPU.toBitsBinary(cpu.getPCValue() + 1, 12));
                 }
                 break;
             /*
              * OPCode 12 JCC
              */
             case 12 :
-                if (cpu.getCC(ins.getRegisterNumber())) {
-                    cpu.setPC(EA);
+                if (cpu.getCC(ins.getRValue())) {
+                    System.out.println("Jump to Memory Slot " + EAValue);
+                    cpu.setPC(CPU.toBitsBinary(EAValue, 12));
                 } else {
-                    cpu.setPC(CPU.toBitsBinary(cpu.getPCValue() + 1, 16));
+                    System.out.println("Don jump, just to next PC " + (pcValue + 1));
+                    cpu.setPC(CPU.toBitsBinary((pcValue + 1), 12));
                 }
                 break;
             /*
-             * OPCode 13 JMP
+             * OPCode 13 JMA
              */
             case 13 :
-                cpu.setPC(EA);
+                cpu.setPC(CPU.toBitsBinary(EAValue, 12));
+                System.out.println("Jump to memory slot " + EAValue);
                 break;
             /*
              * OPCode 14 JSR
              */
             case 14 :
                 cpu.setGPR(CPU.toBitsBinary(cpu.getPCValue() + 1, 16), 3);
-                cpu.setPC(EA);
+                cpu.setPC(CPU.toBitsBinary(EAValue, 12));
                 break;
             /*
              * OPCode 15 RFS
@@ -247,22 +247,22 @@ public enum OPCode {
              * OPCode 16 SOB
              */
             case 16 :
-                int num = ins.getRegisterNumber();
+                int num = ins.getRValue();
                 cpu.setGPR(CPU.toBitsBinary(num - 1, 16), num);
                 if (cpu.getGPRValue(num) > 0) {
-                    cpu.setPC(EA);
+                    cpu.setPC(CPU.toBitsBinary(EAValue, 12));
                 } else {
-                    cpu.setPC(CPU.toBitsBinary(cpu.getPCValue() + 1, 16));
+                    cpu.setPC(CPU.toBitsBinary(cpu.getPCValue() + 1, 12));
                 }
                 break;
             /*
              * OPCode 17 JGE
              */
             case 17 :
-                if (cpu.getGPRValue(ins.getRegisterNumber()) > 0) {
-                    cpu.setPC(EA);
+                if (cpu.getGPRValue(ins.getRValue()) > 0) {
+                    cpu.setPC(CPU.toBitsBinary(EAValue, 12));
                 } else {
-                    cpu.setPC(CPU.toBitsBinary(cpu.getPCValue() + 1, 16));
+                    cpu.setPC(CPU.toBitsBinary(cpu.getPCValue() + 1, 12));
                 }
                 break;
              /*
@@ -329,10 +329,12 @@ public enum OPCode {
              * OPCode 22 TRR
              */
             case 22:
-                if (cpu.getGPRValue(Rx) == cpu.getGPRValue(Ry)) {
+                if (cpu.getGPRValue(ins.getRValue()) == cpu.getGPRValue(ins.getIxValue())) {
                     cpu.setCC(true, 3);
+                    System.out.println("Equal, then jump.");
                 } else {
                     cpu.setCC(false, 3);
+                    System.out.println("Not equal, don't jump");
                 }
                 break;
             /*
@@ -400,6 +402,20 @@ public enum OPCode {
                     value = rx >>> count | rx << (16 - count);
                     cpu.setGPR(CPU.toBitsBinary(value, 16), ri);
                 }
+                break;
+            /*
+             * OPCode 41 LDX
+             * Xx <- c(EA)
+             */
+            case 41:
+                cpu.setIX(cpu.getMemory(EAValue), ins.getIxValue());
+                break;
+            /*
+             * OPCode 42 STX
+             * EA <- C(Xx)
+             */
+            case 42:
+                cpu.setMemory(cpu.getIX(ins.getIxValue()), EAValue);
                 break;
             /*
              * OPCode 61 IN

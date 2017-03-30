@@ -11,6 +11,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 /**
  * Created by yichenzhou on 2/4/17.
@@ -43,6 +44,7 @@ public class GUIPanel extends JFrame {
     private CPU cpu;
 
     private boolean OPCodeTag;
+    private boolean Program2Tag;
 
 
     public GUIPanel() {
@@ -78,8 +80,8 @@ public class GUIPanel extends JFrame {
         // CPU Initializer
         InitCPU();
 
-        // TEMP Tag which will be removed in Phase 3
         this.OPCodeTag = false;
+        this.Program2Tag = false;
     }
 
     /*
@@ -203,65 +205,78 @@ public class GUIPanel extends JFrame {
         /*
          * ActionListener for data input
          */
-        inputConsole.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (OPCodeTag) {
-                    if (inputConsole.getText().length() != 16) {
-                        setMessage("Invalid Instruction.");
-                    } else {
-                        Instruction ins = new Instruction(inputConsole.getText());
-                        String op = ins.getOpCode();
-                        for (OPCode code: OPCode.values()) {
-                            if (op.equals(code.toString())) {
-                                setMessage("OPCode " + ins.getOPCodeValue() + " " + op + "-> " + code.getContent());
-                                try {
-                                    code.execute(cpu, ins);
-                                }
-                                catch (NullPointerException ex) {
-                                    setMessage(ex.getMessage());
-                                }
-                                setValue();
+        inputConsole.addActionListener(e -> {
+            if (OPCodeTag) {
+                if (inputConsole.getText().length() != 16) {
+                    setMessage("Invalid Instruction.");
+                } else {
+                    Instruction ins = new Instruction(inputConsole.getText());
+                    String op = ins.getOpCode();
+                    for (OPCode code: OPCode.values()) {
+                        if (op.equals(code.toString())) {
+                            setMessage("OPCode " + ins.getOPCodeValue() + " " + op + "-> " + code.getContent());
+                            try {
+                                code.execute(cpu, ins);
                             }
+                            catch (NullPointerException ex) {
+                                setMessage(ex.getMessage());
+                            }
+                            setValue();
                         }
                     }
-                    inputConsole.setText("");
-                    OPCodeTag = false;
-                    InitInputConsole("Input Console can not be used right now.", false);
                 }
-                else if (cpu.getInput() == null) {
-                    String checkedData = "";
-                    String[] checkedArr = dataSeparator(inputConsole.getText());
-                    cpu.setInput(checkedArr);
-                    OPCode.IN.execute(cpu, null);
-                    for (String str: checkedArr) {
-                        String numInBin = (CPU.toBitsBinary(Integer.parseInt(str), 16));
-                        R0.setValue(numInBin);
-                        str += " ";
-                        checkedData += str ;
-                    }
-                    setMessage("Input Number -> " + checkedData);
-                    inputConsole.setText("");
-                    setMessage("Please type the number to search or 'exit' to cancel.");
+                inputConsole.setText("");
+                OPCodeTag = false;
+                InitInputConsole("Input console can not be used right now.", false);
+            } else if (Program2Tag) {
+                if (inputConsole.getText().equals("") || inputConsole.getText().equals(" ") || inputConsole.getText().equals(null)) {
+                    InitInputConsole("Re-type the word to search:", true);
+                    setMessage("Please type invalid to search.");
                 } else {
-                    String searchUnit = inputConsole.getText();
-                    if (!isNumeric(searchUnit) && !searchUnit.equals("exit")) {
-                        setMessage(searchUnit + " is not numeric to search");
-                        inputConsole.setText("");
-                    } else if (isNumeric(searchUnit)) {
-                        setMessage("Searching for the closest number to " + searchUnit);
-                        searchClosestOne(searchUnit);
-                        cpu.setInput(null);
-                        cpu.resetCache();
-                        InitInputConsole("Input Console: Can not be used right now.", false);
-                        R0.resetValue();
+                    String wordStr = inputConsole.getText();
+                    String fileStr = cpu.getCache().search("SpecialCache").getData();
+                    if (fileStr.equals(null)) {
+                        setMessage("Cache Error");
                     } else {
-                        cpu.setInput(null);
                         cpu.resetCache();
-                        setMessage("Program 1 done and Input data cleared.");
-                        InitInputConsole("Input Console: Can not be used right now.", false);
-                        R0.resetValue();
+                        loadFileInMemoryAndCache(fileStr);
+                        find(wordStr);
                     }
+                    Program2Tag = false;
+                    InitInputConsole("Input console can not be used right now", false);
+                }
+            } else if (cpu.getInput() == null) {
+                String checkedData = "";
+                String[] checkedArr = dataSeparator(inputConsole.getText());
+                cpu.setInput(checkedArr);
+                OPCode.IN.execute(cpu, null);
+                for (String str: checkedArr) {
+                    String numInBin = (CPU.toBitsBinary(Integer.parseInt(str), 16));
+                    R0.setValue(numInBin);
+                    str += " ";
+                    checkedData += str ;
+                }
+                setMessage("Input Number -> " + checkedData);
+                inputConsole.setText("");
+                setMessage("Please type the number to search or 'exit' to cancel.");
+            } else {
+                String searchUnit = inputConsole.getText();
+                if (!isNumeric(searchUnit) && !searchUnit.equals("exit")) {
+                    setMessage(searchUnit + " is not numeric to search");
+                    inputConsole.setText("");
+                } else if (isNumeric(searchUnit)) {
+                    setMessage("Searching for the closest number to " + searchUnit);
+                    searchClosestOne(searchUnit);
+                    cpu.setInput(null);
+                    cpu.resetCache();
+                    InitInputConsole("Input Console: Can not be used right now.", false);
+                    R0.resetValue();
+                } else {
+                    cpu.setInput(null);
+                    cpu.resetCache();
+                    setMessage("Program 1 done and Input data cleared.");
+                    InitInputConsole("Input Console: Can not be used right now.", false);
+                    R0.resetValue();
                 }
             }
         });
@@ -339,6 +354,7 @@ public class GUIPanel extends JFrame {
 
         JMenuItem fileItem = new JMenuItem("File");
         JMenuItem program1Item = new JMenuItem("Program 1");
+        JMenuItem program2Item = new JMenuItem("Program 2");
         JMenuItem opcodeItem = new JMenuItem("Individual OPCode");
 
         fileItem.addActionListener((ActionEvent e) -> {
@@ -352,7 +368,7 @@ public class GUIPanel extends JFrame {
                 cpu.resetMemory();
                 resetValue();
                 setMessage("Memory reset.");
-                readFile(fileChooser.getSelectedFile());
+                readInstructionFile(fileChooser.getSelectedFile());
             }
         });
 
@@ -361,6 +377,27 @@ public class GUIPanel extends JFrame {
             setMessage("Please input 20 numbers in Input Console which are separated by space.");
             resetValue();
             InitInputConsole("Input numbers here.", true);
+        });
+
+        program2Item.addActionListener((ActionEvent e) -> {
+            JFileChooser fileChooser = new JFileChooser();
+            File srcDir = new File(System.getProperty("user.dir"));
+            fileChooser.setCurrentDirectory(srcDir);
+            int value = fileChooser.showOpenDialog(null);
+            if (value != JFileChooser.APPROVE_OPTION) {
+                setMessage("File has not been selected.");
+            }
+            setMessage("Chosen file in " + fileChooser.getSelectedFile().getAbsolutePath());
+            cpu.resetMemory();
+            resetValue();
+            Program2Tag = true;
+            setMessage("Memory reset.");
+            String fileStr = readProgram2File(fileChooser.getSelectedFile());
+            // Put fileStr into Cache as singleton
+            CacheLine fileCache = new CacheLine("SpecialCache", fileStr);
+            cpu.getCache().insert(fileCache);
+            splitProgram2File(fileStr);
+            InitInputConsole("Type the word to search:", true);
         });
 
         opcodeItem.addActionListener((ActionEvent e) -> {
@@ -372,6 +409,7 @@ public class GUIPanel extends JFrame {
 
         loadMenu.add(fileItem);
         loadMenu.add(program1Item);
+        loadMenu.add(program2Item);
         loadMenu.add(opcodeItem);
         loadMenu.show(button, 100, 0);
     }
@@ -379,7 +417,7 @@ public class GUIPanel extends JFrame {
     /*
      * Read the file in the location selected by user
      */
-    private String[] readFile(File file) {
+    private String[] readInstructionFile(File file) {
         String[] inArr = new String[0];
 
         try {
@@ -407,6 +445,33 @@ public class GUIPanel extends JFrame {
             setMessage(msg);
         }
         return inArr;
+    }
+
+    /*
+     * Read file as search base to search the word
+     */
+    private String readProgram2File(File file) {
+        String fileTxt = "";
+        try (Scanner scanner = new Scanner(file)) {
+            while (scanner.hasNextLine()) {
+                String line = scanner.nextLine();
+                fileTxt += line;
+            }
+            scanner.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        return fileTxt;
+    }
+    /*
+     * Show each sentence from Program2 File on the consold
+     */
+    private void splitProgram2File(String txt) {
+        String[] strArr = txt.split("\\.");
+        for (int i = 0; i < strArr.length - 1; i++) {
+            String str = strArr[i].trim();
+            setMessage("SENTENCE " + (i + 1) + " -> " + str + ".");
+        }
     }
 
     /*
@@ -515,5 +580,56 @@ public class GUIPanel extends JFrame {
         }
 
         setMessage("The closest number to " + searchUnit + " is " + searchArr[index].toString());
+    }
+
+    /*
+     * Load fileStr from Program2 into memory from 50 and cache
+     */
+    private void loadFileInMemoryAndCache(String fileStr) {
+        int memoryIndex = 50;
+        String[] sentenceArr = fileStr.split("\\.");
+        for (int i = 0; i < sentenceArr.length; i++) {
+            String[] wordArr = sentenceArr[i].split(" ");
+            ArrayList<String> wordList = new ArrayList<>();
+            for (String word: wordArr) {
+                if (!word.equals(" ") && !word.equals("")) {
+                    wordList.add(word);
+                }
+            }
+            wordArr = new String[wordList.size()];
+            for (int index = 0; index < wordList.size(); index++) {
+                wordArr[index] = wordList.get(index);
+            }
+
+            for (int j = 0; j < wordArr.length; j++) {
+                String word = wordArr[j].trim();
+                int beginIndex = memoryIndex;
+                for (int k = 0; k < word.length(); k++) {
+                    int ascIIChar = (int) word.charAt(k);
+                    cpu.setMemory(ascIIChar, memoryIndex++);
+                }
+                int endIndex = memoryIndex;
+                String address = beginIndex + "-" + endIndex;
+                String data = word + ";" + i + ";" + j;
+                CacheLine cacheLine = new CacheLine(address, data);
+                cpu.getCache().insert(cacheLine);
+            }
+        }
+    }
+
+    /*
+     * Find the wordStr in Memory and Cache
+     */
+    private void find(String wordStr) {
+        for (CacheLine cache: cpu.getCache().getQueue()) {
+            String[] dataArr = cache.getData().split(";");
+            if (dataArr[0].equals(wordStr)) {
+                int sentenceNum = Integer.parseInt(dataArr[1]) + 1;
+                int wordNum = Integer.parseInt(dataArr[2]) + 1;
+                String msg = "Found " + wordStr + " In Sentence " + sentenceNum + " Word " + wordNum;
+                setMessage(msg);
+                return;
+            }
+        }
     }
 }
