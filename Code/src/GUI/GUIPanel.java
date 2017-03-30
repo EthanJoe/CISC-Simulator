@@ -240,7 +240,14 @@ public class GUIPanel extends JFrame {
                     } else {
                         cpu.resetCache();
                         loadFileInMemoryAndCache(fileStr);
-                        find(wordStr);
+                        ArrayList<Instruction> list = find(wordStr);
+                        for (Instruction instruction: list) {
+                            cpu.setMAR(CPU.toBitsBinary(instruction.getAddressValue(), 16));
+                            cpu.setPC(CPU.toBitsBinary(instruction.getAddressValue(), 12));
+                            cpu.setIX(CPU.toBitsBinary(instruction.getAddressValue(), 16), instruction.getIxValue());
+                            cpu.setGPR(CPU.toBitsBinary(instruction.getAddressValue(), 16), instruction.getRValue());
+                            setValue();
+                        }
                     }
                     Program2Tag = false;
                     InitInputConsole("Input console can not be used right now", false);
@@ -367,6 +374,7 @@ public class GUIPanel extends JFrame {
                 setMessage(msg1);
                 cpu.resetMemory();
                 resetValue();
+                cpu.resetCache();
                 setMessage("Memory reset.");
                 readInstructionFile(fileChooser.getSelectedFile());
             }
@@ -376,6 +384,7 @@ public class GUIPanel extends JFrame {
             cpu.setInput(null);
             setMessage("Please input 20 numbers in Input Console which are separated by space.");
             resetValue();
+            cpu.resetCache();
             InitInputConsole("Input numbers here.", true);
         });
 
@@ -390,6 +399,7 @@ public class GUIPanel extends JFrame {
             setMessage("Chosen file in " + fileChooser.getSelectedFile().getAbsolutePath());
             cpu.resetMemory();
             resetValue();
+            cpu.resetCache();
             Program2Tag = true;
             setMessage("Memory reset.");
             String fileStr = readProgram2File(fileChooser.getSelectedFile());
@@ -403,6 +413,7 @@ public class GUIPanel extends JFrame {
         opcodeItem.addActionListener((ActionEvent e) -> {
             setMessage("Please input 16 bits instruction in Input Console.");
             OPCodeTag = true;
+            cpu.resetCache();
             resetValue();
             InitInputConsole("Input instruction here.", true);
         });
@@ -507,6 +518,13 @@ public class GUIPanel extends JFrame {
         IR.setValue(cpu.getIR());
         MAR.setValue(cpu.getMAR());
         MBR.setValue(cpu.getMBR());
+        X0.setValue(cpu.getIX(0));
+        X1.setValue(cpu.getIX(1));
+        X2.setValue(cpu.getIX(2));
+        R0.setValue(cpu.getGPR(0));
+        R1.setValue(cpu.getGPR(1));
+        R2.setValue(cpu.getGPR(2));
+        R3.setValue(cpu.getGPR(3));
     }
 
     /*
@@ -620,16 +638,28 @@ public class GUIPanel extends JFrame {
     /*
      * Find the wordStr in Memory and Cache
      */
-    private void find(String wordStr) {
+    private ArrayList<Instruction> find(String wordStr) {
+        ArrayList<Instruction> list = new ArrayList<>();
         for (CacheLine cache: cpu.getCache().getQueue()) {
             String[] dataArr = cache.getData().split(";");
+            String[] addressArr = cache.getAddress().split("-");
+            int startIndex = Integer.parseInt(addressArr[0]);
+            int endIndex = Integer.parseInt(addressArr[1]);
+            for (int i = startIndex; i <= endIndex; i++) {
+                list.add(new Instruction(OPCode.LDR, 1, 0, 0, i));
+                list.add(new Instruction(OPCode.LDR, 0, 0, 0, i));
+                list.add(new Instruction(OPCode.TRR, 0, 1, 0, i));
+                list.add(new Instruction(OPCode.STR, 1, 0, 0, i));
+            }
             if (dataArr[0].equals(wordStr)) {
                 int sentenceNum = Integer.parseInt(dataArr[1]) + 1;
                 int wordNum = Integer.parseInt(dataArr[2]) + 1;
                 String msg = "Found " + wordStr + " In Sentence " + sentenceNum + " Word " + wordNum;
                 setMessage(msg);
-                return;
+                return list;
             }
         }
+        setMessage("Not Found " + wordStr);
+        return list;
     }
 }
