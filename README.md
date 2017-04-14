@@ -6,6 +6,7 @@ CISC (Complicated Instruction Set Computer) Simulator is the project written in 
 - Phase 1 Done
 - Phase 2 Done
 - Phase 3 Done
+- Phase 4 Working on
 
 ### Graphic Design
 
