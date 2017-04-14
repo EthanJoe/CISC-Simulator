@@ -32,6 +32,11 @@ public class GUIPanel extends JFrame {
     private GUIRegister X1;
     private GUIRegister X2;
 
+    private GUIRegister MSR;
+    private GUIRegister MFR;
+    private GUIRegister FR0;
+    private GUIRegister FR1;
+
     private JList console;
     private DefaultListModel consoleMode;
 
@@ -50,7 +55,7 @@ public class GUIPanel extends JFrame {
     public GUIPanel() {
         // Container Initializer
         this.setTitle("CISC SimulatorX");
-        this.setBounds(0, 0, 1300, 800);
+        this.setBounds(0, 0, 1300, 880);
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         this.setLocationRelativeTo(null);
 
@@ -96,7 +101,7 @@ public class GUIPanel extends JFrame {
 
         // Separator 2 Initializer
         JSeparator separator2 = new JSeparator();
-        separator2.setBounds(0, 480, 1500, 10);
+        separator2.setBounds(0, 580, 1500, 10);
         separator2.setBackground(Color.gray);
         panelView.add(separator2);
     }
@@ -110,20 +115,28 @@ public class GUIPanel extends JFrame {
         this.PC.addToView(this.panelView);
 
         // IR Initializer
-        this.IR = new GUIRegister("IR", 16, 80, 220);
+        this.IR = new GUIRegister("IR", 16, 80, 214);
         this.IR.addToView(panelView);
 
         // MAR Initializer
-        this.MAR = new GUIRegister("MAR", 16, 80, 290);
+        this.MAR = new GUIRegister("MAR", 16, 80, 278);
         this.MAR.addToView(panelView);
 
         // MBR Initializer
-        this.MBR = new GUIRegister("MBR", 16, 80, 360);
+        this.MBR = new GUIRegister("MBR", 16, 80, 342);
         this.MBR.addToView(panelView);
 
         // IAR Initializer
-        this.IAR = new GUIRegister("IAR", 16, 80, 430);
+        this.IAR = new GUIRegister("IAR", 16, 80, 406);
         this.IAR.addToView(panelView);
+
+        // MSR Initializer
+        this.MSR = new GUIRegister("MSR", 16, 80, 470);
+        this.MSR.addToView(panelView);
+
+        // MFR Initializer
+        this.MFR = new GUIRegister("MFR", 16, 80, 534);
+        this.MFR.addToView(panelView);
 
         // R0 Initializer
         this.R0 = new GUIRegister("R0", 16, 700, 150);
@@ -152,6 +165,14 @@ public class GUIPanel extends JFrame {
         // X2 Initializer
         this.X2 = new GUIRegister("X2", 16, 700, 432);
         this.X2.addToView(panelView);
+
+        // FR0 Initializer
+        this.FR0 = new GUIRegister("FR0", 16, 700, 479);
+        this.FR0.addToView(panelView);
+
+        // FR1 Initializer
+        this.FR1 = new GUIRegister("FR1", 16, 700, 526);
+        this.FR1.addToView(panelView);
     }
 
     /*
@@ -164,11 +185,11 @@ public class GUIPanel extends JFrame {
         console.setForeground(Color.white);
         console.setBackground(Color.darkGray);
         console.setOpaque(true);
-        console.setBounds(150, 520, 1110, 160);
+        console.setBounds(150, 620, 1110, 160);
         console.setLayoutOrientation(0);
 
         JScrollPane test = new JScrollPane(console);
-        test.setBounds(150, 520, 1110, 160);
+        test.setBounds(150, 620, 1110, 160);
         test.getVerticalScrollBar().addAdjustmentListener(
                 e -> e.getAdjustable().setValue(e.getAdjustable().getValue()));
         panelView.add(test);
@@ -188,7 +209,7 @@ public class GUIPanel extends JFrame {
         inputConsole.setForeground(Color.white);
         inputConsole.setBackground(Color.darkGray);
         inputConsole.setOpaque(true);
-        inputConsole.setBounds(150, 685, 1110, 40);
+        inputConsole.setBounds(150, 785, 1110, 40);
 
         /*
          * MouseListener to clear the hint
@@ -297,7 +318,7 @@ public class GUIPanel extends JFrame {
         // Load button initializer
         loadButton = new JButton("Load");
         loadButton.setFont(new Font("Avenir", 0, 15));
-        loadButton.setBounds(30, 520, 100, 50);
+        loadButton.setBounds(30, 620, 100, 50);
         loadButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -309,7 +330,7 @@ public class GUIPanel extends JFrame {
         // Single step button initializer
         singleButton = new JButton("Single Step");
         singleButton.setFont(new Font("Avenir", 0, 15));
-        singleButton.setBounds(30, 600, 100, 50);
+        singleButton.setBounds(30, 700, 100, 50);
         singleButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -327,7 +348,7 @@ public class GUIPanel extends JFrame {
         // Run button initializer
         runButton = new JButton("Run");
         runButton.setFont(new Font("Avenir", 0, 15));
-        runButton.setBounds(30, 680, 100, 50);
+        runButton.setBounds(30, 780, 100, 50);
         runButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -518,6 +539,10 @@ public class GUIPanel extends JFrame {
         IR.setValue(cpu.getIR());
         MAR.setValue(cpu.getMAR());
         MBR.setValue(cpu.getMBR());
+        MSR.setValue(cpu.getMSR());
+        MFR.setValue(cpu.getMFR());
+        FR0.setValue(cpu.getFR0());
+        FR1.setValue(cpu.getFR1());
         X0.setValue(cpu.getIX(0));
         X1.setValue(cpu.getIX(1));
         X2.setValue(cpu.getIX(2));
@@ -536,6 +561,10 @@ public class GUIPanel extends JFrame {
         MAR.resetValue();
         MBR.resetValue();
         IAR.resetValue();
+        MSR.resetValue();
+        MFR.resetValue();
+        FR0.resetValue();
+        FR1.resetValue();
         R0.resetValue();
         R1.resetValue();
         R2.resetValue();
