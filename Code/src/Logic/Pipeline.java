@@ -5,35 +5,39 @@ package Logic;
  */
 public class Pipeline {
     CPU cpu;
+    int fromIndex;
+    int endIndex;
     Instruction[] line;
 
     public Pipeline(CPU cpu, int fromIndex, int endIndex) {
         this.cpu = cpu;
+        assert endIndex > fromIndex;
+        this.fromIndex = fromIndex;
+        this.endIndex = endIndex;
         this.line = new Instruction[4];
         for (int i = 0; i < 4; i++) {
             line[i] = null;
         }
-
-        for (int i = fromIndex; i <= endIndex; i++) {
-            String address = CPU.toBitsBinary(i, 16);
-            cpu.resetCache();
-            cpu.getCache().getQueue().enqueue(new CacheLine(address, cpu.getMemory(i)));
-        }
     }
 
+    /*
+     * Begin Pipelining Operation
+     */
     public void cycle() {
-        while (!check()) {
-            if (cpu.getCache().size() > 0) {
-                Instruction instruction = new Instruction(cpu.getCache().getQueue().dequeue().getData());
-                push(instruction);
-            } else {
+        int currentCount = fromIndex;
+        while (!check() && currentCount <= endIndex + 4) {
+            if (currentCount > endIndex) {
                 push(null);
+            } else {
+                push(new Instruction(cpu.getMemory(currentCount)));
             }
-
             execute();
         }
     }
 
+    /*
+     * Push Instruction into Pipeline
+     */
     private void push(Instruction instruction) {
         line[3] = line[2];
         line[2] = line[1];
@@ -41,11 +45,19 @@ public class Pipeline {
         line[0] = instruction;
     }
 
+    /*
+     * Execute Instruction
+     */
     private void execute() {
-        OPCode opCode = line[2].getOPCode();
-        opCode.execute(cpu, line[2]);
+        if (line[2] != null) {
+            OPCode opCode = line[2].getOPCode();
+            opCode.execute(cpu, line[2]);
+        }
     }
 
+    /*
+     * Check if all units in `line` are null
+     */
     private boolean check() {
         for (int i = 0; i < 4; i++) {
             if (line[i] != null) {
