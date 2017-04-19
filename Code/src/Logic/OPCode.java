@@ -1,7 +1,6 @@
 package Logic;
 
 import java.util.ArrayList;
-
 /**
  * Created by yichenzhou on 2/20/17.
  */
@@ -86,8 +85,13 @@ public enum OPCode {
         final int rx = cpu.getGPRValue(ri);
         final int i = CPU.toDecimalNumber(ins.toString().substring(10, 11));
         final int devid = CPU.toDecimalNumber(ins.toString().substring(11, 16));
-
+        final String FR0 = cpu.getFR0();
+        final String FR1 = cpu.getFR1();
+        float FRDecimal;
+        float floatFR;
+        FloatingPointRepresentation FP,result;
         int value;
+        String FR;
         switch (id) {
             /*
              * OPCode 00 HALT
@@ -419,6 +423,52 @@ public enum OPCode {
                     cpu.setGPR(CPU.toBitsBinary(value, 16), ri);
                 }
                 break;
+                 /*
+             * OPCode 33 FADD
+             * c(fr) <- c(fr) + c(EA)
+             */
+            case 33:
+                FP = new FloatingPointRepresentation(cpu.getFR(Ry));
+                FRDecimal = FP.calculateDecimalNumber();
+                floatFR = FRDecimal + (float)(CPU.toDecimalNumber(cpu.getCache().search(EA).getData()));
+                result = new FloatingPointRepresentation(floatFR);
+                if(result.getExponent() == null)
+                {
+                    cpu.setCC(true, 0);
+                    System.out.println("Overflow");
+                    break;
+                }
+                if (Ry == 1)
+                    cpu.setFR0(result.toString());
+                else
+                    if (Ry == 0)
+                    cpu.setFR1(result.toString());
+                break;
+                 /*
+             * OPCode 33 FSUB
+             * c(fr) <- c(fr) - c(EA)
+             */
+            case 34:
+                FP = new FloatingPointRepresentation(cpu.getFR(Ry));
+                FRDecimal = FP.calculateDecimalNumber();
+                floatFR = FRDecimal - (float)(CPU.toDecimalNumber(cpu.getCache().search(EA).getData()));
+                result = new FloatingPointRepresentation(floatFR);
+                Float floorLimit = new Float(Math.pow(3.682143, 19));
+                floorLimit *= -1;
+                //int Fr= Math.round(floatFR);
+                if (floatFR < floorLimit)
+                {
+                    cpu.setCC(true, 1);
+                    System.out.println("Underflow");
+                    break;
+                }
+                if (Ry== 0)
+                    cpu.setFR0(result.toString());
+                else
+                    if (Ry== 1)
+                    cpu.setFR1(result.toString());
+
+                break;
             /*
              * OPCode 41 LDX
              * Xx <- c(EA)
@@ -432,6 +482,44 @@ public enum OPCode {
              */
             case 42:
                 cpu.setMemory(cpu.getIX(ins.getIxValue()), EAValue);
+                break;
+              /*
+            * OPCode 37 CNVRT
+            *
+             */
+            case 37:
+                FR = cpu.getFR(Ry);
+                int IntFR = Integer.parseInt(FR);
+                if (IntFR == 0)
+                    cpu.setFR0(cpu.getCache().search(EA).getData());
+                else
+                    if (IntFR == 1)
+                {
+                    FP = new FloatingPointRepresentation(Float.valueOf(cpu.getCache().search(EA).getData()));
+                    cpu.setFR1(FP.toString());
+                }
+            /*
+            * OPCode 50 LDFR
+            * FR <- C(FR)
+             */
+            case 50:
+                String FRdata = cpu.getCache().search(EA).getData();
+                if (Ry== 0)
+                    cpu.setFR0(FRdata);
+                else
+                    if (Ry== 1)
+                    cpu.setFR1(FRdata);
+                break;
+                /*
+            * OPCode 51 STFR
+            * EA <- C(FR)
+             */
+            case 51:
+                if (Ry== 0)
+                    cpu.getCache().update(new CacheLine(EA,cpu.getFR0()));
+                else
+                if (Ry== 1)
+                    cpu.getCache().update(new CacheLine(EA,cpu.getFR1()));
                 break;
             /*
              * OPCode 61 IN

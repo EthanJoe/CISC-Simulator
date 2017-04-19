@@ -229,6 +229,19 @@ public class CPU {
     public void setMFR(String mfr) {
         MFR = mfr;
     }
+     /*
+     * Getter/Setter for FR
+     */
+     public String getFR(int R) {
+             if (R==0)
+             {return FR0;}
+             else
+                 if (R==1)
+                 {return FR1;}
+                 else
+                     return null;
+     }
+
 
     /*
      * Getter/Setter for FR0
