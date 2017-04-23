@@ -2,22 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="77a658d4-01df-415d-a44d-66a080addf5b" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Code/GUI/GUIPanel$5.class" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Code/GUI/GUIPanel$1.class" afterPath="$PROJECT_DIR$/out/production/Code/GUI/GUIPanel$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Code/GUI/GUIPanel$2.class" afterPath="$PROJECT_DIR$/out/production/Code/GUI/GUIPanel$2.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Code/GUI/GUIPanel$3.class" afterPath="$PROJECT_DIR$/out/production/Code/GUI/GUIPanel$3.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Code/GUI/GUIPanel$4.class" afterPath="$PROJECT_DIR$/out/production/Code/GUI/GUIPanel$4.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Code/GUI/GUIPanel.class" afterPath="$PROJECT_DIR$/out/production/Code/GUI/GUIPanel.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Code/Logic/CPU.class" afterPath="$PROJECT_DIR$/out/production/Code/Logic/CPU.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Code/Logic/Cache.class" afterPath="$PROJECT_DIR$/out/production/Code/Logic/Cache.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Code/Logic/CacheLine.class" afterPath="$PROJECT_DIR$/out/production/Code/Logic/CacheLine.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Code/Logic/Instruction.class" afterPath="$PROJECT_DIR$/out/production/Code/Logic/Instruction.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Code/Logic/OPCode.class" afterPath="$PROJECT_DIR$/out/production/Code/Logic/OPCode.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/src/Logic/CPU.java" afterPath="$PROJECT_DIR$/Code/src/Logic/CPU.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/src/Logic/FloatingPointRepresentation.java" afterPath="$PROJECT_DIR$/Code/src/Logic/FloatingPointRepresentation.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/src/Logic/OPCode.java" afterPath="$PROJECT_DIR$/Code/src/Logic/OPCode.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Code/META-INF/MANIFEST.MF" afterPath="$PROJECT_DIR$/out/production/Code/META-INF/MANIFEST.MF" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -32,12 +19,22 @@
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
-    <leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file leaf-file-name="Pipeline.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Code/src/Logic/Pipeline.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
+            <state relative-caret-position="-261">
               <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="OPCode.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Code/src/Logic/OPCode.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-135">
+              <caret line="409" column="8" lean-forward="false" selection-start-line="409" selection-start-column="8" selection-end-line="409" selection-end-column="8" />
               <folding />
             </state>
           </provider>
@@ -46,34 +43,24 @@
       <file leaf-file-name="FloatingPointRepresentation.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Code/src/Logic/FloatingPointRepresentation.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-921">
-              <caret line="18" column="61" lean-forward="false" selection-start-line="18" selection-start-column="61" selection-end-line="18" selection-end-column="61" />
+            <state relative-caret-position="-1196">
+              <caret line="17" column="0" lean-forward="true" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
               <folding>
-                <element signature="e#766#767#0" expanded="true" />
-                <element signature="e#812#813#0" expanded="true" />
-                <element signature="e#2493#2494#0" expanded="true" />
-                <element signature="e#2517#2518#0" expanded="true" />
-                <element signature="e#2551#2552#0" expanded="true" />
-                <element signature="e#2577#2578#0" expanded="true" />
-                <element signature="e#2612#2613#0" expanded="true" />
-                <element signature="e#2643#2644#0" expanded="true" />
-                <element signature="e#2691#2692#0" expanded="true" />
-                <element signature="e#2731#2732#0" expanded="true" />
-                <element signature="e#2766#2767#0" expanded="true" />
-                <element signature="e#2797#2798#0" expanded="true" />
-                <element signature="e#2845#2846#0" expanded="true" />
-                <element signature="e#2885#2886#0" expanded="true" />
+                <element signature="e#834#835#0" expanded="true" />
+                <element signature="e#880#881#0" expanded="true" />
+                <element signature="e#2924#2925#0" expanded="true" />
+                <element signature="e#2948#2949#0" expanded="true" />
+                <element signature="e#2982#2983#0" expanded="true" />
+                <element signature="e#3008#3009#0" expanded="true" />
+                <element signature="e#3043#3044#0" expanded="true" />
+                <element signature="e#3074#3075#0" expanded="true" />
+                <element signature="e#3122#3123#0" expanded="true" />
+                <element signature="e#3162#3163#0" expanded="true" />
+                <element signature="e#3197#3198#0" expanded="true" />
+                <element signature="e#3228#3229#0" expanded="true" />
+                <element signature="e#3276#3277#0" expanded="true" />
+                <element signature="e#3316#3317#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="OPCode.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Code/src/Logic/OPCode.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="837">
-              <caret line="509" column="31" lean-forward="true" selection-start-line="509" selection-start-column="31" selection-end-line="509" selection-end-column="31" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -82,7 +69,7 @@
         <entry file="file://$PROJECT_DIR$/Code/src/Logic/Instruction.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="277">
-              <caret line="146" column="0" lean-forward="true" selection-start-line="146" selection-start-column="0" selection-end-line="146" selection-end-column="0" />
+              <caret line="146" column="0" lean-forward="false" selection-start-line="146" selection-start-column="0" selection-end-line="146" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -91,7 +78,7 @@
       <file leaf-file-name="CPU.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Code/src/Logic/CPU.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-680">
+            <state relative-caret-position="-651">
               <caret line="241" column="33" lean-forward="false" selection-start-line="241" selection-start-column="33" selection-end-line="241" selection-end-column="33" />
               <folding>
                 <element signature="method#CPU#0;class#CPU#0" expanded="false" />
@@ -99,8 +86,6 @@
                 <element signature="method#resetMemory#0;class#CPU#0" expanded="false" />
                 <element signature="method#fetchInstruction#0;class#CPU#0" expanded="false" />
                 <element signature="method#getEA#0;class#CPU#0" expanded="false" />
-                <element signature="e#5967#5968#0" expanded="true" />
-                <element signature="e#6010#6011#0" expanded="true" />
                 <element signature="method#getStatus#0;class#CPU#0" expanded="false" />
                 <element signature="method#toBitsBinary#0;class#CPU#0" expanded="false" />
               </folding>
@@ -111,11 +96,14 @@
       <file leaf-file-name="GUIPanel.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Code/src/GUI/GUIPanel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="208">
+            <state relative-caret-position="2505">
               <caret line="257" column="49" lean-forward="false" selection-start-line="257" selection-start-column="44" selection-end-line="257" selection-end-column="49" />
               <folding>
+                <element signature="imports" expanded="false" />
                 <element signature="method#InitRegister#0;class#GUIPanel#0" expanded="false" />
                 <element signature="method#InitConsole#0;class#GUIPanel#0" expanded="false" />
+                <element signature="e#11528#11529#0" expanded="false" />
+                <element signature="e#11588#11589#0" expanded="false" />
                 <element signature="method#dataSeparator#0;class#GUIPanel#0" expanded="false" />
                 <element signature="method#isNumeric#0;class#GUIPanel#0" expanded="false" />
                 <element signature="method#searchClosestOne#0;class#GUIPanel#0" expanded="false" />
@@ -182,8 +170,8 @@
         <option value="$PROJECT_DIR$/Code/src/Logic/loadStore.java" />
         <option value="$PROJECT_DIR$/Code/TextProgramTwo.txt" />
         <option value="$PROJECT_DIR$/Code/src/GUI/GUIPanel.java" />
-        <option value="$PROJECT_DIR$/Code/src/Logic/FloatingPointRepresentation.java" />
         <option value="$PROJECT_DIR$/Code/src/Logic/CPU.java" />
+        <option value="$PROJECT_DIR$/Code/src/Logic/FloatingPointRepresentation.java" />
         <option value="$PROJECT_DIR$/Code/src/Logic/OPCode.java" />
       </list>
     </option>
@@ -195,10 +183,10 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="58" />
-    <option name="y" value="456" />
+    <option name="x" value="162" />
+    <option name="y" value="88" />
     <option name="width" value="1251" />
-    <option name="height" value="730" />
+    <option name="height" value="740" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -217,7 +205,7 @@
     </navigator>
     <panes>
       <pane id="PackagesPane" />
-      <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -282,7 +270,7 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -554,7 +542,7 @@
     <option name="totallyTimeSpent" value="1435000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="58" y="456" width="1251" height="730" extended-state="0" />
+    <frame x="162" y="88" width="1251" height="740" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -605,6 +593,63 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/Code/src/Logic/Pipeline.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Code/src/Logic/OPCode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="7545">
+          <caret line="509" column="31" lean-forward="true" selection-start-line="509" selection-start-column="31" selection-end-line="509" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Code/src/Logic/Instruction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2100">
+          <caret line="146" column="0" lean-forward="true" selection-start-line="146" selection-start-column="0" selection-end-line="146" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Code/src/Logic/CPU.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2100">
+          <caret line="241" column="33" lean-forward="false" selection-start-line="241" selection-start-column="33" selection-end-line="241" selection-end-column="33" />
+          <folding>
+            <element signature="method#CPU#0;class#CPU#0" expanded="false" />
+            <element signature="method#loadMemory#0;class#CPU#0" expanded="false" />
+            <element signature="method#resetMemory#0;class#CPU#0" expanded="false" />
+            <element signature="method#fetchInstruction#0;class#CPU#0" expanded="false" />
+            <element signature="method#getEA#0;class#CPU#0" expanded="false" />
+            <element signature="method#getStatus#0;class#CPU#0" expanded="false" />
+            <element signature="method#toBitsBinary#0;class#CPU#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Code/src/GUI/GUIPanel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2505">
+          <caret line="257" column="49" lean-forward="false" selection-start-line="257" selection-start-column="44" selection-end-line="257" selection-end-column="49" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="method#InitRegister#0;class#GUIPanel#0" expanded="false" />
+            <element signature="method#InitConsole#0;class#GUIPanel#0" expanded="false" />
+            <element signature="e#11528#11529#0" expanded="false" />
+            <element signature="e#11588#11589#0" expanded="false" />
+            <element signature="method#dataSeparator#0;class#GUIPanel#0" expanded="false" />
+            <element signature="method#isNumeric#0;class#GUIPanel#0" expanded="false" />
+            <element signature="method#searchClosestOne#0;class#GUIPanel#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Code/src/Logic/OPCode.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -618,8 +663,11 @@
         <state relative-caret-position="3600">
           <caret line="240" column="41" lean-forward="true" selection-start-line="240" selection-start-column="41" selection-end-line="240" selection-end-column="41" />
           <folding>
+            <element signature="imports" expanded="false" />
             <element signature="method#InitRegister#0;class#GUIPanel#0" expanded="false" />
             <element signature="method#InitConsole#0;class#GUIPanel#0" expanded="false" />
+            <element signature="e#11528#11529#0" expanded="false" />
+            <element signature="e#11588#11589#0" expanded="false" />
             <element signature="method#dataSeparator#0;class#GUIPanel#0" expanded="false" />
             <element signature="method#isNumeric#0;class#GUIPanel#0" expanded="false" />
             <element signature="method#searchClosestOne#0;class#GUIPanel#0" expanded="false" />
@@ -664,8 +712,11 @@
         <state relative-caret-position="2370">
           <caret line="158" column="7" lean-forward="true" selection-start-line="158" selection-start-column="7" selection-end-line="158" selection-end-column="7" />
           <folding>
+            <element signature="imports" expanded="false" />
             <element signature="method#InitRegister#0;class#GUIPanel#0" expanded="false" />
             <element signature="method#InitConsole#0;class#GUIPanel#0" expanded="false" />
+            <element signature="e#11528#11529#0" expanded="false" />
+            <element signature="e#11588#11589#0" expanded="false" />
             <element signature="method#dataSeparator#0;class#GUIPanel#0" expanded="false" />
             <element signature="method#isNumeric#0;class#GUIPanel#0" expanded="false" />
             <element signature="method#searchClosestOne#0;class#GUIPanel#0" expanded="false" />
@@ -710,8 +761,11 @@
         <state relative-caret-position="1485">
           <caret line="158" column="31" lean-forward="false" selection-start-line="158" selection-start-column="31" selection-end-line="158" selection-end-column="31" />
           <folding>
+            <element signature="imports" expanded="false" />
             <element signature="method#InitRegister#0;class#GUIPanel#0" expanded="false" />
             <element signature="method#InitConsole#0;class#GUIPanel#0" expanded="false" />
+            <element signature="e#11528#11529#0" expanded="false" />
+            <element signature="e#11588#11589#0" expanded="false" />
             <element signature="method#dataSeparator#0;class#GUIPanel#0" expanded="false" />
             <element signature="method#isNumeric#0;class#GUIPanel#0" expanded="false" />
             <element signature="method#searchClosestOne#0;class#GUIPanel#0" expanded="false" />
@@ -756,8 +810,11 @@
         <state relative-caret-position="75">
           <caret line="15" column="13" lean-forward="false" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
           <folding>
+            <element signature="imports" expanded="false" />
             <element signature="method#InitRegister#0;class#GUIPanel#0" expanded="false" />
             <element signature="method#InitConsole#0;class#GUIPanel#0" expanded="false" />
+            <element signature="e#11528#11529#0" expanded="false" />
+            <element signature="e#11588#11589#0" expanded="false" />
             <element signature="method#dataSeparator#0;class#GUIPanel#0" expanded="false" />
             <element signature="method#isNumeric#0;class#GUIPanel#0" expanded="false" />
             <element signature="method#searchClosestOne#0;class#GUIPanel#0" expanded="false" />
@@ -801,8 +858,11 @@
         <state relative-caret-position="225">
           <caret line="15" column="13" lean-forward="false" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
           <folding>
+            <element signature="imports" expanded="false" />
             <element signature="method#InitRegister#0;class#GUIPanel#0" expanded="false" />
             <element signature="method#InitConsole#0;class#GUIPanel#0" expanded="false" />
+            <element signature="e#11528#11529#0" expanded="false" />
+            <element signature="e#11588#11589#0" expanded="false" />
             <element signature="method#dataSeparator#0;class#GUIPanel#0" expanded="false" />
             <element signature="method#isNumeric#0;class#GUIPanel#0" expanded="false" />
             <element signature="method#searchClosestOne#0;class#GUIPanel#0" expanded="false" />
@@ -846,8 +906,11 @@
         <state relative-caret-position="225">
           <caret line="15" column="13" lean-forward="false" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
           <folding>
+            <element signature="imports" expanded="false" />
             <element signature="method#InitRegister#0;class#GUIPanel#0" expanded="false" />
             <element signature="method#InitConsole#0;class#GUIPanel#0" expanded="false" />
+            <element signature="e#11528#11529#0" expanded="false" />
+            <element signature="e#11588#11589#0" expanded="false" />
             <element signature="method#dataSeparator#0;class#GUIPanel#0" expanded="false" />
             <element signature="method#isNumeric#0;class#GUIPanel#0" expanded="false" />
             <element signature="method#searchClosestOne#0;class#GUIPanel#0" expanded="false" />
@@ -892,8 +955,11 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
+            <element signature="imports" expanded="false" />
             <element signature="method#InitRegister#0;class#GUIPanel#0" expanded="false" />
             <element signature="method#InitConsole#0;class#GUIPanel#0" expanded="false" />
+            <element signature="e#11528#11529#0" expanded="false" />
+            <element signature="e#11588#11589#0" expanded="false" />
             <element signature="method#dataSeparator#0;class#GUIPanel#0" expanded="false" />
             <element signature="method#isNumeric#0;class#GUIPanel#0" expanded="false" />
             <element signature="method#searchClosestOne#0;class#GUIPanel#0" expanded="false" />
@@ -949,11 +1015,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Code/src/GUI/GUIPanel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="208">
+        <state relative-caret-position="2505">
           <caret line="257" column="49" lean-forward="false" selection-start-line="257" selection-start-column="44" selection-end-line="257" selection-end-column="49" />
           <folding>
+            <element signature="imports" expanded="false" />
             <element signature="method#InitRegister#0;class#GUIPanel#0" expanded="false" />
             <element signature="method#InitConsole#0;class#GUIPanel#0" expanded="false" />
+            <element signature="e#11528#11529#0" expanded="false" />
+            <element signature="e#11588#11589#0" expanded="false" />
             <element signature="method#dataSeparator#0;class#GUIPanel#0" expanded="false" />
             <element signature="method#isNumeric#0;class#GUIPanel#0" expanded="false" />
             <element signature="method#searchClosestOne#0;class#GUIPanel#0" expanded="false" />
@@ -961,9 +1030,25 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Code/src/Logic/Pipeline.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-261">
+          <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Code/src/Logic/OPCode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-135">
+          <caret line="409" column="8" lean-forward="false" selection-start-line="409" selection-start-column="8" selection-end-line="409" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Code/src/Logic/CPU.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-680">
+        <state relative-caret-position="-651">
           <caret line="241" column="33" lean-forward="false" selection-start-line="241" selection-start-column="33" selection-end-line="241" selection-end-column="33" />
           <folding>
             <element signature="method#CPU#0;class#CPU#0" expanded="false" />
@@ -971,57 +1056,39 @@
             <element signature="method#resetMemory#0;class#CPU#0" expanded="false" />
             <element signature="method#fetchInstruction#0;class#CPU#0" expanded="false" />
             <element signature="method#getEA#0;class#CPU#0" expanded="false" />
-            <element signature="e#5967#5968#0" expanded="true" />
-            <element signature="e#6010#6011#0" expanded="true" />
             <element signature="method#getStatus#0;class#CPU#0" expanded="false" />
             <element signature="method#toBitsBinary#0;class#CPU#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Code/src/Logic/Pipeline.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Code/src/Logic/Instruction.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="277">
-          <caret line="146" column="0" lean-forward="true" selection-start-line="146" selection-start-column="0" selection-end-line="146" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Code/src/Logic/OPCode.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="837">
-          <caret line="509" column="31" lean-forward="true" selection-start-line="509" selection-start-column="31" selection-end-line="509" selection-end-column="31" />
+          <caret line="146" column="0" lean-forward="false" selection-start-line="146" selection-start-column="0" selection-end-line="146" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Code/src/Logic/FloatingPointRepresentation.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-921">
-          <caret line="18" column="61" lean-forward="false" selection-start-line="18" selection-start-column="61" selection-end-line="18" selection-end-column="61" />
+        <state relative-caret-position="-1196">
+          <caret line="17" column="0" lean-forward="true" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
           <folding>
-            <element signature="e#766#767#0" expanded="true" />
-            <element signature="e#812#813#0" expanded="true" />
-            <element signature="e#2493#2494#0" expanded="true" />
-            <element signature="e#2517#2518#0" expanded="true" />
-            <element signature="e#2551#2552#0" expanded="true" />
-            <element signature="e#2577#2578#0" expanded="true" />
-            <element signature="e#2612#2613#0" expanded="true" />
-            <element signature="e#2643#2644#0" expanded="true" />
-            <element signature="e#2691#2692#0" expanded="true" />
-            <element signature="e#2731#2732#0" expanded="true" />
-            <element signature="e#2766#2767#0" expanded="true" />
-            <element signature="e#2797#2798#0" expanded="true" />
-            <element signature="e#2845#2846#0" expanded="true" />
-            <element signature="e#2885#2886#0" expanded="true" />
+            <element signature="e#834#835#0" expanded="true" />
+            <element signature="e#880#881#0" expanded="true" />
+            <element signature="e#2924#2925#0" expanded="true" />
+            <element signature="e#2948#2949#0" expanded="true" />
+            <element signature="e#2982#2983#0" expanded="true" />
+            <element signature="e#3008#3009#0" expanded="true" />
+            <element signature="e#3043#3044#0" expanded="true" />
+            <element signature="e#3074#3075#0" expanded="true" />
+            <element signature="e#3122#3123#0" expanded="true" />
+            <element signature="e#3162#3163#0" expanded="true" />
+            <element signature="e#3197#3198#0" expanded="true" />
+            <element signature="e#3228#3229#0" expanded="true" />
+            <element signature="e#3276#3277#0" expanded="true" />
+            <element signature="e#3316#3317#0" expanded="true" />
           </folding>
         </state>
       </provider>

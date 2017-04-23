@@ -491,12 +491,12 @@ public enum OPCode {
                 FR = cpu.getFR(Ry);
                 int IntFR = Integer.parseInt(FR);
                 if (IntFR == 0)
-                    cpu.setFR0(cpu.getCache().search(EA).getData());
+                    cpu.setGPR(cpu.getCache().search(EA).getData(),Ry);
                 else
                     if (IntFR == 1)
                 {
                     FP = new FloatingPointRepresentation(Float.valueOf(cpu.getCache().search(EA).getData()));
-                    cpu.setFR1(FP.toString());
+                    cpu.setFR0(FP.toString());
                 }
             /*
             * OPCode 50 LDFR
