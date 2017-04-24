@@ -87,6 +87,9 @@ public enum OPCode {
         final int i = CPU.toDecimalNumber(ins.toString().substring(10, 11));
         final int devid = CPU.toDecimalNumber(ins.toString().substring(11, 16));
 
+        FloatingRepresentation FP, result;
+        Float newFloatValue;
+
         int value;
         switch (id) {
             /*
@@ -423,16 +426,46 @@ public enum OPCode {
              * OPCode 33 FADD
              */
             case 33:
-                fadd(ins.getR(), EAValue, cpu);
+                FP = new FloatingRepresentation(cpu.getGPR(ins.getRValue()));
+                newFloatValue = EAValue + FP.calDecimalNum();
+                result = new FloatingRepresentation(newFloatValue);
+
+                if (result.getExponent() == null) {
+                    cpu.setCC(true, 0);
+                    throw new NullPointerException("Overflow");
+                }
+
+                if (ins.getRValue() == 0) {
+                    cpu.setFR0(result.toString());
+                } else if (ins.getRValue() == 1) {
+                    cpu.setFR1(result.toString());
+                }
 
                 break;
             /*
              * OPCode 34 FSUB
              */
             case 34:
-                fsub(ins.getR(), EAValue, cpu);
+                FP = new FloatingRepresentation(cpu.getGPR(ins.getRValue()));
+                newFloatValue = FP.calDecimalNum() - EAValue;
+                result = new FloatingRepresentation(newFloatValue);
+
+                Float limit = (new Float(Math.pow(3.682143, 19))) * -1;
+
+                if (newFloatValue.compareTo(limit) < 0) {
+                    cpu.setCC(true, 1);
+                    throw  new NullPointerException("Underflow");
+                }
+
+                if (ins.getRValue() == 0) {
+                    cpu.setFR0(result.toString());
+                } else if (ins.getRValue() == 1) {
+                    cpu.setFR1(result.toString());
+                }
 
                 break;
+
+
             /*
              * OPCode 41 LDX
              * Xx <- c(EA)
@@ -477,30 +510,6 @@ public enum OPCode {
             default:
                 throw new NullPointerException("Instruction " + id.toString() + " Does Not Exist.");
         }
-    }
-
-    private void fadd(String register, int ea, CPU cpu) {
-        FloatingRepresentation floatRep = new FloatingRepresentation(register);
-        float floatFaRegister = ea + floatRep.calDecimalNum();
-        FloatingRepresentation result = new FloatingRepresentation(floatFaRegister);
-
-        //set OVERFLOW
-        if (result.getExponent() == null) {
-            cpu.setCC(true, 0);
-        }
-    }
-
-    private void fsub (String register, int ea, CPU cpu) {
-        FloatingRepresentation floatRep = new FloatingRepresentation(register);
-        float floatFsRegister = floatRep.calDecimalNum() - ea;
-        FloatingRepresentation result = new FloatingRepresentation(floatFsRegister);
-
-        Float floorlimit = new Float(Math.pow(3.682143, 19));
-        floorlimit *= -1;
-
-        //Set Underflow
-
-
     }
 }
 

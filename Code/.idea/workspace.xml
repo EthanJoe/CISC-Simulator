@@ -6,7 +6,11 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f26b3c32-d158-49f6-82be-5da3ccbce9bc" name="Default" comment="" />
+    <list default="true" id="f26b3c32-d158-49f6-82be-5da3ccbce9bc" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Logic/FloatingRepresentation.java" afterPath="$PROJECT_DIR$/src/Logic/FloatingRepresentation.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Logic/OPCode.java" afterPath="$PROJECT_DIR$/src/Logic/OPCode.java" />
+    </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -25,32 +29,17 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="GUIPanel.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/GUI/GUIPanel.java">
+      <file leaf-file-name="Cache.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Logic/Cache.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="23" column="28" lean-forward="false" selection-start-line="23" selection-start-column="28" selection-end-line="23" selection-end-column="28" />
+            <state relative-caret-position="105">
+              <caret line="8" column="13" lean-forward="false" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
               <folding>
-                <element signature="method#GUIPanel#0;class#GUIPanel#0" expanded="false" />
-                <element signature="method#InitSeparator#0;class#GUIPanel#0" expanded="false" />
-                <element signature="method#InitRegister#0;class#GUIPanel#0" expanded="false" />
-                <element signature="method#InitConsole#0;class#GUIPanel#0" expanded="false" />
-                <element signature="method#InitInputConsole#0;class#GUIPanel#0" expanded="false" />
-                <element signature="method#InitButton#0;class#GUIPanel#0" expanded="false" />
-                <element signature="method#InitCPU#0;class#GUIPanel#0" expanded="false" />
-                <element signature="method#loadButtonAction#0;class#GUIPanel#0" expanded="false" />
-                <element signature="method#readInstructionFile#0;class#GUIPanel#0" expanded="false" />
-                <element signature="method#readProgram2File#0;class#GUIPanel#0" expanded="false" />
-                <element signature="method#splitProgram2File#0;class#GUIPanel#0" expanded="false" />
-                <element signature="method#numOfLine#0;class#GUIPanel#0" expanded="false" />
-                <element signature="method#setMessage#0;class#GUIPanel#0" expanded="false" />
-                <element signature="method#setValue#0;class#GUIPanel#0" expanded="false" />
-                <element signature="method#resetValue#0;class#GUIPanel#0" expanded="false" />
-                <element signature="method#dataSeparator#0;class#GUIPanel#0" expanded="false" />
-                <element signature="method#isNumeric#0;class#GUIPanel#0" expanded="false" />
-                <element signature="method#searchClosestOne#0;class#GUIPanel#0" expanded="false" />
-                <element signature="method#loadFileInMemoryAndCache#0;class#GUIPanel#0" expanded="false" />
-                <element signature="method#find#0;class#GUIPanel#0" expanded="false" />
+                <element signature="imports" expanded="false" />
+                <element signature="e#343#344#0" expanded="false" />
+                <element signature="e#378#379#0" expanded="false" />
+                <element signature="e#1279#1280#0" expanded="false" />
+                <element signature="e#1307#1308#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -59,69 +48,22 @@
       <file leaf-file-name="CPU.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Logic/CPU.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="390">
-              <caret line="26" column="17" lean-forward="false" selection-start-line="26" selection-start-column="17" selection-end-line="26" selection-end-column="17" />
+            <state relative-caret-position="234">
+              <caret line="247" column="6" lean-forward="true" selection-start-line="247" selection-start-column="6" selection-end-line="247" selection-end-column="6" />
               <folding>
                 <element signature="method#CPU#0;class#CPU#0" expanded="false" />
                 <element signature="method#getMSRValue#0;class#CPU#0" expanded="false" />
-                <element signature="e#6024#6025#0" expanded="true" />
-                <element signature="e#6051#6052#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Instruction.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Logic/Instruction.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="6" column="16" lean-forward="false" selection-start-line="6" selection-start-column="16" selection-end-line="6" selection-end-column="16" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Pipeline.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/Logic/Pipeline.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="9" column="23" lean-forward="false" selection-start-line="9" selection-start-column="23" selection-end-line="9" selection-end-column="23" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CacheLine.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Logic/CacheLine.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="9" column="11" lean-forward="false" selection-start-line="9" selection-start-column="11" selection-end-line="9" selection-end-column="11" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="OPCode.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="OPCode.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Logic/OPCode.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="765">
-              <caret line="51" column="4" lean-forward="false" selection-start-line="51" selection-start-column="4" selection-end-line="51" selection-end-column="4" />
+            <state relative-caret-position="-342">
+              <caret line="443" column="22" lean-forward="true" selection-start-line="443" selection-start-column="22" selection-end-line="443" selection-end-column="22" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Queue.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/DataStructure/Queue.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="9" column="13" lean-forward="false" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-              <folding>
-                <element signature="method#enqueue#0;class#Queue#0" expanded="false" />
-                <element signature="method#dequeue#0;class#Queue#0" expanded="false" />
-                <element signature="method#check#0;class#Queue#0" expanded="false" />
-                <element signature="method#next#0;class#ListIterator#0;class#Queue#0" expanded="false" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -164,11 +106,14 @@
         <option value="$PROJECT_DIR$/src/Logic/Cache.java" />
         <option value="$PROJECT_DIR$/src/Logic/CacheLine.java" />
         <option value="$PROJECT_DIR$/src/Main.java" />
-        <option value="$PROJECT_DIR$/src/Logic/OPCode.java" />
         <option value="$PROJECT_DIR$/src/Logic/CPU.java" />
         <option value="$PROJECT_DIR$/src/GUI/GUIPanel.java" />
         <option value="$PROJECT_DIR$/src/Logic/PipelineUnit.java" />
         <option value="$PROJECT_DIR$/src/Logic/Pipeline.java" />
+        <option value="$PROJECT_DIR$/src/Logic/FloatRepresentation.java" />
+        <option value="$PROJECT_DIR$/src/Logic/BinaryUtil.java" />
+        <option value="$PROJECT_DIR$/src/Logic/FloatingRepresentation.java" />
+        <option value="$PROJECT_DIR$/src/Logic/OPCode.java" />
       </list>
     </option>
   </component>
@@ -179,7 +124,7 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="23" />
+    <option name="x" value="439" />
     <option name="y" value="22" />
     <option name="width" value="1608" />
     <option name="height" value="968" />
@@ -202,7 +147,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -247,10 +193,27 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="CISC Simulator" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Code" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="DataStructure" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -265,6 +228,12 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="Logic" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="Logic" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/Logic" />
     </key>
@@ -684,7 +653,7 @@
       <option name="PROGRAM_PARAMETERS" value="" />
       <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
-      <option name="ALTERNATIVE_JRE_PATH" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_121.jdk/Contents/Home" />
+      <option name="ALTERNATIVE_JRE_PATH" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_131.jdk/Contents/Home" />
       <option name="ENABLE_SWING_INSPECTOR" value="false" />
       <option name="ENV_VARIABLES" />
       <option name="PASS_PARENT_ENVS" value="true" />
@@ -786,11 +755,19 @@
       <workItem from="1492196028298" duration="1274000" />
       <workItem from="1492532125601" duration="1294000" />
       <workItem from="1492533530651" duration="40000" />
+      <workItem from="1492638877526" duration="76000" />
+      <workItem from="1492639073761" duration="199000" />
+      <workItem from="1493053377629" duration="2050000" />
+      <workItem from="1493055645025" duration="348000" />
+      <workItem from="1493056024230" duration="232000" />
+      <workItem from="1493060178398" duration="21000" />
+      <workItem from="1493060222193" duration="87000" />
+      <workItem from="1493060383762" duration="3245000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="168103000" />
+    <option name="totallyTimeSpent" value="174361000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -802,13 +779,12 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="23" y="22" width="1608" height="968" extended-state="0" />
+    <frame x="439" y="22" width="1608" height="968" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32914287" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32914287" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -820,7 +796,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1807152" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18199234" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24968071" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -832,6 +808,7 @@
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32914287" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32950193" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32914287" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -877,7 +854,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="6" />
+      <option name="time" value="7" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -886,53 +863,14 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/GUI/GUIPanel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="23" column="28" lean-forward="false" selection-start-line="23" selection-start-column="28" selection-end-line="23" selection-end-column="28" />
-          <folding>
-            <element signature="method#GUIPanel#0;class#GUIPanel#0" expanded="false" />
-            <element signature="method#InitSeparator#0;class#GUIPanel#0" expanded="false" />
-            <element signature="method#InitRegister#0;class#GUIPanel#0" expanded="false" />
-            <element signature="method#InitConsole#0;class#GUIPanel#0" expanded="false" />
-            <element signature="method#InitInputConsole#0;class#GUIPanel#0" expanded="false" />
-            <element signature="method#InitButton#0;class#GUIPanel#0" expanded="false" />
-            <element signature="method#InitCPU#0;class#GUIPanel#0" expanded="false" />
-            <element signature="method#loadButtonAction#0;class#GUIPanel#0" expanded="false" />
-            <element signature="method#readInstructionFile#0;class#GUIPanel#0" expanded="false" />
-            <element signature="method#readProgram2File#0;class#GUIPanel#0" expanded="false" />
-            <element signature="method#splitProgram2File#0;class#GUIPanel#0" expanded="false" />
-            <element signature="method#numOfLine#0;class#GUIPanel#0" expanded="false" />
-            <element signature="method#setMessage#0;class#GUIPanel#0" expanded="false" />
-            <element signature="method#setValue#0;class#GUIPanel#0" expanded="false" />
-            <element signature="method#resetValue#0;class#GUIPanel#0" expanded="false" />
-            <element signature="method#dataSeparator#0;class#GUIPanel#0" expanded="false" />
-            <element signature="method#isNumeric#0;class#GUIPanel#0" expanded="false" />
-            <element signature="method#searchClosestOne#0;class#GUIPanel#0" expanded="false" />
-            <element signature="method#loadFileInMemoryAndCache#0;class#GUIPanel#0" expanded="false" />
-            <element signature="method#find#0;class#GUIPanel#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Logic/CPU.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="26" column="17" lean-forward="false" selection-start-line="26" selection-start-column="17" selection-end-line="26" selection-end-column="17" />
-          <folding>
-            <element signature="method#CPU#0;class#CPU#0" expanded="false" />
-            <element signature="method#getMSRValue#0;class#CPU#0" expanded="false" />
-            <element signature="e#6024#6025#0" expanded="true" />
-            <element signature="e#6051#6052#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Logic/Instruction.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
           <caret line="6" column="16" lean-forward="false" selection-start-line="6" selection-start-column="16" selection-end-line="6" selection-end-column="16" />
-          <folding />
+          <folding>
+            <element signature="e#3093#3094#0" expanded="true" />
+            <element signature="e#3108#3109#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -956,12 +894,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
           <caret line="9" column="13" lean-forward="false" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-          <folding>
-            <element signature="method#enqueue#0;class#Queue#0" expanded="false" />
-            <element signature="method#dequeue#0;class#Queue#0" expanded="false" />
-            <element signature="method#check#0;class#Queue#0" expanded="false" />
-            <element signature="method#next#0;class#ListIterator#0;class#Queue#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1009,8 +941,6 @@
           <folding>
             <element signature="method#CPU#0;class#CPU#0" expanded="false" />
             <element signature="method#getMSRValue#0;class#CPU#0" expanded="false" />
-            <element signature="e#6024#6025#0" expanded="true" />
-            <element signature="e#6051#6052#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1019,7 +949,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
           <caret line="6" column="16" lean-forward="false" selection-start-line="6" selection-start-column="16" selection-end-line="6" selection-end-column="16" />
-          <folding />
+          <folding>
+            <element signature="e#3093#3094#0" expanded="true" />
+            <element signature="e#3108#3109#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1043,12 +976,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
           <caret line="9" column="13" lean-forward="false" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-          <folding>
-            <element signature="method#enqueue#0;class#Queue#0" expanded="false" />
-            <element signature="method#dequeue#0;class#Queue#0" expanded="false" />
-            <element signature="method#check#0;class#Queue#0" expanded="false" />
-            <element signature="method#next#0;class#ListIterator#0;class#Queue#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1096,8 +1023,6 @@
           <folding>
             <element signature="method#CPU#0;class#CPU#0" expanded="false" />
             <element signature="method#getMSRValue#0;class#CPU#0" expanded="false" />
-            <element signature="e#6024#6025#0" expanded="true" />
-            <element signature="e#6051#6052#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1114,12 +1039,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
           <caret line="9" column="13" lean-forward="false" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-          <folding>
-            <element signature="method#enqueue#0;class#Queue#0" expanded="false" />
-            <element signature="method#dequeue#0;class#Queue#0" expanded="false" />
-            <element signature="method#check#0;class#Queue#0" expanded="false" />
-            <element signature="method#next#0;class#ListIterator#0;class#Queue#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1127,7 +1046,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="315">
           <caret line="21" column="29" lean-forward="true" selection-start-line="21" selection-start-column="29" selection-end-line="21" selection-end-column="29" />
-          <folding />
+          <folding>
+            <element signature="e#3093#3094#0" expanded="true" />
+            <element signature="e#3108#3109#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1171,7 +1093,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2340">
           <caret line="173" column="40" lean-forward="false" selection-start-line="173" selection-start-column="40" selection-end-line="173" selection-end-column="40" />
-          <folding />
+          <folding>
+            <element signature="e#3093#3094#0" expanded="true" />
+            <element signature="e#3108#3109#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1182,8 +1107,6 @@
           <folding>
             <element signature="method#CPU#0;class#CPU#0" expanded="false" />
             <element signature="method#getMSRValue#0;class#CPU#0" expanded="false" />
-            <element signature="e#6024#6025#0" expanded="true" />
-            <element signature="e#6051#6052#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1228,7 +1151,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2340">
           <caret line="173" column="40" lean-forward="false" selection-start-line="173" selection-start-column="40" selection-end-line="173" selection-end-column="40" />
-          <folding />
+          <folding>
+            <element signature="e#3093#3094#0" expanded="true" />
+            <element signature="e#3108#3109#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1247,8 +1173,6 @@
           <folding>
             <element signature="method#CPU#0;class#CPU#0" expanded="false" />
             <element signature="method#getMSRValue#0;class#CPU#0" expanded="false" />
-            <element signature="e#6024#6025#0" expanded="true" />
-            <element signature="e#6051#6052#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1293,7 +1217,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2340">
           <caret line="173" column="40" lean-forward="false" selection-start-line="173" selection-start-column="40" selection-end-line="173" selection-end-column="40" />
-          <folding />
+          <folding>
+            <element signature="e#3093#3094#0" expanded="true" />
+            <element signature="e#3108#3109#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1304,8 +1231,6 @@
           <folding>
             <element signature="method#CPU#0;class#CPU#0" expanded="false" />
             <element signature="method#getMSRValue#0;class#CPU#0" expanded="false" />
-            <element signature="e#6024#6025#0" expanded="true" />
-            <element signature="e#6051#6052#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1358,7 +1283,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2340">
           <caret line="173" column="40" lean-forward="true" selection-start-line="173" selection-start-column="40" selection-end-line="173" selection-end-column="40" />
-          <folding />
+          <folding>
+            <element signature="e#3093#3094#0" expanded="true" />
+            <element signature="e#3108#3109#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1369,8 +1297,6 @@
           <folding>
             <element signature="method#CPU#0;class#CPU#0" expanded="false" />
             <element signature="method#getMSRValue#0;class#CPU#0" expanded="false" />
-            <element signature="e#6024#6025#0" expanded="true" />
-            <element signature="e#6051#6052#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1393,6 +1319,22 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="300">
           <caret line="21" column="43" lean-forward="false" selection-start-line="21" selection-start-column="43" selection-end-line="21" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Logic/PipelineUnit.java" />
+    <entry file="file://$PROJECT_DIR$/src/DataStructure/Queue.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="9" column="13" lean-forward="false" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Logic/Pipeline.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="16" column="39" lean-forward="false" selection-start-line="16" selection-start-column="39" selection-end-line="16" selection-end-column="39" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1425,49 +1367,33 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Logic/CPU.java">
+    <entry file="file://$PROJECT_DIR$/src/Logic/Cache.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="26" column="17" lean-forward="false" selection-start-line="26" selection-start-column="17" selection-end-line="26" selection-end-column="17" />
+        <state relative-caret-position="105">
+          <caret line="8" column="13" lean-forward="false" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
           <folding>
-            <element signature="method#CPU#0;class#CPU#0" expanded="false" />
-            <element signature="method#getMSRValue#0;class#CPU#0" expanded="false" />
-            <element signature="e#6024#6025#0" expanded="true" />
-            <element signature="e#6051#6052#0" expanded="true" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#343#344#0" expanded="false" />
+            <element signature="e#378#379#0" expanded="false" />
+            <element signature="e#1279#1280#0" expanded="false" />
+            <element signature="e#1307#1308#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Logic/Instruction.java">
+    <entry file="file://$PROJECT_DIR$/src/Logic/BinaryUtil.java" />
+    <entry file="file://$PROJECT_DIR$/src/Logic/FloatRepresentation.java" />
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_121.jdk/Contents/Home/src.zip!/java/lang/Object.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="16" lean-forward="false" selection-start-line="6" selection-start-column="16" selection-end-line="6" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Logic/OPCode.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="765">
-          <caret line="51" column="4" lean-forward="false" selection-start-line="51" selection-start-column="4" selection-end-line="51" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/DataStructure/Queue.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="9" column="13" lean-forward="false" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+        <state relative-caret-position="284">
+          <caret line="234" column="18" lean-forward="false" selection-start-line="234" selection-start-column="18" selection-end-line="234" selection-end-column="18" />
           <folding>
-            <element signature="method#enqueue#0;class#Queue#0" expanded="false" />
-            <element signature="method#dequeue#0;class#Queue#0" expanded="false" />
-            <element signature="method#check#0;class#Queue#0" expanded="false" />
-            <element signature="method#next#0;class#ListIterator#0;class#Queue#0" expanded="false" />
+            <element signature="e#10065#10066#0" expanded="false" />
+            <element signature="e#10148#10149#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Logic/PipelineUnit.java" />
     <entry file="file://$PROJECT_DIR$/src/Logic/CacheLine.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
@@ -1476,10 +1402,45 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Logic/Pipeline.java">
+    <entry file="file://$PROJECT_DIR$/src/Logic/Instruction.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="23" lean-forward="false" selection-start-line="9" selection-start-column="23" selection-end-line="9" selection-end-column="23" />
+        <state relative-caret-position="510">
+          <caret line="34" column="35" lean-forward="true" selection-start-line="34" selection-start-column="35" selection-end-line="34" selection-end-column="35" />
+          <folding>
+            <element signature="e#3093#3094#0" expanded="true" />
+            <element signature="e#3108#3109#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Logic/CPU.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="234">
+          <caret line="247" column="6" lean-forward="true" selection-start-line="247" selection-start-column="6" selection-end-line="247" selection-end-column="6" />
+          <folding>
+            <element signature="method#CPU#0;class#CPU#0" expanded="false" />
+            <element signature="method#getMSRValue#0;class#CPU#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Logic/FloatingRepresentation.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="95">
+          <caret line="16" column="11" lean-forward="false" selection-start-line="16" selection-start-column="11" selection-end-line="16" selection-end-column="11" />
+          <folding>
+            <element signature="method#calExponent#0;class#FloatingRepresentation#0" expanded="false" />
+            <element signature="method#calMantissa#0;class#FloatingRepresentation#0" expanded="false" />
+            <element signature="method#binStrParam#0;class#FloatingRepresentation#0" expanded="false" />
+            <element signature="method#expEvaluation#0;class#FloatingRepresentation#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Logic/OPCode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-342">
+          <caret line="443" column="22" lean-forward="true" selection-start-line="443" selection-start-column="22" selection-end-line="443" selection-end-column="22" />
           <folding />
         </state>
       </provider>
