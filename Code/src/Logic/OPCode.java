@@ -427,7 +427,18 @@ public enum OPCode {
                 float floatRegister = EAValue + floatRep.calDecimalNum();
                 FloatingRepresentation result = new FloatingRepresentation(floatRegister);
 
-
+                //set OVERFLOW
+                if (result.getExponent() == null) {
+                    cpu.setCC(true, 0);
+                }
+                break;
+            /*
+             * OPCode 34 FSUB
+             */
+            case 34:
+                FloatingRepresentation floatRep1 = new FloatingRepresentation(ins.getR());
+                float floatRegister = floatRep.calDecimalNum() - EAValue;
+                FloatingRepresentation result = new FloatingRepresentation(floatRegister);
 
             /*
              * OPCode 41 LDX
