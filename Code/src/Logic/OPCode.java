@@ -90,6 +90,8 @@ public enum OPCode {
         FloatingRepresentation FP, result;
         Float newFloatValue;
 
+        Integer startVector1, startVector2, numVector1, numVector2, vectorLength;
+
         int value;
         switch (id) {
             /*
@@ -426,8 +428,12 @@ public enum OPCode {
              * OPCode 33 FADD
              */
             case 33:
-                FP = new FloatingRepresentation(cpu.getGPR(ins.getRValue()));
-                newFloatValue = EAValue + FP.calDecimalNum();
+                if (ins.getRValue() == 0) {
+                    FP = new FloatingRepresentation(cpu.getFR0());
+                } else {
+                    FP = new FloatingRepresentation(cpu.getFR1());
+                }
+                newFloatValue = cpu.getMemoryValue(EAValue) + FP.calDecimalNum();
                 result = new FloatingRepresentation(newFloatValue);
 
                 if (result.getExponent() == null) {
@@ -440,14 +446,17 @@ public enum OPCode {
                 } else if (ins.getRValue() == 1) {
                     cpu.setFR1(result.toString());
                 }
-
                 break;
             /*
              * OPCode 34 FSUB
              */
             case 34:
-                FP = new FloatingRepresentation(cpu.getGPR(ins.getRValue()));
-                newFloatValue = FP.calDecimalNum() - EAValue;
+                if (ins.getRValue() == 0) {
+                    FP = new FloatingRepresentation(cpu.getFR0());
+                } else {
+                    FP = new FloatingRepresentation(cpu.getFR1());
+                }
+                newFloatValue = FP.calDecimalNum() - cpu.getMemoryValue(EAValue);
                 result = new FloatingRepresentation(newFloatValue);
 
                 Float limit = (new Float(Math.pow(3.682143, 19))) * -1;
@@ -462,10 +471,70 @@ public enum OPCode {
                 } else if (ins.getRValue() == 1) {
                     cpu.setFR1(result.toString());
                 }
-
                 break;
+            /*
+             * OPCode 35 VADD
+             */
+            case 35:
+                startVector1 = cpu.getMemoryValue(EAValue);
+                startVector2 = cpu.getMemoryValue(EAValue + 1);
 
+                if (ins.getRValue() == 0) {
+                    FP = new FloatingRepresentation(cpu.getFR0());
+                } else {
+                    FP = new FloatingRepresentation(cpu.getFR1());
+                }
 
+                vectorLength = FP.calDecimalNum().intValue();
+                for (int j = 0; j < vectorLength; j++) {
+                    numVector1 = cpu.getMemoryValue(startVector1);
+                    numVector2 = cpu.getMemoryValue(startVector2);
+
+                    cpu.setMemory(CPU.toBitsBinary(numVector1 + numVector2, 16), startVector1);
+
+                    startVector1++;
+                    startVector2++;
+                }
+                break;
+            /*
+             * OPCode 36 VSUB
+             */
+            case 36:
+                startVector1 = cpu.getMemoryValue(EAValue);
+                startVector2 = cpu.getMemoryValue(EAValue + 1);
+
+                if (ins.getRValue() == 0) {
+                    FP = new FloatingRepresentation(cpu.getFR0());
+                } else {
+                    FP = new FloatingRepresentation(cpu.getFR1());
+                }
+
+                vectorLength = FP.calDecimalNum().intValue();
+                for (int j = 0; j < vectorLength; j++) {
+                    numVector1 = cpu.getMemoryValue(startVector1);
+                    numVector2 = cpu.getMemoryValue(startVector2);
+
+                    cpu.setMemory(CPU.toBitsBinary(numVector1 - numVector2, 16), startVector1);
+
+                    startVector1++;
+                    startVector2++;
+                }
+                break;
+            /*
+             * OPCode 37 CNVRT
+             */
+            case 37:
+                if (cpu.getGPRValue(ins.getRValue()) == 0) {
+                    cpu.setGPR(cpu.getMemory(EAValue), ins.getRValue());
+                } else if (cpu.getGPRValue(ins.getRValue()) == 1) {
+                    FP = new FloatingRepresentation(new Float(cpu.getMemory(EAValue)));
+                    if (ins.getRValue() == 0) {
+                        cpu.setFR0(FP.toString());
+                    } else if (ins.getRValue() == 1) {
+                        cpu.setFR1(FP.toString());
+                    }
+                }
+                break;
             /*
              * OPCode 41 LDX
              * Xx <- c(EA)
@@ -479,6 +548,26 @@ public enum OPCode {
              */
             case 42:
                 cpu.setMemory(cpu.getIX(ins.getIxValue()), EAValue);
+                break;
+            /*
+             * OPCode 50 LDFR
+             */
+            case 50:
+                if (ins.getRValue() == 0) {
+                    cpu.setFR0(cpu.getMemory(EAValue));
+                } else if (ins.getRValue() == 1) {
+                    cpu.setFR1(cpu.getMemory(EAValue));
+                }
+                break;
+            /*
+             * OPCode 51 STFR
+             */
+            case 51:
+                if (ins.getRValue() == 0) {
+                    cpu.setMemory(cpu.getFR0(), EAValue);
+                } else if (ins.getRValue() == 1) {
+                    cpu.setMemory(cpu.getFR1(), EAValue);
+                }
                 break;
             /*
              * OPCode 61 IN
