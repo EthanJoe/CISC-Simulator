@@ -420,6 +420,16 @@ public enum OPCode {
                 }
                 break;
             /*
+             * OPCode 33 FADD
+             */
+            case 33:
+                FloatingRepresentation floatRep = new FloatingRepresentation(ins.getR());
+                float floatRegister = EAValue + floatRep.calDecimalNum();
+                FloatingRepresentation result = new FloatingRepresentation(floatRegister);
+
+
+
+            /*
              * OPCode 41 LDX
              * Xx <- c(EA)
              */
@@ -463,7 +473,7 @@ public enum OPCode {
             default:
                 throw new NullPointerException("Instruction " + id.toString() + " Does Not Exist.");
         }
-    }
 
+    }
 }
 
