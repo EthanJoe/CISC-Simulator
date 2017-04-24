@@ -423,23 +423,16 @@ public enum OPCode {
              * OPCode 33 FADD
              */
             case 33:
-                FloatingRepresentation floatRep = new FloatingRepresentation(ins.getR());
-                float floatRegister = EAValue + floatRep.calDecimalNum();
-                FloatingRepresentation result = new FloatingRepresentation(floatRegister);
+                fadd(ins.getR(), EAValue, cpu);
 
-                //set OVERFLOW
-                if (result.getExponent() == null) {
-                    cpu.setCC(true, 0);
-                }
                 break;
             /*
              * OPCode 34 FSUB
              */
             case 34:
-                FloatingRepresentation floatRep1 = new FloatingRepresentation(ins.getR());
-                float floatRegister = floatRep.calDecimalNum() - EAValue;
-                FloatingRepresentation result = new FloatingRepresentation(floatRegister);
+                fsub(ins.getR(), EAValue, cpu);
 
+                break;
             /*
              * OPCode 41 LDX
              * Xx <- c(EA)
@@ -484,6 +477,29 @@ public enum OPCode {
             default:
                 throw new NullPointerException("Instruction " + id.toString() + " Does Not Exist.");
         }
+    }
+
+    private void fadd(String register, int ea, CPU cpu) {
+        FloatingRepresentation floatRep = new FloatingRepresentation(register);
+        float floatFaRegister = ea + floatRep.calDecimalNum();
+        FloatingRepresentation result = new FloatingRepresentation(floatFaRegister);
+
+        //set OVERFLOW
+        if (result.getExponent() == null) {
+            cpu.setCC(true, 0);
+        }
+    }
+
+    private void fsub (String register, int ea, CPU cpu) {
+        FloatingRepresentation floatRep = new FloatingRepresentation(register);
+        float floatFsRegister = floatRep.calDecimalNum() - ea;
+        FloatingRepresentation result = new FloatingRepresentation(floatFsRegister);
+
+        Float floorlimit = new Float(Math.pow(3.682143, 19));
+        floorlimit *= -1;
+
+        //Set Underflow
+
 
     }
 }
