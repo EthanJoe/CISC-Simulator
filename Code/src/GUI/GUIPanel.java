@@ -50,6 +50,7 @@ public class GUIPanel extends JFrame {
 
     private boolean OPCodeTag;
     private boolean Program2Tag;
+    private boolean Program4Tag;
 
 
     public GUIPanel() {
@@ -87,6 +88,7 @@ public class GUIPanel extends JFrame {
 
         this.OPCodeTag = false;
         this.Program2Tag = false;
+        this.Program4Tag = false;
     }
 
     /*
@@ -273,6 +275,8 @@ public class GUIPanel extends JFrame {
                     Program2Tag = false;
                     InitInputConsole("Input console can not be used right now", false);
                 }
+            } else if (Program4Tag) {
+
             } else if (cpu.getInput() == null) {
                 String checkedData = "";
                 String[] checkedArr = dataSeparator(inputConsole.getText());
@@ -383,6 +387,7 @@ public class GUIPanel extends JFrame {
         JMenuItem fileItem = new JMenuItem("File");
         JMenuItem program1Item = new JMenuItem("Program 1");
         JMenuItem program2Item = new JMenuItem("Program 2");
+        JMenuItem project4Item = new JMenuItem("Project 4 Demo");
         JMenuItem opcodeItem = new JMenuItem("Individual OPCode");
 
         fileItem.addActionListener((ActionEvent e) -> {
@@ -439,9 +444,22 @@ public class GUIPanel extends JFrame {
             InitInputConsole("Input instruction here.", true);
         });
 
+        project4Item.addActionListener((ActionEvent e) -> {
+            setMessage("For Project 4 Demo, Please Choose Instruction File.");
+            Program4Tag = true;
+            cpu.resetCache();
+            resetValue();
+            demoFileForProject4();
+            Program4Tag = false;
+            cpu.resetCache();
+            cpu.resetMemory();
+        });
+
+
         loadMenu.add(fileItem);
         loadMenu.add(program1Item);
         loadMenu.add(program2Item);
+        loadMenu.add(project4Item);
         loadMenu.add(opcodeItem);
         loadMenu.show(button, 100, 0);
     }
@@ -496,7 +514,7 @@ public class GUIPanel extends JFrame {
         return fileTxt;
     }
     /*
-     * Show each sentence from Program2 File on the consold
+     * Show each sentence from Program2 File on the console
      */
     private void splitProgram2File(String txt) {
         String[] strArr = txt.split("\\.");
@@ -690,5 +708,78 @@ public class GUIPanel extends JFrame {
         }
         setMessage("Not Found " + wordStr);
         return list;
+    }
+
+    /*
+     * Pre-process for Project 4 Demo
+     */
+    private void demoFileForProject4() {
+        JFileChooser fileChooser = new JFileChooser();
+        File srcDir = new File(System.getProperty("user.dir"));
+        fileChooser.setCurrentDirectory(srcDir);
+        int value = fileChooser.showOpenDialog(null);
+        if (value != JFileChooser.APPROVE_OPTION) {
+            setMessage("File has not been selected.");
+        }
+        setMessage("Chosen file in " + fileChooser.getSelectedFile().getAbsolutePath());
+        String fileName = fileChooser.getSelectedFile().getName();
+        fileName = fileName.split("\\.")[0];
+        cpu.setMemory(99, 99);
+        cpu.setMemory(100, 100); // Save `100` to Memory[100]
+        cpu.setGPR(CPU.toBitsBinary(1, 16), 0);
+        cpu.setFR0(CPU.toBitsBinary(99, 16));
+        setMessage("FR0 Value: 99");
+        cpu.setFR1(CPU.toBitsBinary(100, 16));
+        setMessage("FR1 Value: 100");
+        setValue();
+        Instruction ins;
+        switch (fileName) {
+            case "FADD":
+                ins = new Instruction("100001000001100100");
+                setMessage("OPCode FADD Operating");
+                ins.getOPCode().execute(cpu, ins);
+                setValue();
+                setMessage("After FADD, FR0 Value: " + cpu.getFR0Value());
+                break;
+            case "FSUB":
+                ins = new Instruction("100010000001100100");
+                setMessage("OPCode FSUB Operating");
+                ins.getOPCode().execute(cpu, ins);
+                setValue();
+                setMessage("After FSUB, FR0 Value: " + cpu.getFR0Value());
+                break;
+            case "VADD":
+                ins = new Instruction("100011000001100100");
+                setMessage("OPCode VADD Operating");
+                try {
+                    ins.getOPCode().execute(cpu, ins);
+                    setValue();
+                }
+                catch (NullPointerException e) {
+                    setMessage(e.getMessage());
+                }
+                break;
+            case "VSUB":
+                ins = new Instruction("100100000001100100");
+                setMessage("OPCode VSUB Operating");
+                try {
+                    ins.getOPCode().execute(cpu, ins);
+                    setValue();
+                }
+                catch (NullPointerException e) {
+                    setMessage(e.getMessage());
+                }
+                break;
+            case "CNVRT":
+                ins = new Instruction("100101000001100100");
+                setMessage("OPCode CNVRT Operating");
+                ins.getOPCode().execute(cpu, ins);
+                setValue();
+                setMessage("After CNVRT, FR0 = " + cpu.getFR0Value());
+                break;
+            default:
+                throw new NullPointerException("Unknown File Error");
+        }
+
     }
 }

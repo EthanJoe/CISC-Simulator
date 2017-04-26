@@ -93,6 +93,7 @@ public enum OPCode {
         Integer startVector1, startVector2, numVector1, numVector2, vectorLength;
 
         int value;
+        String msg;
         switch (id) {
             /*
              * OPCode 00 HALT
@@ -383,7 +384,7 @@ public enum OPCode {
              * OPCode 31 SRC
              */
             case 31:
-                String msg = "";
+                msg = "";
                 if (lr == 1 && al == 0) {
                     // Arithmetic left shift
                     value = rx << count;
@@ -433,6 +434,7 @@ public enum OPCode {
                 } else {
                     FP = new FloatingRepresentation(cpu.getFR1());
                 }
+                System.out.println(cpu.getMemoryValue(EAValue));
                 newFloatValue = cpu.getMemoryValue(EAValue) + FP.calDecimalNum();
                 result = new FloatingRepresentation(newFloatValue);
 
@@ -486,16 +488,17 @@ public enum OPCode {
                 }
 
                 vectorLength = FP.calDecimalNum().intValue();
+                msg = "";
                 for (int j = 0; j < vectorLength; j++) {
                     numVector1 = cpu.getMemoryValue(startVector1);
                     numVector2 = cpu.getMemoryValue(startVector2);
 
                     cpu.setMemory(CPU.toBitsBinary(numVector1 + numVector2, 16), startVector1);
-
+                    msg += "Memory[" + startVector1 + "] loaded with " + (numVector1 + numVector2) + "\n";
                     startVector1++;
                     startVector2++;
                 }
-                break;
+                throw new NullPointerException(msg);
             /*
              * OPCode 36 VSUB
              */
@@ -508,18 +511,18 @@ public enum OPCode {
                 } else {
                     FP = new FloatingRepresentation(cpu.getFR1());
                 }
-
                 vectorLength = FP.calDecimalNum().intValue();
+                msg = "";
                 for (int j = 0; j < vectorLength; j++) {
                     numVector1 = cpu.getMemoryValue(startVector1);
                     numVector2 = cpu.getMemoryValue(startVector2);
 
                     cpu.setMemory(CPU.toBitsBinary(numVector1 - numVector2, 16), startVector1);
-
+                    msg += "Memory[" + startVector1 + "] loaded with " + (numVector1 - numVector2) + "\n";
                     startVector1++;
                     startVector2++;
                 }
-                break;
+                throw  new NullPointerException(msg);
             /*
              * OPCode 37 CNVRT
              */
