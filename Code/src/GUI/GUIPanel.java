@@ -56,7 +56,7 @@ public class GUIPanel extends JFrame {
     public GUIPanel() {
         // Container Initializer
         this.setTitle("CISC SimulatorX");
-        this.setBounds(0, 0, 1300, 880);
+        this.setBounds(0, 0, 1200, 750);
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         this.setLocationRelativeTo(null);
 
@@ -97,13 +97,13 @@ public class GUIPanel extends JFrame {
     private void InitSeparator() {
         // Separator-1 Initializer
         JSeparator separator1 = new JSeparator();
-        separator1.setBounds(0, 100, 1500, 10);
+        separator1.setBounds(0, 100, 1200, 10);
         separator1.setBackground(Color.gray);
         this.panelView.add(separator1);
 
         // Separator 2 Initializer
         JSeparator separator2 = new JSeparator();
-        separator2.setBounds(0, 580, 1500, 10);
+        separator2.setBounds(0, 450, 1200, 10);
         separator2.setBackground(Color.gray);
         panelView.add(separator2);
     }
@@ -117,27 +117,27 @@ public class GUIPanel extends JFrame {
         this.PC.addToView(this.panelView);
 
         // IR Initializer
-        this.IR = new GUIRegister("IR", 16, 80, 214);
+        this.IR = new GUIRegister("IR", 16, 80, 190);
         this.IR.addToView(panelView);
 
         // MAR Initializer
-        this.MAR = new GUIRegister("MAR", 16, 80, 278);
+        this.MAR = new GUIRegister("MAR", 16, 80, 230);
         this.MAR.addToView(panelView);
 
         // MBR Initializer
-        this.MBR = new GUIRegister("MBR", 16, 80, 342);
+        this.MBR = new GUIRegister("MBR", 16, 80, 270);
         this.MBR.addToView(panelView);
 
         // IAR Initializer
-        this.IAR = new GUIRegister("IAR", 16, 80, 406);
+        this.IAR = new GUIRegister("IAR", 16, 80, 310);
         this.IAR.addToView(panelView);
 
         // MSR Initializer
-        this.MSR = new GUIRegister("MSR", 16, 80, 470);
+        this.MSR = new GUIRegister("MSR", 16, 80, 350);
         this.MSR.addToView(panelView);
 
         // MFR Initializer
-        this.MFR = new GUIRegister("MFR", 16, 80, 534);
+        this.MFR = new GUIRegister("MFR", 16, 80, 390);
         this.MFR.addToView(panelView);
 
         // R0 Initializer
@@ -145,35 +145,35 @@ public class GUIPanel extends JFrame {
         this.R0.addToView(panelView);
 
         // R1 Initializer
-        this.R1 = new GUIRegister("R1", 16, 700, 197);
+        this.R1 = new GUIRegister("R1", 16, 700, 180);
         this.R1.addToView(panelView);
 
         // R2 Initializer
-        this.R2 = new GUIRegister("R2", 16, 700, 244);
+        this.R2 = new GUIRegister("R2", 16, 700, 210);
         this.R2.addToView(panelView);
 
         // R3 Initializer
-        this.R3 = new GUIRegister("R3", 16, 700, 291);
+        this.R3 = new GUIRegister("R3", 16, 700, 240);
         this.R3.addToView(panelView);
 
         // X0 Initializer
-        this.X0 = new GUIRegister("X0", 16, 700, 338);
+        this.X0 = new GUIRegister("X0", 16, 700, 270);
         this.X0.addToView(panelView);
 
         // X1 initializer
-        this.X1 = new GUIRegister("X1", 16, 700, 385);
+        this.X1 = new GUIRegister("X1", 16, 700, 300);
         this.X1.addToView(panelView);
 
         // X2 Initializer
-        this.X2 = new GUIRegister("X2", 16, 700, 432);
+        this.X2 = new GUIRegister("X2", 16, 700, 330);
         this.X2.addToView(panelView);
 
         // FR0 Initializer
-        this.FR0 = new GUIRegister("FR0", 16, 700, 479);
+        this.FR0 = new GUIRegister("FR0", 16, 700, 360);
         this.FR0.addToView(panelView);
 
         // FR1 Initializer
-        this.FR1 = new GUIRegister("FR1", 16, 700, 526);
+        this.FR1 = new GUIRegister("FR1", 16, 700, 390);
         this.FR1.addToView(panelView);
     }
 
@@ -187,11 +187,11 @@ public class GUIPanel extends JFrame {
         console.setForeground(Color.white);
         console.setBackground(Color.darkGray);
         console.setOpaque(true);
-        console.setBounds(150, 620, 1110, 160);
+        console.setBounds(150, 480, 1030, 160);
         console.setLayoutOrientation(0);
 
         JScrollPane test = new JScrollPane(console);
-        test.setBounds(150, 620, 1110, 160);
+        test.setBounds(150, 480, 1030, 160);
         test.getVerticalScrollBar().addAdjustmentListener(
                 e -> e.getAdjustable().setValue(e.getAdjustable().getValue()));
         panelView.add(test);
@@ -211,7 +211,7 @@ public class GUIPanel extends JFrame {
         inputConsole.setForeground(Color.white);
         inputConsole.setBackground(Color.darkGray);
         inputConsole.setOpaque(true);
-        inputConsole.setBounds(150, 785, 1110, 40);
+        inputConsole.setBounds(150, 640, 1030, 40);
 
         /*
          * MouseListener to clear the hint
@@ -322,7 +322,7 @@ public class GUIPanel extends JFrame {
         // Load button initializer
         loadButton = new JButton("Load");
         loadButton.setFont(new Font("Avenir", 0, 15));
-        loadButton.setBounds(30, 620, 100, 50);
+        loadButton.setBounds(30, 480, 100, 50);
         loadButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -334,7 +334,7 @@ public class GUIPanel extends JFrame {
         // Single step button initializer
         singleButton = new JButton("Single Step");
         singleButton.setFont(new Font("Avenir", 0, 15));
-        singleButton.setBounds(30, 700, 100, 50);
+        singleButton.setBounds(30, 560, 100, 50);
         singleButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -352,7 +352,7 @@ public class GUIPanel extends JFrame {
         // Run button initializer
         runButton = new JButton("Run");
         runButton.setFont(new Font("Avenir", 0, 15));
-        runButton.setBounds(30, 780, 100, 50);
+        runButton.setBounds(30, 640, 100, 50);
         runButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
