@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="77a658d4-01df-415d-a44d-66a080addf5b" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Code/src/Logic/OPCode.java" afterPath="$PROJECT_DIR$/Code/src/Logic/OPCode.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Design Material/CSCI 6461_Computer Simulator Project_Design Notes_v0.5.docx" afterPath="$PROJECT_DIR$/Design Material/CSCI 6461_Computer Simulator Project_Design Notes_v0.5.docx" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -19,10 +18,10 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="OPCode.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="OPCode.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Code/src/Logic/OPCode.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="656">
+            <state relative-caret-position="6986">
               <caret line="501" column="0" lean-forward="false" selection-start-line="501" selection-start-column="0" selection-end-line="501" selection-end-column="0" />
               <folding />
             </state>
@@ -52,10 +51,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CPU.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="CPU.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Code/src/Logic/CPU.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2685">
+            <state relative-caret-position="671">
               <caret line="243" column="13" lean-forward="false" selection-start-line="243" selection-start-column="13" selection-end-line="243" selection-end-column="13" />
               <folding>
                 <element signature="method#CPU#0;class#CPU#0" expanded="false" />
@@ -70,7 +69,7 @@
       <file leaf-file-name="Instruction.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Code/src/Logic/Instruction.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-304">
+            <state relative-caret-position="1470">
               <caret line="98" column="22" lean-forward="false" selection-start-line="98" selection-start-column="16" selection-end-line="98" selection-end-column="22" />
               <folding />
             </state>
@@ -155,7 +154,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -257,7 +256,7 @@
         </subPane>
       </pane>
       <pane id="PackagesPane" />
-      <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -530,7 +529,7 @@
     <option name="totallyTimeSpent" value="1435000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1280" height="800" extended-state="6" />
+    <frame x="0" y="0" width="1280" height="800" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -935,22 +934,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Code/src/Logic/CPU.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2685">
-          <caret line="243" column="13" lean-forward="false" selection-start-line="243" selection-start-column="13" selection-end-line="243" selection-end-column="13" />
-          <folding>
-            <element signature="method#CPU#0;class#CPU#0" expanded="false" />
-            <element signature="e#5995#5996#0" expanded="true" />
-            <element signature="e#6023#6024#0" expanded="true" />
-            <element signature="method#toBitsBinary#0;class#CPU#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Code/src/Logic/Instruction.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-304">
+        <state relative-caret-position="1470">
           <caret line="98" column="22" lean-forward="false" selection-start-line="98" selection-start-column="16" selection-end-line="98" selection-end-column="22" />
           <folding />
         </state>
@@ -958,9 +944,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Code/src/Logic/OPCode.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="656">
+        <state relative-caret-position="6986">
           <caret line="501" column="0" lean-forward="false" selection-start-line="501" selection-start-column="0" selection-end-line="501" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Code/src/Logic/CPU.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="671">
+          <caret line="243" column="13" lean-forward="false" selection-start-line="243" selection-start-column="13" selection-end-line="243" selection-end-column="13" />
+          <folding>
+            <element signature="method#CPU#0;class#CPU#0" expanded="false" />
+            <element signature="e#5995#5996#0" expanded="true" />
+            <element signature="e#6023#6024#0" expanded="true" />
+            <element signature="method#toBitsBinary#0;class#CPU#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
