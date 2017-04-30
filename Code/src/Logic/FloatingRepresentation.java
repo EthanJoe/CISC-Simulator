@@ -25,7 +25,7 @@ public class FloatingRepresentation  {
         this.mantissa = binary.substring(9,17);
     }
 
-    public String floatingToString() {
+    public String toString() {
         return this.s + this.exponent + this.mantissa;
     }
 
@@ -58,8 +58,6 @@ public class FloatingRepresentation  {
         }
         return 1 + mantissaFraction;
     }
-
-
 
     /*
      * Utility methods : Binary

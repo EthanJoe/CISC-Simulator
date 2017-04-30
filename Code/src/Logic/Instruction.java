@@ -5,8 +5,8 @@ public class Instruction {
 	/*
 	 * Input Area - In this area the user can input individual instructions
 	 * Opcode	6 bits	Specifies one of 64 possible instructions; Not all may be defined in this project
-	 * IX		2 bits	Specifies one of three index registers; may be referred to by X1 ñ X3. O value indicates no indexing.
-	 * R		2 bits	Specifies one of four general purpose registers; may be referred to by R0 ñ R3
+	 * IX		2 bits	Specifies one of three index registers; may be referred to by X1 - X3. O value indicates no indexing.
+	 * R		2 bits	Specifies one of four general purpose registers; may be referred to by R0 - R3
 	 * I		1 bits	If I =1, specifies indirect addressing; otherwise, no indirect addressing.
 	 * Address	7 bits	Specifies one of 32 locations
 	 */

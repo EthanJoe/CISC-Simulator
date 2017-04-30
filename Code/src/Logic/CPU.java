@@ -10,6 +10,8 @@ public class CPU {
     private String MBR;              // 16 bit String in binary
     private String MSR;              // 16 bit String in binary
     private String MFR;              // 16 bit String in binary
+    private String FR0;              // 16 bit String in binary
+    private String FR1;              // 16 bit String in binary
 
     private Boolean[] CC;            // Array contains 4 boolean value for Condition Code
     private String[] IX;             // Array contains "16 bit String in binary" unit
@@ -28,7 +30,10 @@ public class CPU {
         this.MAR = toBitsBinary(0, 16);
         this.MAR = toBitsBinary(0, 16);
         this.MBR = toBitsBinary(0, 16);
-        this.MBR = toBitsBinary(0, 4);
+        this.MSR = toBitsBinary(0, 16);
+        this.MFR = toBitsBinary(0, 16);
+        this.FR0 = toBitsBinary(0, 16);
+        this.FR1 = toBitsBinary(0, 16);
 
         this.CC = new Boolean[]{false, false, false, false};
 
@@ -119,7 +124,7 @@ public class CPU {
     }
 
     /*
-     * Getter/Setter for PC 101001001000001101
+     * Getter/Setter for PC
      */
     public String getPC() {
         return PC;
@@ -192,6 +197,67 @@ public class CPU {
 
     public void setCC(Boolean value, int index) {
         CC[index] = value;
+    }
+
+    /*
+     * Getter/Setter for MSR
+     */
+    public String getMSR() {
+        return MSR;
+    }
+
+    public int getMSRValue() {
+        return toDecimalNumber(MSR);
+
+    }
+
+    public void setMSR(String msr) {
+        MSR = msr;
+    }
+
+    /*
+     * Getter/Setter for MFR
+     */
+    public String getMFR() {
+        return MFR;
+    }
+
+    public int getMFRValue() {
+        return toDecimalNumber(MFR);
+    }
+
+    public void setMFR(String mfr) {
+        MFR = mfr;
+    }
+
+    /*
+     * Getter/Setter for FR0
+     */
+    public String getFR0() {
+        return FR0;
+    }
+
+    public int getFR0Value() {
+        return toDecimalNumber(FR0);
+    }
+
+    public void setFR0(String value) {
+        FR0 = value;
+    }
+
+    /*
+     * Getter/Setter for FR1
+     */
+    public String getFR1() {
+        return FR1;
+    }
+
+    public int getFR1Value() {
+        return toDecimalNumber(FR1);
+    }
+
+    public void setFR1(String value) {
+        FR1 = value;
     }
 
     /*

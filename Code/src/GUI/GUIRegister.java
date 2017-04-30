@@ -13,8 +13,8 @@ public class GUIRegister extends JComponent {
     public GUIRegister(String name, int count, int x, int y) {
         // GUIRegister Title Initializer
         this.titleLabel = new JLabel(name);
-        this.titleLabel.setBounds(x - 60, y, 45, 35);
-        this.titleLabel.setFont(new Font("Avenir", 0, 20));
+        this.titleLabel.setBounds(x - 60, y, 35, 25);
+        this.titleLabel.setFont(new Font("Avenir", 0, 15));
         this.titleLabel.setHorizontalAlignment(SwingConstants.RIGHT);
         this.titleLabel.setVerticalAlignment(SwingConstants.CENTER);
 
@@ -32,9 +32,9 @@ public class GUIRegister extends JComponent {
             if (i > 0) {
                 int _x = (int)registers[i - 1].getBounds().getX();
                 int _y = (int)registers[i - 1].getBounds().getY();
-                registers[i].setBounds(_x + 35, _y, 35, 35);
+                registers[i].setBounds(_x + 30, _y, 30, 30);
             } else {
-                registers[i].setBounds(x, y, 35, 35);
+                registers[i].setBounds(x, y, 30, 30);
             }
         }
     }

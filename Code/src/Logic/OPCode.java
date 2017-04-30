@@ -87,7 +87,13 @@ public enum OPCode {
         final int i = CPU.toDecimalNumber(ins.toString().substring(10, 11));
         final int devid = CPU.toDecimalNumber(ins.toString().substring(11, 16));
 
+        FloatingRepresentation FP, result;
+        Float newFloatValue;
+
+        Integer startVector1, startVector2, numVector1, numVector2, vectorLength;
+
         int value;
+        String msg;
         switch (id) {
             /*
              * OPCode 00 HALT
@@ -378,7 +384,7 @@ public enum OPCode {
              * OPCode 31 SRC
              */
             case 31:
-                String msg = "";
+                msg = "";
                 if (lr == 1 && al == 0) {
                     // Arithmetic left shift
                     value = rx << count;
@@ -423,15 +429,114 @@ public enum OPCode {
              * OPCode 33 FADD
              */
             case 33:
-                fadd(ins.getR(), EAValue, cpu);
+                if (ins.getRValue() == 0) {
+                    FP = new FloatingRepresentation(cpu.getFR0());
+                } else {
+                    FP = new FloatingRepresentation(cpu.getFR1());
+                }
+                System.out.println(cpu.getMemoryValue(EAValue));
+                newFloatValue = cpu.getMemoryValue(EAValue) + FP.calDecimalNum();
+                result = new FloatingRepresentation(newFloatValue);
 
+                if (result.getExponent() == null) {
+                    cpu.setCC(true, 0);
+                    throw new NullPointerException("Overflow");
+                }
+
+                if (ins.getRValue() == 0) {
+                    cpu.setFR0(result.toString());
+                } else if (ins.getRValue() == 1) {
+                    cpu.setFR1(result.toString());
+                }
                 break;
             /*
              * OPCode 34 FSUB
              */
             case 34:
-                fsub(ins.getR(), EAValue, cpu);
+                if (ins.getRValue() == 0) {
+                    FP = new FloatingRepresentation(cpu.getFR0());
+                } else {
+                    FP = new FloatingRepresentation(cpu.getFR1());
+                }
+                newFloatValue = FP.calDecimalNum() - cpu.getMemoryValue(EAValue);
+                result = new FloatingRepresentation(newFloatValue);
 
+                Float limit = (new Float(Math.pow(3.682143, 19))) * -1;
+
+                if (newFloatValue.compareTo(limit) < 0) {
+                    cpu.setCC(true, 1);
+                    throw  new NullPointerException("Underflow");
+                }
+
+                if (ins.getRValue() == 0) {
+                    cpu.setFR0(result.toString());
+                } else if (ins.getRValue() == 1) {
+                    cpu.setFR1(result.toString());
+                }
+                break;
+            /*
+             * OPCode 35 VADD
+             */
+            case 35:
+                startVector1 = cpu.getMemoryValue(EAValue);
+                startVector2 = cpu.getMemoryValue(EAValue + 1);
+
+                if (ins.getRValue() == 0) {
+                    FP = new FloatingRepresentation(cpu.getFR0());
+                } else {
+                    FP = new FloatingRepresentation(cpu.getFR1());
+                }
+
+                vectorLength = FP.calDecimalNum().intValue();
+                msg = "";
+                for (int j = 0; j < vectorLength; j++) {
+                    numVector1 = cpu.getMemoryValue(startVector1);
+                    numVector2 = cpu.getMemoryValue(startVector2);
+
+                    cpu.setMemory(CPU.toBitsBinary(numVector1 + numVector2, 16), startVector1);
+                    msg += "Memory[" + startVector1 + "] loaded with " + (numVector1 + numVector2) + "\n";
+                    startVector1++;
+                    startVector2++;
+                }
+                throw new NullPointerException(msg);
+            /*
+             * OPCode 36 VSUB
+             */
+            case 36:
+                startVector1 = cpu.getMemoryValue(EAValue);
+                startVector2 = cpu.getMemoryValue(EAValue + 1);
+
+                if (ins.getRValue() == 0) {
+                    FP = new FloatingRepresentation(cpu.getFR0());
+                } else {
+                    FP = new FloatingRepresentation(cpu.getFR1());
+                }
+                vectorLength = FP.calDecimalNum().intValue();
+                msg = "";
+                for (int j = 0; j < vectorLength; j++) {
+                    numVector1 = cpu.getMemoryValue(startVector1);
+                    numVector2 = cpu.getMemoryValue(startVector2);
+
+                    cpu.setMemory(CPU.toBitsBinary(numVector1 - numVector2, 16), startVector1);
+                    msg += "Memory[" + startVector1 + "] loaded with " + (numVector1 - numVector2) + "\n";
+                    startVector1++;
+                    startVector2++;
+                }
+                throw  new NullPointerException(msg);
+            /*
+             * OPCode 37 CNVRT
+             */
+            case 37:
+                if (cpu.getGPRValue(ins.getRValue()) == 0) {
+                    cpu.setGPR(cpu.getMemory(EAValue), ins.getRValue());
+                } else if (cpu.getGPRValue(ins.getRValue()) == 1) {
+                    FP = new FloatingRepresentation(new Float(cpu.getMemory(EAValue)));
+                    if (ins.getRValue() == 0) {
+                        cpu.setFR0(FP.toString());
+                    } else if (ins.getRValue() == 1) {
+                        cpu.setFR1(FP.toString());
+                    }
+                }
                 break;
             /*
              * OPCode 41 LDX
@@ -446,6 +551,26 @@ public enum OPCode {
              */
             case 42:
                 cpu.setMemory(cpu.getIX(ins.getIxValue()), EAValue);
+                break;
+            /*
+             * OPCode 50 LDFR
+             */
+            case 50:
+                if (ins.getRValue() == 0) {
+                    cpu.setFR0(cpu.getMemory(EAValue));
+                } else if (ins.getRValue() == 1) {
+                    cpu.setFR1(cpu.getMemory(EAValue));
+                }
+                break;
+            /*
+             * OPCode 51 STFR
+             */
+            case 51:
+                if (ins.getRValue() == 0) {
+                    cpu.setMemory(cpu.getFR0(), EAValue);
+                } else if (ins.getRValue() == 1) {
+                    cpu.setMemory(cpu.getFR1(), EAValue);
+                }
                 break;
             /*
              * OPCode 61 IN
@@ -477,30 +602,6 @@ public enum OPCode {
             default:
                 throw new NullPointerException("Instruction " + id.toString() + " Does Not Exist.");
         }
-    }
-
-    private void fadd(String register, int ea, CPU cpu) {
-        FloatingRepresentation floatRep = new FloatingRepresentation(register);
-        float floatFaRegister = ea + floatRep.calDecimalNum();
-        FloatingRepresentation result = new FloatingRepresentation(floatFaRegister);
-
-        //set OVERFLOW
-        if (result.getExponent() == null) {
-            cpu.setCC(true, 0);
-        }
-    }
-
-    private void fsub (String register, int ea, CPU cpu) {
-        FloatingRepresentation floatRep = new FloatingRepresentation(register);
-        float floatFsRegister = floatRep.calDecimalNum() - ea;
-        FloatingRepresentation result = new FloatingRepresentation(floatFsRegister);
-
-        Float floorlimit = new Float(Math.pow(3.682143, 19));
-        floorlimit *= -1;
-
-        //Set Underflow
-
-
     }
 }
 

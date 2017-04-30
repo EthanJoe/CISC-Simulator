@@ -32,6 +32,11 @@ public class GUIPanel extends JFrame {
     private GUIRegister X1;
     private GUIRegister X2;
 
+    private GUIRegister MSR;
+    private GUIRegister MFR;
+    private GUIRegister FR0;
+    private GUIRegister FR1;
+
     private JList console;
     private DefaultListModel consoleMode;
 
@@ -45,12 +50,13 @@ public class GUIPanel extends JFrame {
 
     private boolean OPCodeTag;
     private boolean Program2Tag;
+    private boolean Program4Tag;
 
 
     public GUIPanel() {
         // Container Initializer
         this.setTitle("CISC SimulatorX");
-        this.setBounds(0, 0, 1300, 800);
+        this.setBounds(0, 0, 1200, 750);
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         this.setLocationRelativeTo(null);
 
@@ -82,6 +88,7 @@ public class GUIPanel extends JFrame {
 
         this.OPCodeTag = false;
         this.Program2Tag = false;
+        this.Program4Tag = false;
     }
 
     /*
@@ -90,13 +97,13 @@ public class GUIPanel extends JFrame {
     private void InitSeparator() {
         // Separator-1 Initializer
         JSeparator separator1 = new JSeparator();
-        separator1.setBounds(0, 100, 1500, 10);
+        separator1.setBounds(0, 100, 1200, 10);
         separator1.setBackground(Color.gray);
         this.panelView.add(separator1);
 
         // Separator 2 Initializer
         JSeparator separator2 = new JSeparator();
-        separator2.setBounds(0, 480, 1500, 10);
+        separator2.setBounds(0, 450, 1200, 10);
         separator2.setBackground(Color.gray);
         panelView.add(separator2);
     }
@@ -110,48 +117,64 @@ public class GUIPanel extends JFrame {
         this.PC.addToView(this.panelView);
 
         // IR Initializer
-        this.IR = new GUIRegister("IR", 16, 80, 220);
+        this.IR = new GUIRegister("IR", 16, 80, 190);
         this.IR.addToView(panelView);
 
         // MAR Initializer
-        this.MAR = new GUIRegister("MAR", 16, 80, 290);
+        this.MAR = new GUIRegister("MAR", 16, 80, 230);
         this.MAR.addToView(panelView);
 
         // MBR Initializer
-        this.MBR = new GUIRegister("MBR", 16, 80, 360);
+        this.MBR = new GUIRegister("MBR", 16, 80, 270);
         this.MBR.addToView(panelView);
 
         // IAR Initializer
-        this.IAR = new GUIRegister("IAR", 16, 80, 430);
+        this.IAR = new GUIRegister("IAR", 16, 80, 310);
         this.IAR.addToView(panelView);
+
+        // MSR Initializer
+        this.MSR = new GUIRegister("MSR", 16, 80, 350);
+        this.MSR.addToView(panelView);
+
+        // MFR Initializer
+        this.MFR = new GUIRegister("MFR", 16, 80, 390);
+        this.MFR.addToView(panelView);
 
         // R0 Initializer
         this.R0 = new GUIRegister("R0", 16, 700, 150);
         this.R0.addToView(panelView);
 
         // R1 Initializer
-        this.R1 = new GUIRegister("R1", 16, 700, 197);
+        this.R1 = new GUIRegister("R1", 16, 700, 180);
         this.R1.addToView(panelView);
 
         // R2 Initializer
-        this.R2 = new GUIRegister("R2", 16, 700, 244);
+        this.R2 = new GUIRegister("R2", 16, 700, 210);
         this.R2.addToView(panelView);
 
         // R3 Initializer
-        this.R3 = new GUIRegister("R3", 16, 700, 291);
+        this.R3 = new GUIRegister("R3", 16, 700, 240);
         this.R3.addToView(panelView);
 
         // X0 Initializer
-        this.X0 = new GUIRegister("X0", 16, 700, 338);
+        this.X0 = new GUIRegister("X0", 16, 700, 270);
         this.X0.addToView(panelView);
 
         // X1 initializer
-        this.X1 = new GUIRegister("X1", 16, 700, 385);
+        this.X1 = new GUIRegister("X1", 16, 700, 300);
         this.X1.addToView(panelView);
 
         // X2 Initializer
-        this.X2 = new GUIRegister("X2", 16, 700, 432);
+        this.X2 = new GUIRegister("X2", 16, 700, 330);
         this.X2.addToView(panelView);
+
+        // FR0 Initializer
+        this.FR0 = new GUIRegister("FR0", 16, 700, 360);
+        this.FR0.addToView(panelView);
+
+        // FR1 Initializer
+        this.FR1 = new GUIRegister("FR1", 16, 700, 390);
+        this.FR1.addToView(panelView);
     }
 
     /*
@@ -164,11 +187,11 @@ public class GUIPanel extends JFrame {
         console.setForeground(Color.white);
         console.setBackground(Color.darkGray);
         console.setOpaque(true);
-        console.setBounds(150, 520, 1110, 160);
+        console.setBounds(150, 480, 1030, 160);
         console.setLayoutOrientation(0);
 
         JScrollPane test = new JScrollPane(console);
-        test.setBounds(150, 520, 1110, 160);
+        test.setBounds(150, 480, 1030, 160);
         test.getVerticalScrollBar().addAdjustmentListener(
                 e -> e.getAdjustable().setValue(e.getAdjustable().getValue()));
         panelView.add(test);
@@ -188,7 +211,7 @@ public class GUIPanel extends JFrame {
         inputConsole.setForeground(Color.white);
         inputConsole.setBackground(Color.darkGray);
         inputConsole.setOpaque(true);
-        inputConsole.setBounds(150, 685, 1110, 40);
+        inputConsole.setBounds(150, 640, 1030, 40);
 
         /*
          * MouseListener to clear the hint
@@ -252,6 +275,8 @@ public class GUIPanel extends JFrame {
                     Program2Tag = false;
                     InitInputConsole("Input console can not be used right now", false);
                 }
+            } else if (Program4Tag) {
+
             } else if (cpu.getInput() == null) {
                 String checkedData = "";
                 String[] checkedArr = dataSeparator(inputConsole.getText());
@@ -297,7 +322,7 @@ public class GUIPanel extends JFrame {
         // Load button initializer
         loadButton = new JButton("Load");
         loadButton.setFont(new Font("Avenir", 0, 15));
-        loadButton.setBounds(30, 520, 100, 50);
+        loadButton.setBounds(30, 480, 100, 50);
         loadButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -309,7 +334,7 @@ public class GUIPanel extends JFrame {
         // Single step button initializer
         singleButton = new JButton("Single Step");
         singleButton.setFont(new Font("Avenir", 0, 15));
-        singleButton.setBounds(30, 600, 100, 50);
+        singleButton.setBounds(30, 560, 100, 50);
         singleButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -327,7 +352,7 @@ public class GUIPanel extends JFrame {
         // Run button initializer
         runButton = new JButton("Run");
         runButton.setFont(new Font("Avenir", 0, 15));
-        runButton.setBounds(30, 680, 100, 50);
+        runButton.setBounds(30, 640, 100, 50);
         runButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -362,6 +387,7 @@ public class GUIPanel extends JFrame {
         JMenuItem fileItem = new JMenuItem("File");
         JMenuItem program1Item = new JMenuItem("Program 1");
         JMenuItem program2Item = new JMenuItem("Program 2");
+        JMenuItem project4Item = new JMenuItem("Project 4 Demo");
         JMenuItem opcodeItem = new JMenuItem("Individual OPCode");
 
         fileItem.addActionListener((ActionEvent e) -> {
@@ -418,9 +444,22 @@ public class GUIPanel extends JFrame {
             InitInputConsole("Input instruction here.", true);
         });
 
+        project4Item.addActionListener((ActionEvent e) -> {
+            setMessage("For Project 4 Demo, Please Choose Instruction File.");
+            Program4Tag = true;
+            cpu.resetCache();
+            resetValue();
+            demoFileForProject4();
+            Program4Tag = false;
+            cpu.resetCache();
+            cpu.resetMemory();
+        });
+
+
         loadMenu.add(fileItem);
         loadMenu.add(program1Item);
         loadMenu.add(program2Item);
+        loadMenu.add(project4Item);
         loadMenu.add(opcodeItem);
         loadMenu.show(button, 100, 0);
     }
@@ -475,7 +514,7 @@ public class GUIPanel extends JFrame {
         return fileTxt;
     }
     /*
-     * Show each sentence from Program2 File on the consold
+     * Show each sentence from Program2 File on the console
      */
     private void splitProgram2File(String txt) {
         String[] strArr = txt.split("\\.");
@@ -518,6 +557,10 @@ public class GUIPanel extends JFrame {
         IR.setValue(cpu.getIR());
         MAR.setValue(cpu.getMAR());
         MBR.setValue(cpu.getMBR());
+        MSR.setValue(cpu.getMSR());
+        MFR.setValue(cpu.getMFR());
+        FR0.setValue(cpu.getFR0());
+        FR1.setValue(cpu.getFR1());
         X0.setValue(cpu.getIX(0));
         X1.setValue(cpu.getIX(1));
         X2.setValue(cpu.getIX(2));
@@ -536,6 +579,10 @@ public class GUIPanel extends JFrame {
         MAR.resetValue();
         MBR.resetValue();
         IAR.resetValue();
+        MSR.resetValue();
+        MFR.resetValue();
+        FR0.resetValue();
+        FR1.resetValue();
         R0.resetValue();
         R1.resetValue();
         R2.resetValue();
@@ -661,5 +708,78 @@ public class GUIPanel extends JFrame {
         }
         setMessage("Not Found " + wordStr);
         return list;
+    }
+
+    /*
+     * Pre-process for Project 4 Demo
+     */
+    private void demoFileForProject4() {
+        JFileChooser fileChooser = new JFileChooser();
+        File srcDir = new File(System.getProperty("user.dir"));
+        fileChooser.setCurrentDirectory(srcDir);
+        int value = fileChooser.showOpenDialog(null);
+        if (value != JFileChooser.APPROVE_OPTION) {
+            setMessage("File has not been selected.");
+        }
+        setMessage("Chosen file in " + fileChooser.getSelectedFile().getAbsolutePath());
+        String fileName = fileChooser.getSelectedFile().getName();
+        fileName = fileName.split("\\.")[0];
+        cpu.setMemory(99, 99);
+        cpu.setMemory(100, 100); // Save `100` to Memory[100]
+        cpu.setGPR(CPU.toBitsBinary(1, 16), 0);
+        cpu.setFR0(CPU.toBitsBinary(99, 16));
+        setMessage("FR0 Value: 99");
+        cpu.setFR1(CPU.toBitsBinary(100, 16));
+        setMessage("FR1 Value: 100");
+        setValue();
+        Instruction ins;
+        switch (fileName) {
+            case "FADD":
+                ins = new Instruction("100001000001100100");
+                setMessage("OPCode FADD Operating");
+                ins.getOPCode().execute(cpu, ins);
+                setValue();
+                setMessage("After FADD, FR0 Value: " + cpu.getFR0Value());
+                break;
+            case "FSUB":
+                ins = new Instruction("100010000001100100");
+                setMessage("OPCode FSUB Operating");
+                ins.getOPCode().execute(cpu, ins);
+                setValue();
+                setMessage("After FSUB, FR0 Value: " + cpu.getFR0Value());
+                break;
+            case "VADD":
+                ins = new Instruction("100011000001100100");
+                setMessage("OPCode VADD Operating");
+                try {
+                    ins.getOPCode().execute(cpu, ins);
+                    setValue();
+                }
+                catch (NullPointerException e) {
+                    setMessage(e.getMessage());
+                }
+                break;
+            case "VSUB":
+                ins = new Instruction("100100000001100100");
+                setMessage("OPCode VSUB Operating");
+                try {
+                    ins.getOPCode().execute(cpu, ins);
+                    setValue();
+                }
+                catch (NullPointerException e) {
+                    setMessage(e.getMessage());
+                }
+                break;
+            case "CNVRT":
+                ins = new Instruction("100101000001100100");
+                setMessage("OPCode CNVRT Operating");
+                ins.getOPCode().execute(cpu, ins);
+                setValue();
+                setMessage("After CNVRT, FR0 = " + cpu.getFR0Value());
+                break;
+            default:
+                throw new NullPointerException("Unknown File Error");
+        }
+
     }
 }
